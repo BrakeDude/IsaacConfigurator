@@ -6,7 +6,6 @@
 #include <QTableWidgetItem>
 #include <QFileDialog>
 #include <QDebug>
-#include <QSettings>
 #include <QHBoxLayout>
 #include <QMessageBox>
 
@@ -28,7 +27,6 @@ QString IsaacDLC(QString directory)
 
 QString GetFullDir(){
     QString steamPath;
-    QString ModFolder;
 #ifdef Q_OS_WIN
     QSettings registry32("HKEY_LOCAL_MACHINE\\SOFTWARE\\Valve\\Steam", QSettings::NativeFormat);
     steamPath = registry32.value("InstallPath").toString();
@@ -46,153 +44,447 @@ QString GetFullDir(){
     return steamPath + "/steamapps/common/The Binding of Isaac Rebirth/";
 }
 
-void MainWindow::LoadConfigFile(QString confDir = QString()){
-    if (confDir.isEmpty()){
+void MainWindow::SyncConfigFile(QSettings *settings){
+    //GFX and HUD
+    settings->beginGroup("Options");
+    if (settings->value("Fullscreen") == 1) {
+        ui->checkBox_Fullscreen->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_Fullscreen->setCheckState(Qt::Unchecked);
+    }
+
+    if (settings->value("UseBorderlessFullscreen") == 1) {
+        ui->checkBox_Borderless->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_Borderless->setCheckState(Qt::Unchecked);
+    }
+
+    if (settings->value("Filter") == 1) {
+        ui->checkBox_Filter->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_Filter->setCheckState(Qt::Unchecked);
+    }
+
+    if (settings->value("PopUps") == 1) {
+        ui->checkBox_PopUp->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_PopUp->setCheckState(Qt::Unchecked);
+    }
+
+    if (settings->value("CameraStyle") == 1) {
+        ui->checkBox_Camera->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_Camera->setCheckState(Qt::Unchecked);
+    }
+
+    if (settings->value("ChargeBars") == 1) {
+        ui->checkBox_ChargeBar->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_ChargeBar->setCheckState(Qt::Unchecked);
+    }
+
+    if (settings->value("VSync") == 1) {
+        ui->checkBox_VSync->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_VSync->setCheckState(Qt::Unchecked);
+    }
+
+    if (settings->value("FoundHUD") == 1) {
+        ui->checkBox_FoundHUD->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_FoundHUD->setCheckState(Qt::Unchecked);
+    }
+
+    ui->comboBox_ConsoleFont->setCurrentIndex(settings->value("ConsoleFont").toInt());
+
+    if (settings->value("BossHpOnBottom") == 1) {
+        ui->checkBox_BossHPBot->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_BossHPBot->setCheckState(Qt::Unchecked);
+    }
+
+    if (settings->value("CameraStyle") == 1) {
+        ui->checkBox_Camera->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_Camera->setCheckState(Qt::Unchecked);
+    }
+
+    if (settings->value("BulletVisibility") == 1) {
+        ui->checkBox_BulletVisibility->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_BulletVisibility->setCheckState(Qt::Unchecked);
+    }
+
+    ui->comboBox_ExtraHUD->setCurrentIndex(settings->value("ShowRecentItems").toInt());
+
+    ui->horizontalSlider_Map->setValue((settings->value("MapOpacity").toFloat()*10));
+
+    ui->horizontalSlider_HUD->setValue((settings->value("HudOffset").toFloat()*10));
+
+    ui->spinBox_Gamma->setValue((settings->value("Gamma").toFloat()*100));
+
+    //Music and SFX
+    if (settings->value("MusicEnabled") == 1) {
+        ui->checkBox_Music->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_Music->setCheckState(Qt::Unchecked);
+    }
+
+    ui->comboBox_Announcer->setCurrentIndex(settings->value("AnnouncerVoiceMode").toInt());
+
+    ui->horizontalSlider_Music->setValue((settings->value("MusicVolume").toFloat()*10));
+
+    ui->horizontalSlider_SFX->setValue((settings->value("SFXVolume").toFloat()*10));
+
+    //Console and Debugging
+    if (settings->value("EnableDebugConsole") == 1) {
+        ui->checkBox_ConsoleEnabled->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_ConsoleEnabled->setCheckState(Qt::Unchecked);
+    }
+
+    if (settings->value("FadedConsoleDisplay") == 1) {
+        ui->checkBox_FadeConsole->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_FadeConsole->setCheckState(Qt::Unchecked);
+    }
+
+    if (settings->value("SaveCommandHistory") == 1) {
+        ui->checkBox_SaveCMDHistory->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_SaveCMDHistory->setCheckState(Qt::Unchecked);
+    }
+
+    ui->comboBox_ConsoleFont->setCurrentIndex(settings->value("ConsoleFont").toInt());
+
+    //Misc
+    if (settings->value("RumbleEnabled") == 1) {
+        ui->checkBox_Rumble->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_Rumble->setCheckState(Qt::Unchecked);
+    }
+
+    if (settings->value("PauseOnFocusLost") == 1) {
+        ui->checkBox_Pause->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_Pause->setCheckState(Qt::Unchecked);
+    }
+
+    if (settings->value("MouseControl") == 1) {
+        ui->checkBox_Mouse->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_Mouse->setCheckState(Qt::Unchecked);
+    }
+
+    if (settings->value("SteamCloud") == 1) {
+        ui->checkBox_Steam->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_Steam->setCheckState(Qt::Unchecked);
+    }
+
+    settings->endGroup();
+}
+
+void MainWindow::LoadConfig(){
+    if (QFile::exists(configDir + "/options.ini")){
+        QSettings *settings = new QSettings(configDir + "/options.ini", QSettings::IniFormat);
+
+        SyncConfigFile(settings);
+        //GFX and HUD
+        connect(ui->checkBox_Fullscreen, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("Fullscreen",0);
+            } else {
+                settings->setValue("Fullscreen",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->checkBox_Borderless, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("UseBorderlessFullscreen",0);
+            } else {
+                settings->setValue("UseBorderlessFullscreen",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->checkBox_Filter, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("Filter",0);
+            } else {
+                settings->setValue("Filter",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->checkBox_PopUp, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("PopUps",0);
+            } else {
+                settings->setValue("PopUps",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->checkBox_Camera, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("CameraStyle",2);
+            } else {
+                settings->setValue("CameraStyle",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->checkBox_ChargeBar, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("CameraStyle",0);
+            } else {
+                settings->setValue("CameraStyle",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->checkBox_VSync, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("VSync",0);
+            } else {
+                settings->setValue("VSync",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->checkBox_FoundHUD, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("FoundHUD",0);
+            } else {
+                settings->setValue("FoundHUD",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->comboBox_ConsoleFont, &QComboBox::currentTextChanged, this, [=](QString text){
+            settings->beginGroup("Options");
+            settings->setValue("ConsoleFont",ui->comboBox_ConsoleFont->currentIndex());
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->checkBox_BossHPBot, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("BossHpOnBottom",0);
+            } else {
+                settings->setValue("BossHpOnBottom",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->checkBox_Camera, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("BossHpOnBottom",2);
+            } else {
+                settings->setValue("BossHpOnBottom",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->checkBox_BulletVisibility, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("BulletVisibility",0);
+            } else {
+                settings->setValue("BulletVisibility",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->comboBox_ExtraHUD, &QComboBox::currentTextChanged, this, [=](QString text){
+            settings->beginGroup("Options");
+            settings->setValue("ShowRecentItems",ui->comboBox_ExtraHUD->currentIndex());
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->horizontalSlider_HUD, &QSlider::valueChanged, this, [=](int val) {
+            settings->beginGroup("Options");
+            settings->setValue("HudOffset",QString::number(val/10.0000, 'f', 4));
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->horizontalSlider_Map, &QSlider::valueChanged, this, [=](int val) {
+            settings->beginGroup("Options");
+            settings->setValue("MapOpacity",QString::number(val/10.0000, 'f', 4));
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->spinBox_Gamma, &QSpinBox::textChanged, this, [=](QString text) {
+            settings->beginGroup("Options");
+            settings->setValue("Gamma",QString::number(text.toInt()/100.0000, 'f', 4));
+            settings->endGroup();
+            settings->sync();
+        });
+
+
+        //Music and SFX
+        connect(ui->checkBox_Music, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("MusicEnabled",0);
+            } else {
+                settings->setValue("MusicEnabled",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->horizontalSlider_Music, &QSlider::valueChanged, this, [=](int val) {
+            settings->beginGroup("Options");
+            settings->setValue("MusicVolume",QString::number(val/10.0000, 'f', 4));
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->horizontalSlider_SFX, &QSlider::valueChanged, this, [=](int val) {
+            settings->beginGroup("Options");
+            settings->setValue("SFXVolume",QString::number(val/10.0000, 'f', 4));
+            settings->endGroup();
+            settings->sync();
+        });
+
+        //Console and Debugging
+        connect(ui->checkBox_ConsoleEnabled, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("EnableDebugConsole",0);
+            } else {
+                settings->setValue("EnableDebugConsole",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->checkBox_FadeConsole, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("FadedConsoleDisplay",0);
+            } else {
+                settings->setValue("FadedConsoleDisplay",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->checkBox_SaveCMDHistory, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("SaveCommandHistory",0);
+            } else {
+                settings->setValue("SaveCommandHistory",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->comboBox_ConsoleFont, &QComboBox::currentTextChanged, this, [=](QString text){
+            settings->beginGroup("Options");
+            settings->setValue("ConsoleFont",ui->comboBox_ConsoleFont->currentIndex());
+            settings->endGroup();
+            settings->sync();
+        });
+
+        //Misc
+        connect(ui->checkBox_Rumble, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("RumbleEnabled",0);
+            } else {
+                settings->setValue("RumbleEnabled",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->checkBox_Mouse, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("MouseControl",0);
+            } else {
+                settings->setValue("MouseControl",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->checkBox_Pause, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("PauseOnFocusLost",0);
+            } else {
+                settings->setValue("PauseOnFocusLost",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->checkBox_Steam, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("SteamCloud",0);
+            } else {
+                settings->setValue("SteamCloud",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+    }else{
+        ui->groupBox_Console->setEnabled(false);
+        ui->groupBox_GFX->setEnabled(false);
+        ui->groupBox_Gameplay->setEnabled(false);
+        ui->groupBox_SFX->setEnabled(false);
+    }
+}
+
+void MainWindow::LoadConfigFile(){
+
     QString osDir = "";
 #ifdef Q_OS_WINDOWS
     osDir = QString(getenv("USERPROFILE")) + "/Documents/My Games/Binding of Isaac ";
 #elif Q_OS_LINUX
     osDir = QString(getenv("HOME"));
 #endif
-    confDir = osDir + IsaacDLC(GetFullDir());
-    }
-    if (QFile::exists(confDir + "/options.ini")){
-        QSettings settings(confDir + "/options.ini", QSettings::IniFormat);
-        settings.beginGroup("Options");
-        //GFX and HUD
-        if (settings.value("Fullscreen") == 1) {
-            ui->checkBox_Fullscreen->setCheckState(Qt::Checked);
-        }else{
-            ui->checkBox_Fullscreen->setCheckState(Qt::Unchecked);
-            ui->checkBox_Borderless->setEnabled(false);
-        }
-        connect(ui->checkBox_Fullscreen, &QCheckBox::stateChanged, [=](int state) {
-            QSettings settings(confDir + "/options.ini", QSettings::IniFormat);
-            settings.beginGroup("Options");
-            if (state == Qt::Unchecked) {
-                settings.setValue("Fullscreen",0);
-                ui->checkBox_Borderless->setEnabled(false);
-            } else {
-                settings.setValue("Fullscreen",1);
-                ui->checkBox_Borderless->setEnabled(true);
-            }
-            settings.endGroup();
-            settings.sync();
-        });
+    configDir = osDir + IsaacDLC(GetFullDir());
 
-        if (settings.value("Filter") == 1) {
-            ui->checkBox_Filter->setCheckState(Qt::Checked);
-        }else{
-            ui->checkBox_Filter->setCheckState(Qt::Unchecked);
-        }
-        connect(ui->checkBox_Filter, &QCheckBox::stateChanged, [=](int state) {
-            QSettings settings(confDir + "/options.ini", QSettings::IniFormat);
-            settings.beginGroup("Options");
-            if (state == Qt::Unchecked) {
-                settings.setValue("Filter",0);
-            } else {
-                settings.setValue("Filter",1);
-            }
-            settings.endGroup();
-            settings.sync();
-        });
+    LoadConfig();
+}
 
-        if (settings.value("CameraStyle") == 2) {
-            ui->checkBox_Camera->setCheckState(Qt::Checked);
-        }else{
-            ui->checkBox_Camera->setCheckState(Qt::Unchecked);
-        }
-        connect(ui->checkBox_Camera, &QCheckBox::stateChanged, [=](int state) {
-            QSettings settings(confDir + "/options.ini", QSettings::IniFormat);
-            settings.beginGroup("Options");
-            if (state == Qt::Unchecked) {
-                settings.setValue("CameraStyle",1);
-            } else {
-                settings.setValue("CameraStyle",2);
-            }
-            settings.endGroup();
-            settings.sync();
-        });
-
-        if (settings.value("ChargeBars") == 1) {
-            ui->checkBox_ChargeBar->setCheckState(Qt::Checked);
-        }else{
-            ui->checkBox_ChargeBar->setCheckState(Qt::Unchecked);
-        }
-        connect(ui->checkBox_ChargeBar, &QCheckBox::stateChanged, [=](int state) {
-            QSettings settings(confDir + "/options.ini", QSettings::IniFormat);
-            settings.beginGroup("Options");
-            if (state == Qt::Unchecked) {
-                settings.setValue("CameraStyle",0);
-            } else {
-                settings.setValue("CameraStyle",1);
-            }
-            settings.endGroup();
-            settings.sync();
-        });
-
-        if (settings.value("VSync") == 1) {
-            ui->checkBox_VSync->setCheckState(Qt::Checked);
-        }else{
-            ui->checkBox_VSync->setCheckState(Qt::Unchecked);
-        }
-        connect(ui->checkBox_VSync, &QCheckBox::stateChanged, [=](int state) {
-            QSettings settings(confDir + "/options.ini", QSettings::IniFormat);
-            settings.beginGroup("Options");
-            if (state == Qt::Unchecked) {
-                settings.setValue("VSync",0);
-            } else {
-                settings.setValue("VSync",1);
-            }
-            settings.endGroup();
-            settings.sync();
-        });
-
-        if (settings.value("FoundHUD") == 1) {
-            ui->checkBox_FoundHUD->setCheckState(Qt::Checked);
-        }else{
-            ui->checkBox_FoundHUD->setCheckState(Qt::Unchecked);
-        }
-        connect(ui->checkBox_FoundHUD, &QCheckBox::stateChanged, [=](int state) {
-            QSettings settings(confDir + "/options.ini", QSettings::IniFormat);
-            settings.beginGroup("Options");
-            if (state == Qt::Unchecked) {
-                settings.setValue("FoundHUD",0);
-            } else {
-                settings.setValue("FoundHUD",1);
-            }
-            settings.endGroup();
-            settings.sync();
-        });
-
-        //Music and SFX
-        if (settings.value("MusicEnabled") == 1) {
-            ui->checkBox_Music->setCheckState(Qt::Checked);
-        }else{
-            ui->checkBox_Music->setCheckState(Qt::Unchecked);
-            ui->horizontalSlider_Music->setEnabled(false);
-        }
-        connect(ui->checkBox_Music, &QCheckBox::stateChanged, [=](int state) {
-            QSettings settings(confDir + "/options.ini", QSettings::IniFormat);
-            settings.beginGroup("Options");
-            if (state == Qt::Unchecked) {
-                settings.setValue("MusicEnabled",0);
-                ui->horizontalSlider_Music->setEnabled(false);
-            } else {
-                settings.setValue("MusicEnabled",1);
-                ui->horizontalSlider_Music->setEnabled(true);
-            }
-            settings.endGroup();
-            settings.sync();
-        });
-
-
-        settings.endGroup();
-    }else{
-        ui->groupBox_Console->setEnabled(false);
-        ui->groupBox_GFX->setEnabled(false);
-        ui->groupBox_Gameplay->setEnabled(false);
-        ui->groupBox_SFX->setEnabled(false);
+void MainWindow::ReSyncConfig(){
+    if (QFile::exists(configDir + "/options.ini")){
+        QSettings *settings = new QSettings(configDir + "/options.ini", QSettings::IniFormat);
+        SyncConfigFile(settings);
     }
 }
 
@@ -220,67 +512,33 @@ bool MainWindow::getGamePath() {
                directory = QString(getenv("HOME"))+"/.local/share/binding of isaac afterbirth+ mods";
             #endif
         }
-    }else{
-        GameNotExists:
-        QMessageBox::information(this, "Game is not installed", "Try locating mod folder manually");
     }
+    GameNotExists:
     return found;
 }
-
-void MainWindow::ReloadModList(){
-    ui->tableWidget->clear();
-    loadMods(directory,ui->tableWidget);
-}
-
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect(ui->actionOpen_Mods, &QAction::triggered, this, &MainWindow::on_actionOpenMods);
-    connect(ui->actionOpen_Config, &QAction::triggered, this, &MainWindow::on_actionOpenConfig);
-    connect(ui->actionReload, &QAction::triggered, this, &MainWindow::ReloadModList);
+    connect(ui->buttonSync, &QAbstractButton::pressed, this, [=](){
+        ReSyncConfig();
+    });
     if (getGamePath()){
-        loadMods(directory, ui->tableWidget);
-        ui->actionOpen_Mods->setEnabled(false);
+        loadMods(directory);
+    }else{
+        ui->tabMods->setEnabled(false);
+        QMessageBox::information(this, "No mod folder", "Couldn't locate mods folder. Please, make sure you have Afterbirth+ or Repentance installed.");
     }
     LoadConfigFile();
     setWindowTitle(IsaacDLC(GetFullDir()) + " Configurator");
 }
 
-void MainWindow::on_actionOpenMods() {
-    QString osDir = "";
-    #ifdef Q_OS_WINDOWS
-        osDir = QString(getenv("USERPROFILE"));
-    #elif Q_OS_LINUX
-        osDir = QString(getenv("HOME"));
-    #endif
-    directory = QFileDialog::getExistingDirectory(this, tr("Open Directory"),
-                                                                 osDir,
-                                                                 QFileDialog::ShowDirsOnly
-                                                                     | QFileDialog::DontResolveSymlinks);
-
-    loadMods(directory, ui->tableWidget);
-
-}
-
-void MainWindow::on_actionOpenConfig() {
-    QString osDir = "";
-#ifdef Q_OS_WINDOWS
-    osDir = QString(getenv("USERPROFILE"));
-#elif Q_OS_LINUX
-    osDir = QString(getenv("HOME"));
-#endif
-    configDir = QFileDialog::getOpenFileName(this, tr("Open File"),
-                                             osDir, tr("Options file (options.ini)"));
-    LoadConfigFile(configDir);
-}
-
-void MainWindow::loadMods(QString directory, QTableWidget *table) {
+void MainWindow::loadMods(QString directory) {
     QDir dir(directory);
     QStringList folders = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-
+    QTableWidget *table = ui->tableWidget;
     table->setColumnCount(3);
     table->setRowCount(folders.length());
     table->setSortingEnabled(true);
@@ -323,7 +581,7 @@ void MainWindow::loadMods(QString directory, QTableWidget *table) {
            checkBox->setCheckState(Qt::Checked);
         }
 
-        connect(checkBox, &QCheckBox::stateChanged, [=](int state) {
+        connect(checkBox, &QCheckBox::stateChanged, this, [=](int state) {
             if (state == Qt::Unchecked) {
                 QFile file(directory + "/" + folder + "/disable.it");
                 file.open(QIODevice::WriteOnly | QIODevice::Text);

@@ -48,7 +48,7 @@
         <x>10</x>
         <y>0</y>
         <width>311</width>
-        <height>201</height>
+        <height>281</height>
        </rect>
       </property>
       <property name="title">
@@ -258,7 +258,7 @@
        <property name="geometry">
         <rect>
          <x>141</x>
-         <y>79</y>
+         <y>99</y>
          <width>71</width>
          <height>20</height>
         </rect>
@@ -286,7 +286,7 @@
        <property name="geometry">
         <rect>
          <x>220</x>
-         <y>80</y>
+         <y>100</y>
          <width>61</width>
          <height>16</height>
         </rect>
@@ -309,42 +309,6 @@
        </property>
        <property name="text">
         <string>Found HUD</string>
-       </property>
-      </widget>
-      <widget class="QComboBox" name="comboBox_ExtraHUD_2">
-       <property name="geometry">
-        <rect>
-         <x>140</x>
-         <y>100</y>
-         <width>71</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="layoutDirection">
-        <enum>Qt::LeftToRight</enum>
-       </property>
-       <item>
-        <property name="text">
-         <string>Normal</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>High</string>
-        </property>
-       </item>
-      </widget>
-      <widget class="QLabel" name="label_Bulltes">
-       <property name="geometry">
-        <rect>
-         <x>220</x>
-         <y>100</y>
-         <width>81</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Bullet visibility</string>
        </property>
       </widget>
       <widget class="QCheckBox" name="checkBox_BossHPBot">
@@ -396,6 +360,22 @@
        </property>
        <property name="text">
         <string>Borderless</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_BulletVisibility">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>80</y>
+         <width>91</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>Bullet Visibility</string>
        </property>
       </widget>
      </widget>
@@ -561,9 +541,9 @@
       <property name="geometry">
        <rect>
         <x>330</x>
-        <y>110</y>
-        <width>281</width>
-        <height>91</height>
+        <y>100</y>
+        <width>291</width>
+        <height>101</height>
        </rect>
       </property>
       <property name="title">
@@ -662,14 +642,14 @@
      <widget class="QGroupBox" name="groupBox_Gameplay">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>330</x>
         <y>200</y>
-        <width>151</width>
-        <height>71</height>
+        <width>291</width>
+        <height>81</height>
        </rect>
       </property>
       <property name="title">
-       <string>Gameplay</string>
+       <string>Misc</string>
       </property>
       <widget class="QCheckBox" name="checkBox_Rumble">
        <property name="geometry">
@@ -681,7 +661,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Rumble</string>
+        <string>Controller Rumble</string>
        </property>
       </widget>
       <widget class="QCheckBox" name="checkBox_Mouse">
@@ -694,9 +674,48 @@
         </rect>
        </property>
        <property name="text">
+        <string>Mouse Controls</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_Pause">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>131</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
         <string>Pause on Focus Lost</string>
        </property>
       </widget>
+      <widget class="QCheckBox" name="checkBox_Steam">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>20</y>
+         <width>131</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Steam Cloud Sync</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="buttonSync">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>320</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Resync</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tabMods">
@@ -725,20 +744,12 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionOpen_Mods"/>
-    <addaction name="actionOpen_Config"/>
-   </widget>
    <widget class="QMenu" name="menuMod_List">
     <property name="title">
      <string>Mod List</string>
     </property>
     <addaction name="actionReload"/>
    </widget>
-   <addaction name="menuFile"/>
    <addaction name="menuMod_List"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

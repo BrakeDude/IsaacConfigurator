@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QTableWidget>
 #include <QCheckBox>
+#include <QSettings>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -40,13 +41,12 @@ private:
     QString configDir;
 
     bool getGamePath();
-    void loadMods(QString directory, QTableWidget *table);
-    void LoadConfigFile(QString confDir);
-    void ReloadModList();
+    void loadMods(QString directory);
+    void LoadConfigFile();
+    void LoadConfig();
+    void SyncConfigFile(QSettings *settings);
+    void ReSyncConfig();
 
-private slots:
-    void on_actionOpenMods();
-    void on_actionOpenConfig();
 };
 
 #endif // MAINWINDOW_H
