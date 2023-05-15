@@ -6,23 +6,714 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>960</width>
-    <height>665</height>
+    <width>697</width>
+    <height>543</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>697</width>
+    <height>543</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>697</width>
+    <height>16777215</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string notr="true">Rebirth Settings Configurator</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTableWidget" name="tableWidget">
+   <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>10</y>
-      <width>811</width>
-      <height>601</height>
+      <x>30</x>
+      <y>0</y>
+      <width>641</width>
+      <height>491</height>
      </rect>
     </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tabSettings">
+     <attribute name="title">
+      <string>Settings</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox_GFX">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>311</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Graphics and HUD</string>
+      </property>
+      <widget class="QSlider" name="horizontalSlider_HUD">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>165</y>
+         <width>131</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="maximum">
+        <number>10</number>
+       </property>
+       <property name="pageStep">
+        <number>1</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="invertedAppearance">
+        <bool>false</bool>
+       </property>
+       <property name="invertedControls">
+        <bool>false</bool>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::TicksBelow</enum>
+       </property>
+       <property name="tickInterval">
+        <number>0</number>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_PopUp">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>71</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>Pop-ups</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_Fullscreen">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>81</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>Fullscreen</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_Filter">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>71</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>Filter</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_Camera">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>100</y>
+         <width>101</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>Active Camera</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_HUD">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>140</y>
+         <width>61</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>HUD Offset</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spinBox_Gamma">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>121</y>
+         <width>42</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="suffix">
+        <string/>
+       </property>
+       <property name="minimum">
+        <number>50</number>
+       </property>
+       <property name="maximum">
+        <number>150</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_Gamma">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>120</y>
+         <width>42</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Gamma</string>
+       </property>
+      </widget>
+      <widget class="QSlider" name="horizontalSlider_Map">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>165</y>
+         <width>131</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="maximum">
+        <number>10</number>
+       </property>
+       <property name="pageStep">
+        <number>1</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="invertedAppearance">
+        <bool>false</bool>
+       </property>
+       <property name="invertedControls">
+        <bool>false</bool>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::TicksBelow</enum>
+       </property>
+       <property name="tickInterval">
+        <number>0</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_Map">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>140</y>
+         <width>71</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Map Opacity</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_ChargeBar">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>120</y>
+         <width>101</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>Charge Bars</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBox_ExtraHUD">
+       <property name="geometry">
+        <rect>
+         <x>141</x>
+         <y>79</y>
+         <width>71</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <item>
+        <property name="text">
+         <string>Off</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Normal</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Mini</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>80</y>
+         <width>61</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Extra HUD</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_FoundHUD">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>60</y>
+         <width>91</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>Found HUD</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBox_ExtraHUD_2">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>100</y>
+         <width>71</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <item>
+        <property name="text">
+         <string>Normal</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>High</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="label_Bulltes">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>100</y>
+         <width>81</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Bullet visibility</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_BossHPBot">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>40</y>
+         <width>131</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>Boss HP on Bottom</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_VSync">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>20</y>
+         <width>131</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>VSync</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_Borderless">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>81</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>Borderless</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_SFX">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>0</y>
+        <width>291</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Music and SFX</string>
+      </property>
+      <widget class="QSlider" name="horizontalSlider_Music">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>70</y>
+         <width>121</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="maximum">
+        <number>10</number>
+       </property>
+       <property name="pageStep">
+        <number>1</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="invertedAppearance">
+        <bool>false</bool>
+       </property>
+       <property name="invertedControls">
+        <bool>false</bool>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::TicksBelow</enum>
+       </property>
+       <property name="tickInterval">
+        <number>0</number>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_Music">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>51</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>Music</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_MusicVol">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>81</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Music Volume</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_SFXVol">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>50</y>
+         <width>81</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>SFX Volume</string>
+       </property>
+      </widget>
+      <widget class="QSlider" name="horizontalSlider_SFX">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>70</y>
+         <width>121</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="maximum">
+        <number>10</number>
+       </property>
+       <property name="pageStep">
+        <number>1</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="invertedAppearance">
+        <bool>false</bool>
+       </property>
+       <property name="invertedControls">
+        <bool>false</bool>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::TicksBelow</enum>
+       </property>
+       <property name="tickInterval">
+        <number>0</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_Announcer">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>20</y>
+         <width>71</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Announcer</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBox_Announcer">
+       <property name="geometry">
+        <rect>
+         <x>151</x>
+         <y>19</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <item>
+        <property name="text">
+         <string>Random</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Off</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Always</string>
+        </property>
+       </item>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_Console">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>110</y>
+        <width>281</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Console and Debugging</string>
+      </property>
+      <widget class="QCheckBox" name="checkBox_FadeConsole">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>20</y>
+         <width>101</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>Faded Console</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_SaveCMDHistory">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>161</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>Save Command History</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBox_ConsoleFont">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>60</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <item>
+        <property name="text">
+         <string>Default</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Small</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Tiny</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="label_ConsoleFont">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>61</y>
+         <width>81</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Console Font</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_ConsoleEnabled">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>Console Enabled</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_Gameplay">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>200</y>
+        <width>151</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Gameplay</string>
+      </property>
+      <widget class="QCheckBox" name="checkBox_Rumble">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>131</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Rumble</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_Mouse">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>131</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Pause on Focus Lost</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabMods">
+     <attribute name="title">
+      <string>Mod List</string>
+     </attribute>
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>611</width>
+        <height>441</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -30,7 +721,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>960</width>
+     <width>697</width>
      <height>21</height>
     </rect>
    </property>
@@ -52,7 +743,7 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionOpen_Mods">
-   <property name="checkable">
+   <property name="enabled">
     <bool>true</bool>
    </property>
    <property name="text">
@@ -60,9 +751,6 @@
    </property>
   </action>
   <action name="actionOpen_Config">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
    <property name="text">
     <string>Open config file</string>
    </property>

@@ -38,14 +38,15 @@ private:
     Ui::MainWindow *ui;
     QString directory;
     QString configDir;
+
     bool getGamePath();
     void loadMods(QString directory, QTableWidget *table);
     void LoadConfigFile(QString confDir);
     void ReloadModList();
 
 private slots:
-    void on_actionOpen_Mods();
-    void on_actionOpen_Config();
+    void on_actionOpenMods();
+    void on_actionOpenConfig();
 };
 
 #endif // MAINWINDOW_H
