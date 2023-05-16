@@ -26,6 +26,14 @@ QString IsaacDLC(QString directory)
     return "Rebirth";
 }
 
+QString GetExeName(){
+    QString gameExe = "isaac-ng";
+#ifdef Q_OS_WIN
+    gameExe = gameExe + ".exe";
+#endif
+    return gameExe;
+}
+
 QString GetFullDir(){
     QString steamPath;
 #ifdef Q_OS_WIN
@@ -191,8 +199,8 @@ void MainWindow::SyncConfigFile(QSettings *settings){
     settings->endGroup();
 }
 
-void MainWindow::LoadConfig(){
-    if (QFile::exists(configDir + "/options.ini")){
+void MainWindow::LoadConfig(QString confDir){
+    if (QFile::exists(confDir + "/options.ini")){
         QSettings *settings = new QSettings(configDir + "/options.ini", QSettings::IniFormat);
 
         SyncConfigFile(settings);
@@ -499,11 +507,11 @@ void MainWindow::LoadConfig(){
         ui->groupBox_GFX->setEnabled(false);
         ui->groupBox_Misc->setEnabled(false);
         ui->groupBox_SFX->setEnabled(false);
+        QMessageBox::information(this, "Can't find file", "File 'options.ini' doesn't exists. Try location it manually");
     }
 }
 
 void MainWindow::LoadConfigFile(){
-
     QString osDir = "";
 #ifdef Q_OS_WINDOWS
     osDir = QString(getenv("USERPROFILE")) + "/Documents/My Games/Binding of Isaac ";
@@ -511,11 +519,11 @@ void MainWindow::LoadConfigFile(){
     osDir = QString(getenv("HOME"));
 #endif
     configDir = osDir + IsaacDLC(GetFullDir());
-
-    LoadConfig();
+    LoadConfig(configDir);
 }
 
-void MainWindow::ReSyncConfig(){
+void MainWindow::ReSyncConfig(QString confDir){
+    configDir = confDir;
     if (QFile::exists(configDir + "/options.ini")){
         QSettings *settings = new QSettings(configDir + "/options.ini", QSettings::IniFormat);
         SyncConfigFile(settings);
@@ -531,25 +539,24 @@ bool isRunning(QString gameExe)
     return output.contains("isaac-ng.exe");
 }
 
-bool MainWindow::getModPath() {
+QString getModPath() {
     QString GameDLC;
     QString FullDir = GetFullDir();
-    bool found = false;
 
         GameDLC = IsaacDLC(FullDir);
         if (GameDLC == "Repentance"){
-            found = true;
-            directory = FullDir + "mods";
+            return FullDir + "mods";
         }else if(GameDLC == "Afterbirth+"){
-            found = true;
+            QString directory;
             #ifdef Q_OS_WIN
                directory = QString(getenv("USERPROFILE"))+"/Documents/My Games/Binding of Isaac Afterbirth+ Mods";
             #elif Q_OS_LINUX
                directory = QString(getenv("HOME"))+"/.local/share/binding of isaac afterbirth+ mods";
             #endif
+           return directory;
         }
 
-    return found;
+    return NULL;
 }
 
 MainWindow::MainWindow(QWidget *parent)
@@ -560,53 +567,66 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionExit, &QAction::triggered, this, [=](bool checked){
         QApplication::quit();
     });
-    QString FullDir = GetFullDir();
-    bool found = false;
-    QString gameExe = "isaac-ng";
-    #ifdef Q_OS_WIN
-        gameExe = gameExe + ".exe";
-    #endif
+
+    connect(ui->actionFind_game_folder, &QAction::triggered, this, [=](){
+        LoadApp(QFileDialog::getExistingDirectory(this, tr("Open Directory"),
+                                                       configDir,
+                                                       QFileDialog::ShowDirsOnly
+                                                           | QFileDialog::DontResolveSymlinks),GetExeName());
+    });
+    connect(ui->actionSyncOptions, &QAction::triggered, this, [=](){
+        ReSyncConfig(configDir);
+    });
+
+    connect(ui->actionSyncMods, &QAction::triggered, this, [=](){
+        //loadMods(getModPath());
+    });
+
+    connect(ui->actionStartGame, &QAction::triggered, this, [=](){
+        QProcess::startDetached(GetFullDir()+GetExeName(),QStringList());
+
+    });
+    connect(ui->actionCloseGame, &QAction::triggered, this, [=](){
+        QProcess process;
+        process.start("taskkill", QStringList() << "/IM" << GetExeName());
+        process.waitForFinished();
+    });
+    LoadApp(GetFullDir(), GetExeName());
+
+}
+
+void MainWindow::LoadApp(QString FullDir, QString gameExe){
     if (QFile::exists(FullDir+gameExe)){
-
-        connect(ui->buttonSync, &QAbstractButton::pressed, this, [=](){
-            ReSyncConfig();
-        });
-        connect(ui->startButton, &QAbstractButton::pressed, this, [=](){
-            if(!isRunning(gameExe)){
-                QProcess::startDetached(FullDir+gameExe,QStringList());
-                ui->startButton->setText("Close Isaac");
-            }else{
-                QProcess process;
-                process.start("taskkill", QStringList() << "/IM" << gameExe);
-                process.waitForFinished();
-                ui->startButton->setText("Start Isaac");
-            }
-        });
-        if (getModPath()){
-            loadMods(directory);
-        }else{
-            ui->tabMods->setEnabled(false);
-            QMessageBox::information(this, "No mod folder", "Couldn't locate mods folder. Please, make sure you have Afterbirth+ or Repentance installed.");
-        }
-
-        LoadConfigFile();
-        setWindowTitle(IsaacDLC(GetFullDir()) + " Configurator");
+       QString str = getModPath();
+       if (str != NULL){
+           loadMods(str);
+       }else{
+           ui->tableMods->setEnabled(false);
+           QMessageBox::information(this, "No mod folder", "Couldn't locate mod folder. Please, make sure you have Afterbirth+ or Repentance installed.");
+       }
+       LoadConfigFile();
+       setWindowTitle(IsaacDLC(GetFullDir()) + " Configurator");
     }else {
-        QMessageBox::information(this, "No game found", "Install game first before running app.");
-        ui->tabWidget->setEnabled(false);
-        ui->startButton->setEnabled(false);
-        ui->menuMod_List->setEnabled(false);
+       QMessageBox::information(this, "No game found", "Install game first before running app.");
+       ui->tableMods->setEnabled(false);
+       ui->groupBox_Console->setEnabled(false);
+       ui->groupBox_GFX->setEnabled(false);
+       ui->groupBox_Misc->setEnabled(false);
+       ui->groupBox_SFX->setEnabled(false);
+       ui->menuGame->setEnabled(false);
+       ui->actionSyncMods->setEnabled(false);
+       ui->actionSyncOptions->setEnabled(false);
     }
 }
 
 void MainWindow::loadMods(QString directory) {
     QDir dir(directory);
     QStringList folders = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-    QTableWidget *table = ui->tableWidget;
+    QTableWidget *table = ui->tableMods;
     table->setColumnCount(3);
-    table->setRowCount(folders.length());
-    table->setSortingEnabled(true);
-    table->setHorizontalHeaderLabels(QStringList() << "Active" << "Mod Name" << "Folder");
+    ui->tableMods->setRowCount(folders.length());
+    ui->tableMods->setSortingEnabled(true);
+    ui->tableMods->setHorizontalHeaderLabels(QStringList() << "Active" << "Mod Name" << "Folder");
 
     for (int i = 0; i < folders.size(); ++i) {
 
@@ -614,7 +634,7 @@ void MainWindow::loadMods(QString directory) {
 
         QTableWidgetItem *item = new QTableWidgetItem(folder);
         item->setFlags(item->flags() ^ Qt::ItemIsEditable);
-        table->setItem(i,2,item);
+        ui->tableMods->setItem(i,2,item);
 
         QString modName=folder;
         QString metadata_path = directory + "/" + folder + "/metadata.xml";
@@ -629,7 +649,7 @@ void MainWindow::loadMods(QString directory) {
                        if (xml.name() == "name") {
                            QTableWidgetItem *modname = new QTableWidgetItem(xml.readElementText());
                            modname->setFlags(modname->flags() ^ Qt::ItemIsEditable);
-                           table->setItem(i,1,modname);
+                           ui->tableMods->setItem(i,1,modname);
                            break;
                        }
                    }
@@ -656,18 +676,18 @@ void MainWindow::loadMods(QString directory) {
                 }
             }
         });
-        table->setCellWidget(i,0,checkBox);
+        ui->tableMods->setCellWidget(i,0,checkBox);
 
-        table->setItem(i,0, new QTableWidgetCheckBox());
+        ui->tableMods->setItem(i,0, new QTableWidgetCheckBox());
 
     }
 
-    table->sortItems(1);
-    table->resizeColumnToContents(0);
-    table->resizeColumnToContents(1);
-    table->resizeColumnToContents(2);
-    table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-    table->horizontalHeader()->setSectionResizeMode(0,QHeaderView::Fixed);
+    ui->tableMods->sortItems(1);
+    ui->tableMods->resizeColumnToContents(0);
+    ui->tableMods->resizeColumnToContents(1);
+    ui->tableMods->resizeColumnToContents(2);
+    ui->tableMods->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    ui->tableMods->horizontalHeader()->setSectionResizeMode(0,QHeaderView::Fixed);
 }
 
 MainWindow::~MainWindow()

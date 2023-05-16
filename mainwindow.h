@@ -37,15 +37,14 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    QString directory;
     QString configDir;
 
-    bool getModPath();
     void loadMods(QString directory);
     void LoadConfigFile();
-    void LoadConfig();
+    void LoadConfig(QString confDir);
     void SyncConfigFile(QSettings *settings);
-    void ReSyncConfig();
+    void ReSyncConfig(QString confDir);
+    void LoadApp(QString FullDir, QString gameExe);
 
 };
 
