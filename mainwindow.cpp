@@ -463,7 +463,7 @@ void MainWindow::LoadConfig(){
     }else{
         ui->groupBox_Console->setEnabled(false);
         ui->groupBox_GFX->setEnabled(false);
-        ui->groupBox_Gameplay->setEnabled(false);
+        ui->groupBox_Misc->setEnabled(false);
         ui->groupBox_SFX->setEnabled(false);
     }
 }
