@@ -40,7 +40,7 @@ private:
     QString directory;
     QString configDir;
 
-    bool getGamePath();
+    bool getModPath();
     void loadMods(QString directory);
     void LoadConfigFile();
     void LoadConfig();

@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QHBoxLayout>
 #include <QMessageBox>
+#include <QProcess>
 
 bool Exit = false;
 
@@ -122,6 +123,11 @@ void MainWindow::SyncConfigFile(QSettings *settings){
     ui->horizontalSlider_HUD->setValue((settings->value("HudOffset").toFloat()*10));
 
     ui->spinBox_Gamma->setValue((settings->value("Gamma").toFloat()*100));
+
+    ui->spinBox_Width->setValue((settings->value("WindowWidth").toInt()));
+    ui->spinBox_Height->setValue((settings->value("WindowHeight").toInt()));
+    ui->spinBox_PosX->setValue((settings->value("WindowPosX").toInt()));
+    ui->spinBox_PosY->setValue((settings->value("WindowPosY").toInt()));
 
     //Music and SFX
     if (settings->value("MusicEnabled") == 1) {
@@ -347,6 +353,34 @@ void MainWindow::LoadConfig(){
             settings->sync();
         });
 
+        connect(ui->spinBox_Width, &QSpinBox::textChanged, this, [=](QString text) {
+            settings->beginGroup("Options");
+            settings->setValue("WindowWidth",text.toInt());
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->spinBox_Height, &QSpinBox::textChanged, this, [=](QString text) {
+            settings->beginGroup("Options");
+            settings->setValue("WindowHeight",text.toInt());
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->spinBox_PosX, &QSpinBox::textChanged, this, [=](QString text) {
+            settings->beginGroup("Options");
+            settings->setValue("WindowPosX",text.toInt());
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->spinBox_PosY, &QSpinBox::textChanged, this, [=](QString text) {
+            settings->beginGroup("Options");
+            settings->setValue("WindowPosY",text.toInt());
+            settings->endGroup();
+            settings->sync();
+        });
+
 
         //Music and SFX
         connect(ui->checkBox_Music, &QCheckBox::stateChanged, this, [=](int state) {
@@ -488,18 +522,20 @@ void MainWindow::ReSyncConfig(){
     }
 }
 
-bool MainWindow::getGamePath() {
+bool isRunning(QString gameExe)
+{
+    QProcess process;
+    process.start("tasklist", QStringList() << "/FI" << "IMAGENAME eq " << "isaac-ng.exe");
+    process.waitForFinished();
+    QString output = process.readAllStandardOutput();
+    return output.contains("isaac-ng.exe");
+}
+
+bool MainWindow::getModPath() {
     QString GameDLC;
     QString FullDir = GetFullDir();
     bool found = false;
-    QString gameExe = "isaac-ng";
-    #ifdef Q_OS_WIN
-        gameExe = gameExe + ".exe";
-    #endif
-    if (QDir(FullDir).exists()){
-        if (!QFile(FullDir+gameExe).exists()){
-            goto GameNotExists;
-        }
+
         GameDLC = IsaacDLC(FullDir);
         if (GameDLC == "Repentance"){
             found = true;
@@ -512,8 +548,7 @@ bool MainWindow::getGamePath() {
                directory = QString(getenv("HOME"))+"/.local/share/binding of isaac afterbirth+ mods";
             #endif
         }
-    }
-    GameNotExists:
+
     return found;
 }
 
@@ -522,17 +557,46 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect(ui->buttonSync, &QAbstractButton::pressed, this, [=](){
-        ReSyncConfig();
+    connect(ui->actionExit, &QAction::triggered, this, [=](bool checked){
+        QApplication::quit();
     });
-    if (getGamePath()){
-        loadMods(directory);
-    }else{
-        ui->tabMods->setEnabled(false);
-        QMessageBox::information(this, "No mod folder", "Couldn't locate mods folder. Please, make sure you have Afterbirth+ or Repentance installed.");
+    QString FullDir = GetFullDir();
+    bool found = false;
+    QString gameExe = "isaac-ng";
+    #ifdef Q_OS_WIN
+        gameExe = gameExe + ".exe";
+    #endif
+    if (QFile::exists(FullDir+gameExe)){
+
+        connect(ui->buttonSync, &QAbstractButton::pressed, this, [=](){
+            ReSyncConfig();
+        });
+        connect(ui->startButton, &QAbstractButton::pressed, this, [=](){
+            if(!isRunning(gameExe)){
+                QProcess::startDetached(FullDir+gameExe,QStringList());
+                ui->startButton->setText("Close Isaac");
+            }else{
+                QProcess process;
+                process.start("taskkill", QStringList() << "/IM" << gameExe);
+                process.waitForFinished();
+                ui->startButton->setText("Start Isaac");
+            }
+        });
+        if (getModPath()){
+            loadMods(directory);
+        }else{
+            ui->tabMods->setEnabled(false);
+            QMessageBox::information(this, "No mod folder", "Couldn't locate mods folder. Please, make sure you have Afterbirth+ or Repentance installed.");
+        }
+
+        LoadConfigFile();
+        setWindowTitle(IsaacDLC(GetFullDir()) + " Configurator");
+    }else {
+        QMessageBox::information(this, "No game found", "Install game first before running app.");
+        ui->tabWidget->setEnabled(false);
+        ui->startButton->setEnabled(false);
+        ui->menuMod_List->setEnabled(false);
     }
-    LoadConfigFile();
-    setWindowTitle(IsaacDLC(GetFullDir()) + " Configurator");
 }
 
 void MainWindow::loadMods(QString directory) {

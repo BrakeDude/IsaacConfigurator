@@ -32,7 +32,7 @@
       <x>30</x>
       <y>0</y>
       <width>641</width>
-      <height>491</height>
+      <height>391</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -856,11 +856,24 @@
         <x>10</x>
         <y>10</y>
         <width>611</width>
-        <height>441</height>
+        <height>281</height>
        </rect>
       </property>
      </widget>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="startButton">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>410</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start Isaac</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -878,12 +891,24 @@
     </property>
     <addaction name="actionReload"/>
    </widget>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionExit"/>
+   </widget>
+   <addaction name="menuFile"/>
    <addaction name="menuMod_List"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionReload">
    <property name="text">
     <string>Reload</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
    </property>
   </action>
  </widget>
