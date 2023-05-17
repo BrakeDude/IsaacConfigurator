@@ -156,41 +156,63 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="859"/>
-        <source>Reload mod list</source>
+        <source>Reload mods</source>
+        <oldsource>Reload mod list</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="870"/>
+        <source>Close the app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="873"/>
         <source>Esc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="875"/>
+        <location filename="mainwindow.ui" line="878"/>
         <source>Sync options.ini</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="894"/>
-        <source>C</source>
+        <location filename="mainwindow.ui" line="881"/>
+        <source>Sync changes in options.ini</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="899"/>
+        <location filename="mainwindow.ui" line="892"/>
+        <source>Start the game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="895"/>
+        <source>Ctrl+Shift+S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="903"/>
+        <source>Close the game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="906"/>
+        <source>Ctrl+Shift+C</source>
+        <oldsource>Ctrl+Shift+C, Esc</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="911"/>
         <source>Open folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="907"/>
-        <source>Open mod folder</source>
+        <location filename="mainwindow.ui" line="914"/>
+        <source>Open game install folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="912"/>
-        <source>Open options.ini</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="902"/>
+        <location filename="mainwindow.ui" line="917"/>
         <source>Ctrl+O</source>
         <translation type="unfinished"></translation>
     </message>
@@ -270,22 +292,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="878"/>
+        <location filename="mainwindow.ui" line="884"/>
         <source>Ctrl+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="883"/>
+        <location filename="mainwindow.ui" line="889"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="886"/>
-        <source>S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="891"/>
+        <location filename="mainwindow.ui" line="900"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
@@ -295,7 +312,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="572"/>
+        <location filename="mainwindow.cpp" line="566"/>
         <source>Open Directory</source>
         <translation type="unfinished"></translation>
     </message>

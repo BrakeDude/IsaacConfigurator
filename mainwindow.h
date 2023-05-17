@@ -5,6 +5,7 @@
 #include <QTableWidget>
 #include <QCheckBox>
 #include <QSettings>
+#include <QResizeEvent>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,6 +32,9 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+protected:
+    void resizeEvent(QResizeEvent *event);
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -38,13 +42,14 @@ public:
 private:
     Ui::MainWindow *ui;
     QString configDir;
-
     void loadMods(QString directory);
+    void SyncMods(QString directory);
     void LoadConfigFile();
     void LoadConfig(QString confDir);
     void SyncConfigFile(QSettings *settings);
     void ReSyncConfig(QString confDir);
     void LoadApp(QString FullDir, QString gameExe);
+    void UpdateApp(QString FullDir, QString gameExe);
 
 };
 

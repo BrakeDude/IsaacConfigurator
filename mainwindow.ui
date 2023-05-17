@@ -856,7 +856,7 @@
   </widget>
   <action name="actionSyncMods">
    <property name="text">
-    <string>Reload mod list</string>
+    <string>Reload mods</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
@@ -866,6 +866,9 @@
    <property name="text">
     <string>Exit</string>
    </property>
+   <property name="toolTip">
+    <string>Close the app</string>
+   </property>
    <property name="shortcut">
     <string>Esc</string>
    </property>
@@ -873,6 +876,9 @@
   <action name="actionSyncOptions">
    <property name="text">
     <string>Sync options.ini</string>
+   </property>
+   <property name="toolTip">
+    <string>Sync changes in options.ini</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -882,34 +888,33 @@
    <property name="text">
     <string>Start</string>
    </property>
+   <property name="toolTip">
+    <string>Start the game</string>
+   </property>
    <property name="shortcut">
-    <string>S</string>
+    <string>Ctrl+Shift+S</string>
    </property>
   </action>
   <action name="actionCloseGame">
    <property name="text">
     <string>Close</string>
    </property>
+   <property name="toolTip">
+    <string>Close the game</string>
+   </property>
    <property name="shortcut">
-    <string>C</string>
+    <string>Ctrl+Shift+C</string>
    </property>
   </action>
   <action name="actionFind_game_folder">
    <property name="text">
     <string>Open folder</string>
    </property>
+   <property name="toolTip">
+    <string>Open game install folder</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
-   </property>
-  </action>
-  <action name="actionFind_mod_folder">
-   <property name="text">
-    <string>Open mod folder</string>
-   </property>
-  </action>
-  <action name="actionFind_options_ini">
-   <property name="text">
-    <string>Open options.ini</string>
    </property>
   </action>
  </widget>

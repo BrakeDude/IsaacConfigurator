@@ -530,15 +530,6 @@ void MainWindow::ReSyncConfig(QString confDir){
     }
 }
 
-bool isRunning(QString gameExe)
-{
-    QProcess process;
-    process.start("tasklist", QStringList() << "/FI" << "IMAGENAME eq " << "isaac-ng.exe");
-    process.waitForFinished();
-    QString output = process.readAllStandardOutput();
-    return output.contains("isaac-ng.exe");
-}
-
 QString getModPath() {
     QString GameDLC;
     QString FullDir = GetFullDir();
@@ -564,22 +555,21 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    LoadApp(GetFullDir(), GetExeName());
+
     connect(ui->actionExit, &QAction::triggered, this, [=](bool checked){
         QApplication::quit();
     });
 
     connect(ui->actionFind_game_folder, &QAction::triggered, this, [=](){
         LoadApp(QFileDialog::getExistingDirectory(this, tr("Open Directory"),
-                                                       configDir,
-                                                       QFileDialog::ShowDirsOnly
-                                                           | QFileDialog::DontResolveSymlinks),GetExeName());
+                                                  configDir,
+                                                  QFileDialog::ShowDirsOnly
+                                                      | QFileDialog::DontResolveSymlinks),GetExeName());
     });
     connect(ui->actionSyncOptions, &QAction::triggered, this, [=](){
         ReSyncConfig(configDir);
-    });
-
-    connect(ui->actionSyncMods, &QAction::triggered, this, [=](){
-        //loadMods(getModPath());
     });
 
     connect(ui->actionStartGame, &QAction::triggered, this, [=](){
@@ -591,7 +581,6 @@ MainWindow::MainWindow(QWidget *parent)
         process.start("taskkill", QStringList() << "/IM" << GetExeName());
         process.waitForFinished();
     });
-    LoadApp(GetFullDir(), GetExeName());
 
 }
 
@@ -599,6 +588,10 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
     if (QFile::exists(FullDir+gameExe)){
        QString str = getModPath();
        if (str != NULL){
+           connect(ui->actionSyncMods, &QAction::triggered, this, [=](){
+               ui->tableMods->horizontalHeader()->sortIndicatorOrder();
+               SyncMods(getModPath());
+           });
            loadMods(str);
        }else{
            ui->tableMods->setEnabled(false);
@@ -619,32 +612,27 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
     }
 }
 
-void MainWindow::loadMods(QString directory) {
+void MainWindow::SyncMods(QString directory){
     QDir dir(directory);
     QStringList folders = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-    QTableWidget *table = ui->tableMods;
-    table->setColumnCount(3);
-    ui->tableMods->setRowCount(folders.length());
-    ui->tableMods->setSortingEnabled(true);
-    ui->tableMods->setHorizontalHeaderLabels(QStringList() << "Active" << "Mod Name" << "Folder");
-
+    ui->tableMods->sortItems(2);
     for (int i = 0; i < folders.size(); ++i) {
 
-        QString folder = folders.at(i);
+       QString folder = folders.at(i);
 
-        QTableWidgetItem *item = new QTableWidgetItem(folder);
-        item->setFlags(item->flags() ^ Qt::ItemIsEditable);
-        ui->tableMods->setItem(i,2,item);
+       QTableWidgetItem *item = new QTableWidgetItem(folder);
+       item->setFlags(item->flags() ^ Qt::ItemIsEditable);
+       ui->tableMods->setItem(i,2,item);
 
-        QString modName=folder;
-        QString metadata_path = directory + "/" + folder + "/metadata.xml";
-        if (QFile::exists(metadata_path)) {
-            QFile file(metadata_path);
-            if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-                QXmlStreamReader xml(&file);
-                while (!xml.atEnd() && !xml.hasError()) {
+       QString modName=folder;
+       QString metadata_path = directory + "/" + folder + "/metadata.xml";
+       if (QFile::exists(metadata_path)) {
+           QFile file(metadata_path);
+           if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+               QXmlStreamReader xml(&file);
+               while (!xml.atEnd() && !xml.hasError()) {
                    QXmlStreamReader::TokenType token = xml.readNext();
-                    if (token == QXmlStreamReader::StartDocument) continue;
+                   if (token == QXmlStreamReader::StartDocument) continue;
                    if (token == QXmlStreamReader::StartElement) {
                        if (xml.name() == "name") {
                            QTableWidgetItem *modname = new QTableWidgetItem(xml.readElementText());
@@ -656,38 +644,53 @@ void MainWindow::loadMods(QString directory) {
                }
                file.close();
            }
-        }
+       }
 
-        QCheckBox *checkBox = new QCheckBox();
-        if (QFile::exists(directory + "/" + folder + "/disable.it")){
+       QCheckBox *checkBox = new QCheckBox();
+       if (QFile::exists(directory + "/" + folder + "/disable.it")){
            checkBox->setCheckState(Qt::Unchecked);
-        }else{
+       }else{
            checkBox->setCheckState(Qt::Checked);
-        }
+       }
 
-        connect(checkBox, &QCheckBox::stateChanged, this, [=](int state) {
-            if (state == Qt::Unchecked) {
-                QFile file(directory + "/" + folder + "/disable.it");
-                file.open(QIODevice::WriteOnly | QIODevice::Text);
-                file.close();
-            } else {
-                if (QFile::exists(directory + "/" + folder + "/disable.it")) {
-                    QFile::remove(directory + "/" + folder + "/disable.it");
-                }
-            }
-        });
-        ui->tableMods->setCellWidget(i,0,checkBox);
+       connect(checkBox, &QCheckBox::stateChanged, this, [=](int state) {
+           if (state == Qt::Unchecked) {
+               QFile file(directory + "/" + folder + "/disable.it");
+               file.open(QIODevice::WriteOnly | QIODevice::Text);
+               file.close();
+           } else {
+               if (QFile::exists(directory + "/" + folder + "/disable.it")) {
+                   QFile::remove(directory + "/" + folder + "/disable.it");
+               }
+           }
+       });
+       ui->tableMods->setCellWidget(i,0,checkBox);
 
-        ui->tableMods->setItem(i,0, new QTableWidgetCheckBox());
+       ui->tableMods->setItem(i,0, new QTableWidgetCheckBox());
 
     }
-
     ui->tableMods->sortItems(1);
+}
+
+void MainWindow::loadMods(QString directory) {
+    QDir dir(directory);
+    QStringList folders = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+    ui->tableMods->setColumnCount(3);
+    ui->tableMods->setRowCount(folders.length());
+    ui->tableMods->setSortingEnabled(true);
+    ui->tableMods->sortItems(2);
+    ui->tableMods->setHorizontalHeaderLabels(QStringList() << "Active" << "Mod Name" << "Folder");
+    SyncMods(directory);
     ui->tableMods->resizeColumnToContents(0);
     ui->tableMods->resizeColumnToContents(1);
     ui->tableMods->resizeColumnToContents(2);
     ui->tableMods->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     ui->tableMods->horizontalHeader()->setSectionResizeMode(0,QHeaderView::Fixed);
+}
+
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    ui->tableMods->setGeometry(ui->tableMods->pos().x(), ui->tableMods->pos().y(), event->size().width() - ui->tableMods->pos().x() - 10, event->size().height() - ui->tableMods->pos().y() - 41);
 }
 
 MainWindow::~MainWindow()
