@@ -9,6 +9,7 @@
 #include <QHBoxLayout>
 #include <QMessageBox>
 #include <QProcess>
+#include <QDesktopServices>
 
 bool Exit = false;
 
@@ -586,29 +587,33 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::LoadApp(QString FullDir, QString gameExe){
     if (QFile::exists(FullDir+gameExe)){
-       QString str = getModPath();
-       if (str != NULL){
-           connect(ui->actionSyncMods, &QAction::triggered, this, [=](){
+        QString str = getModPath();
+        if (str != NULL){
+            connect(ui->actionSyncMods, &QAction::triggered, this, [=](){
                ui->tableMods->horizontalHeader()->sortIndicatorOrder();
                SyncMods(getModPath());
-           });
-           loadMods(str);
-       }else{
-           ui->tableMods->setEnabled(false);
-           QMessageBox::information(this, "No mod folder", "Couldn't locate mod folder. Please, make sure you have Afterbirth+ or Repentance installed.");
-       }
-       LoadConfigFile();
-       setWindowTitle(IsaacDLC(GetFullDir()) + " Configurator");
+            });
+            connect(ui->tableMods, &QTableWidget::itemDoubleClicked, ui->tableMods, [=](QTableWidgetItem *item){
+                QString folder = ui->tableMods->item(ui->tableMods->currentRow(), 2)->text();
+                QDesktopServices::openUrl(QUrl::fromLocalFile(QDir::toNativeSeparators(getModPath()+"/"+folder)));
+            });
+            loadMods(str);
+        }else{
+            ui->tableMods->setEnabled(false);
+            QMessageBox::information(this, "No mod folder", "Couldn't locate mod folder. Please, make sure you have Afterbirth+ or Repentance installed.");
+        }
+        LoadConfigFile();
+        setWindowTitle(IsaacDLC(GetFullDir()) + " Configurator");
     }else {
-       QMessageBox::information(this, "No game found", "Install game first before running app.");
-       ui->tableMods->setEnabled(false);
-       ui->groupBox_Console->setEnabled(false);
-       ui->groupBox_GFX->setEnabled(false);
-       ui->groupBox_Misc->setEnabled(false);
-       ui->groupBox_SFX->setEnabled(false);
-       ui->menuGame->setEnabled(false);
-       ui->actionSyncMods->setEnabled(false);
-       ui->actionSyncOptions->setEnabled(false);
+        QMessageBox::information(this, "No game found", "Install game first before running app.");
+        ui->tableMods->setEnabled(false);
+        ui->groupBox_Console->setEnabled(false);
+        ui->groupBox_GFX->setEnabled(false);
+        ui->groupBox_Misc->setEnabled(false);
+        ui->groupBox_SFX->setEnabled(false);
+        ui->menuGame->setEnabled(false);
+        ui->actionSyncMods->setEnabled(false);
+        ui->actionSyncOptions->setEnabled(false);
     }
 }
 
