@@ -525,7 +525,7 @@ void MainWindow::LoadConfig(QString confDir){
         ui->groupBox_GFX->setEnabled(false);
         ui->groupBox_Misc->setEnabled(false);
         ui->groupBox_SFX->setEnabled(false);
-        QMessageBox::information(this, "Can't find file", "File 'options.ini' doesn't exists. Try location it manually");
+        QMessageBox::information(this, tr("Can't find file"), tr("File 'options.ini' doesn't exists. Try location it manually"));
     }
 }
 
@@ -617,12 +617,12 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
             loadMods(str);
         }else{
             ui->tableMods->setEnabled(false);
-            QMessageBox::information(this, "No mod folder", "Couldn't locate mod folder. Please, make sure you have Afterbirth+ or Repentance installed.");
+            QMessageBox::information(this, tr("No mod folder"), tr("Couldn't locate mod folder. Please, make sure you have Afterbirth+ or Repentance installed"));
         }
         LoadConfigFile();
-        setWindowTitle(IsaacDLC(GetFullDir()) + " Configurator");
+        setWindowTitle(IsaacDLC(GetFullDir()) + " " + tr("Configurator"));
     }else {
-        QMessageBox::information(this, "No game found", "Install game first before running app.");
+        QMessageBox::information(this, tr("No game found"), tr("Install game first before running app"));
         ui->tableMods->setEnabled(false);
         ui->groupBox_Console->setEnabled(false);
         ui->groupBox_GFX->setEnabled(false);
@@ -701,7 +701,7 @@ void MainWindow::loadMods(QString directory) {
     ui->tableMods->setRowCount(folders.length());
     ui->tableMods->setSortingEnabled(true);
     ui->tableMods->sortItems(2);
-    ui->tableMods->setHorizontalHeaderLabels(QStringList() << "Active" << "Mod Name" << "Folder");
+    ui->tableMods->setHorizontalHeaderLabels(QStringList() << tr("Active") << tr("Mod Name") << tr("Folder"));
     SyncMods(directory);
     ui->tableMods->resizeColumnToContents(0);
     ui->tableMods->resizeColumnToContents(1);
