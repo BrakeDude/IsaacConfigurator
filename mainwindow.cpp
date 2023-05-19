@@ -197,6 +197,12 @@ void MainWindow::SyncConfigFile(QSettings *settings){
         ui->checkBox_Steam->setCheckState(Qt::Unchecked);
     }
 
+    if (settings->value("EnableMods") == 1) {
+        ui->checkBox_ModsEnabled->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_ModsEnabled->setCheckState(Qt::Unchecked);
+    }
+
     settings->endGroup();
 }
 
@@ -498,6 +504,17 @@ void MainWindow::LoadConfig(QString confDir){
                 settings->setValue("SteamCloud",0);
             } else {
                 settings->setValue("SteamCloud",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->checkBox_ModsEnabled, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("EnableMods",0);
+            } else {
+                settings->setValue("EnableMods",1);
             }
             settings->endGroup();
             settings->sync();

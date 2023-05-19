@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1085</width>
-    <height>544</height>
+    <height>586</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -491,7 +491,7 @@
       <x>20</x>
       <y>430</y>
       <width>311</width>
-      <height>71</height>
+      <height>91</height>
      </rect>
     </property>
     <property name="title">
@@ -547,6 +547,19 @@
      </property>
      <property name="text">
       <string>Steam Cloud Sync</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_ModsEnabled">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>131</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Mods Enabled</string>
      </property>
     </widget>
    </widget>
