@@ -10,8 +10,17 @@
 #include <QMessageBox>
 #include <QProcess>
 #include <QDesktopServices>
+#include <QTranslator>
+#include <QLocale>
 
-bool Exit = false;
+QString optionMessage1;
+QString optionMessage2;
+QStringList modTableHeaders;
+QString openDirName;
+QString modMessage1;
+QString modMessage2;
+QString gameMessage1;
+QString gameMessage2;
 
 QString IsaacDLC(QString directory)
 {
@@ -51,7 +60,19 @@ QString GetFullDir(){
         steamPath = homePath + "/.steam/steam";
     }
 #endif
-    return steamPath + "/steamapps/common/The Binding of Isaac Rebirth/";
+    return steamPath + "/steamapps/common/The Binding of Isaac Rebirth";
+}
+
+void MainWindow::retranslateStrings(){
+    optionMessage1 = tr("Can't find file");
+    optionMessage2 = tr("File 'options.ini' doesn't exists. Try launching game first");
+    modTableHeaders = QStringList() << tr("Active") << tr("Mod Name") <<  tr("Folder");
+    ui->tableMods->setHorizontalHeaderLabels(modTableHeaders);
+    openDirName = tr("Open Directory");
+    modMessage1 = tr("No mod folder");
+    modMessage2 = tr("Couldn't locate mod folder. Please, make sure you have Afterbirth+ or Repentance installed");
+    gameMessage1 = tr("No game found");
+    gameMessage2 = tr("Install game first before running app");
 }
 
 void MainWindow::SyncConfigFile(QSettings *settings){
@@ -208,6 +229,10 @@ void MainWindow::SyncConfigFile(QSettings *settings){
 
 void MainWindow::LoadConfig(QString confDir){
     if (QFile::exists(confDir + "/options.ini")){
+        ui->groupBox_Console->setEnabled(true);
+        ui->groupBox_GFX->setEnabled(true);
+        ui->groupBox_Misc->setEnabled(true);
+        ui->groupBox_SFX->setEnabled(true);
         QSettings *settings = new QSettings(configDir + "/options.ini", QSettings::IniFormat);
 
         SyncConfigFile(settings);
@@ -300,7 +325,7 @@ void MainWindow::LoadConfig(QString confDir){
             settings->sync();
         });
 
-        connect(ui->comboBox_ConsoleFont, &QComboBox::currentTextChanged, this, [=](QString text){
+        connect(ui->comboBox_ConsoleFont, &QComboBox::currentTextChanged, this, [=](){
             settings->beginGroup("Options");
             settings->setValue("ConsoleFont",ui->comboBox_ConsoleFont->currentIndex());
             settings->endGroup();
@@ -340,7 +365,7 @@ void MainWindow::LoadConfig(QString confDir){
             settings->sync();
         });
 
-        connect(ui->comboBox_ExtraHUD, &QComboBox::currentTextChanged, this, [=](QString text){
+        connect(ui->comboBox_ExtraHUD, &QComboBox::currentTextChanged, this, [=](){
             settings->beginGroup("Options");
             settings->setValue("ShowRecentItems",ui->comboBox_ExtraHUD->currentIndex());
             settings->endGroup();
@@ -457,7 +482,7 @@ void MainWindow::LoadConfig(QString confDir){
             settings->sync();
         });
 
-        connect(ui->comboBox_ConsoleFont, &QComboBox::currentTextChanged, this, [=](QString text){
+        connect(ui->comboBox_ConsoleFont, &QComboBox::currentTextChanged, this, [=](){
             settings->beginGroup("Options");
             settings->setValue("ConsoleFont",ui->comboBox_ConsoleFont->currentIndex());
             settings->endGroup();
@@ -525,7 +550,7 @@ void MainWindow::LoadConfig(QString confDir){
         ui->groupBox_GFX->setEnabled(false);
         ui->groupBox_Misc->setEnabled(false);
         ui->groupBox_SFX->setEnabled(false);
-        QMessageBox::information(this, tr("Can't find file"), tr("File 'options.ini' doesn't exists. Try location it manually"));
+        QMessageBox::information(this, optionMessage1, optionMessage2);
     }
 }
 
@@ -543,8 +568,18 @@ void MainWindow::LoadConfigFile(){
 void MainWindow::ReSyncConfig(QString confDir){
     configDir = confDir;
     if (QFile::exists(configDir + "/options.ini")){
+        ui->groupBox_Console->setEnabled(true);
+        ui->groupBox_GFX->setEnabled(true);
+        ui->groupBox_Misc->setEnabled(true);
+        ui->groupBox_SFX->setEnabled(true);
         QSettings *settings = new QSettings(configDir + "/options.ini", QSettings::IniFormat);
         SyncConfigFile(settings);
+    }else{
+        ui->groupBox_Console->setEnabled(false);
+        ui->groupBox_GFX->setEnabled(false);
+        ui->groupBox_Misc->setEnabled(false);
+        ui->groupBox_SFX->setEnabled(false);
+        QMessageBox::information(this, optionMessage1, optionMessage2);
     }
 }
 
@@ -554,7 +589,7 @@ QString getModPath() {
 
         GameDLC = IsaacDLC(FullDir);
         if (GameDLC == "Repentance"){
-            return FullDir + "mods";
+            return FullDir + "/mods";
         }else if(GameDLC == "Afterbirth+"){
             QString directory;
             #ifdef Q_OS_WIN
@@ -568,20 +603,78 @@ QString getModPath() {
     return NULL;
 }
 
+void MainWindow::initLanguages(){
+    QTranslator translator;
+    const QStringList uiLanguages = QLocale::system().uiLanguages();
+    for (const QString &locale : uiLanguages) {
+        const QString baseName = QLocale(locale).name();
+        QLocale *qloc = new QLocale(baseName);
+        if (translator.load(":/i18n/imc_" + baseName)) {
+            QString langN = qloc->nativeLanguageName();
+            QAction *action = new QAction(langN,this);
+            action->setCheckable(true);
+            connect(action, &QAction::triggered, this, [=](){
+
+                for(QAction *act: ui->menuLanguage->actions()){
+                    act->setChecked(false);
+                }
+                action->setChecked(true);
+                if (currentTranslator != baseName){
+                    QTranslator translator;
+                    if(translator.load(":/i18n/imc_" + baseName)){
+
+                        qApp->installTranslator(&translator);
+
+                        // Retranslate the UI elements
+                        ui->retranslateUi(this);
+                        retranslateStrings();
+                        ui->tableMods->resizeColumnToContents(0);
+                    }
+                    currentTranslator = baseName;
+                }
+            });
+            ui->menuLanguage->addAction(action);
+        }
+    }
+    connect(ui->actionEnglish, &QAction::triggered, this, [=](){
+
+        for(QAction *act: ui->menuLanguage->actions()){
+            act->setChecked(false);
+        }
+        ui->actionEnglish->setChecked(true);
+        if (!currentTranslator.isEmpty()){
+            QTranslator translator;
+            if(translator.load(":/i18n/imc_" + currentTranslator)){
+
+                qApp->removeTranslator(&translator);
+
+                // Retranslate the UI elements
+                ui->retranslateUi(this);
+                retranslateStrings();
+                ui->tableMods->resizeColumnToContents(0);
+            }
+            currentTranslator = QString();
+        }
+    });
+    retranslateStrings();
+}
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
+    initLanguages();
+
     LoadApp(GetFullDir(), GetExeName());
 
-    connect(ui->actionExit, &QAction::triggered, this, [=](bool checked){
+    connect(ui->actionExit, &QAction::triggered, this, [=](){
         QApplication::quit();
     });
 
     connect(ui->actionFind_game_folder, &QAction::triggered, this, [=](){
-        LoadApp(QFileDialog::getExistingDirectory(this, tr("Open Directory"),
+        LoadApp(QFileDialog::getExistingDirectory(this, openDirName,
                                                   configDir,
                                                   QFileDialog::ShowDirsOnly
                                                       | QFileDialog::DontResolveSymlinks),GetExeName());
@@ -591,7 +684,7 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
     connect(ui->actionStartGame, &QAction::triggered, this, [=](){
-        QProcess::startDetached(GetFullDir()+GetExeName(),QStringList());
+        QProcess::startDetached(GetFullDir()+"/"+GetExeName(),QStringList());
 
     });
     connect(ui->actionCloseGame, &QAction::triggered, this, [=](){
@@ -603,26 +696,34 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 void MainWindow::LoadApp(QString FullDir, QString gameExe){
-    if (QFile::exists(FullDir+gameExe)){
+    if (QFile::exists(FullDir+"/"+gameExe)){
+        ui->tableMods->setEnabled(true);
+        ui->groupBox_Console->setEnabled(true);
+        ui->groupBox_GFX->setEnabled(true);
+        ui->groupBox_Misc->setEnabled(true);
+        ui->groupBox_SFX->setEnabled(true);
+        ui->menuGame->setEnabled(true);
+        ui->actionSyncMods->setEnabled(true);
+        ui->actionSyncOptions->setEnabled(true);
         QString str = getModPath();
         if (str != NULL){
             connect(ui->actionSyncMods, &QAction::triggered, this, [=](){
-               ui->tableMods->horizontalHeader()->sortIndicatorOrder();
+               //ui->tableMods->horizontalHeader()->sortIndicatorOrder();
                SyncMods(getModPath());
             });
-            connect(ui->tableMods, &QTableWidget::itemDoubleClicked, ui->tableMods, [=](QTableWidgetItem *item){
+            connect(ui->tableMods, &QTableWidget::itemDoubleClicked, ui->tableMods, [=](){
                 QString folder = ui->tableMods->item(ui->tableMods->currentRow(), 2)->text();
                 QDesktopServices::openUrl(QUrl::fromLocalFile(QDir::toNativeSeparators(getModPath()+"/"+folder)));
             });
             loadMods(str);
         }else{
             ui->tableMods->setEnabled(false);
-            QMessageBox::information(this, tr("No mod folder"), tr("Couldn't locate mod folder. Please, make sure you have Afterbirth+ or Repentance installed"));
+            QMessageBox::information(this, modMessage1, modMessage2);
         }
         LoadConfigFile();
-        setWindowTitle(IsaacDLC(GetFullDir()) + " " + tr("Configurator"));
+        setWindowTitle(IsaacDLC(GetFullDir()) + " configurator");
     }else {
-        QMessageBox::information(this, tr("No game found"), tr("Install game first before running app"));
+        QMessageBox::information(this, gameMessage1, gameMessage2);
         ui->tableMods->setEnabled(false);
         ui->groupBox_Console->setEnabled(false);
         ui->groupBox_GFX->setEnabled(false);
@@ -637,7 +738,7 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
 void MainWindow::SyncMods(QString directory){
     QDir dir(directory);
     QStringList folders = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-    ui->tableMods->sortItems(2);
+    //ui->tableMods->sortItems(2);
     for (int i = 0; i < folders.size(); ++i) {
 
        QString folder = folders.at(i);
@@ -691,7 +792,7 @@ void MainWindow::SyncMods(QString directory){
        ui->tableMods->setItem(i,0, new QTableWidgetCheckBox());
 
     }
-    ui->tableMods->sortItems(1);
+    //ui->tableMods->sortItems(1);
 }
 
 void MainWindow::loadMods(QString directory) {
@@ -699,9 +800,9 @@ void MainWindow::loadMods(QString directory) {
     QStringList folders = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
     ui->tableMods->setColumnCount(3);
     ui->tableMods->setRowCount(folders.length());
-    ui->tableMods->setSortingEnabled(true);
-    ui->tableMods->sortItems(2);
-    ui->tableMods->setHorizontalHeaderLabels(QStringList() << tr("Active") << tr("Mod Name") << tr("Folder"));
+    //ui->tableMods->setSortingEnabled(true);
+    //ui->tableMods->sortItems(2);
+    ui->tableMods->setHorizontalHeaderLabels(modTableHeaders);
     SyncMods(directory);
     ui->tableMods->resizeColumnToContents(0);
     ui->tableMods->resizeColumnToContents(1);

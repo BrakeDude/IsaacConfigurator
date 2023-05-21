@@ -165,77 +165,72 @@
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="895"/>
+        <location filename="mainwindow.ui" line="894"/>
         <source>Reload mods list</source>
         <translation>Перезагрузить список модов</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="898"/>
-        <source>Resync mods</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="909"/>
+        <location filename="mainwindow.ui" line="905"/>
         <source>Close the app</source>
         <translation>Закрыть программу</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="942"/>
+        <location filename="mainwindow.ui" line="938"/>
         <source>Close the game</source>
         <translation>Закрыть игру</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="967"/>
+        <location filename="mainwindow.ui" line="963"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="975"/>
+        <location filename="mainwindow.ui" line="971"/>
         <source>Русский</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="912"/>
+        <location filename="mainwindow.ui" line="908"/>
         <source>Esc</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="917"/>
+        <location filename="mainwindow.ui" line="913"/>
         <source>Sync options.ini</source>
         <translation>Синхронизировать options.ini</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="920"/>
+        <location filename="mainwindow.ui" line="916"/>
         <source>Sync changes in options.ini</source>
         <translation>Синхронизировать изменения в options.ini</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="931"/>
+        <location filename="mainwindow.ui" line="927"/>
         <source>Start the game</source>
         <translation>Начать игру</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="934"/>
+        <location filename="mainwindow.ui" line="930"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="945"/>
+        <location filename="mainwindow.ui" line="941"/>
         <source>Ctrl+Shift+C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="950"/>
+        <location filename="mainwindow.ui" line="946"/>
         <source>Open game folder</source>
         <translation>Открыть папку с игрой</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="953"/>
+        <location filename="mainwindow.ui" line="949"/>
         <source>Open game install folder</source>
         <translation>Открыть папку установленной игры</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="956"/>
+        <location filename="mainwindow.ui" line="952"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
@@ -301,7 +296,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="863"/>
-        <location filename="mainwindow.cpp" line="623"/>
+        <location filename="mainwindow.cpp" line="34"/>
         <source>Configurator</source>
         <translation>Конфигуратор</translation>
     </message>
@@ -311,67 +306,81 @@
         <translation>Игра</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="901"/>
+        <location filename="mainwindow.ui" line="897"/>
         <source>Ctrl+R</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="923"/>
+        <location filename="mainwindow.ui" line="919"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="928"/>
+        <location filename="mainwindow.ui" line="924"/>
         <source>Start</source>
         <translation>Запустить</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="939"/>
+        <location filename="mainwindow.ui" line="935"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="906"/>
+        <location filename="mainwindow.ui" line="902"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="528"/>
+        <location filename="mainwindow.cpp" line="27"/>
         <source>Can&apos;t find file</source>
         <translation>Файл не найден</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="528"/>
+        <location filename="mainwindow.cpp" line="28"/>
         <source>File &apos;options.ini&apos; doesn&apos;t exists. Try location it manually</source>
         <translation>Файл &apos;options.ini&apos; не существует. Попробуйте найти его вручную</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="584"/>
+        <location filename="mainwindow.cpp" line="31"/>
         <source>Open Directory</source>
         <translation>Открыть папку</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="620"/>
+        <location filename="mainwindow.cpp" line="32"/>
         <source>No mod folder</source>
         <translation>Папка с модами не найдена</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="620"/>
-        <source>Couldn&apos;t locate mod folder. Please, make sure you have Afterbirth+ or Repentance installed.</source>
+        <location filename="mainwindow.cpp" line="33"/>
+        <source>Couldn&apos;t locate mod folder. Please, make sure you have Afterbirth+ or Repentance installed</source>
         <translation>Не возможно найти папку с модами.Убедитесь, что у вас установлен Afterbirth+ или Repentance.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="704"/>
+        <location filename="mainwindow.cpp" line="35"/>
+        <source>No game found</source>
+        <translation>Игра не найдена</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="36"/>
+        <source>Install game first before running app</source>
+        <translation>Сначала установите игру перед ее запуском</translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t locate mod folder. Please, make sure you have Afterbirth+ or Repentance installed.</source>
+        <translation type="vanished">Не возможно найти папку с модами.Убедитесь, что у вас установлен Afterbirth+ или Repentance.</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="29"/>
         <source>Active</source>
         <translation>Активный</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="704"/>
+        <location filename="mainwindow.cpp" line="29"/>
         <source>Mod Name</source>
         <translation>Название мода</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="704"/>
+        <location filename="mainwindow.cpp" line="29"/>
         <source>Folder</source>
         <translation>Папка</translation>
     </message>

@@ -40,8 +40,12 @@ public:
     ~MainWindow();
 
 private:
+
     Ui::MainWindow *ui;
     QString configDir;
+    QString currentTranslator;
+    void initLanguages();
+    void retranslateStrings();
     void loadMods(QString directory);
     void SyncMods(QString directory);
     void LoadConfigFile();
