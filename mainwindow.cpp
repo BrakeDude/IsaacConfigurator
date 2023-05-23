@@ -747,7 +747,6 @@ void MainWindow::SyncMods(QString directory){
        item->setFlags(item->flags() ^ Qt::ItemIsEditable);
        ui->tableMods->setItem(i,2,item);
 
-       QString modName=folder;
        QString metadata_path = directory + "/" + folder + "/metadata.xml";
        if (QFile::exists(metadata_path)) {
            QFile file(metadata_path);

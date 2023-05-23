@@ -13,6 +13,7 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 
 set(TS_FILES imc_ru_RU.ts)
+set(ICON_RESOURCES icons.qrc)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -20,6 +21,7 @@ set(PROJECT_SOURCES
         mainwindow.h
         mainwindow.ui
         ${TS_FILES}
+        ${ICON_RESOURCES}
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -41,9 +43,9 @@ else()
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
-        add_executable(imc
-            ${PROJECT_SOURCES}
-        )
+    add_executable(imc
+        ${PROJECT_SOURCES}
+    )
     endif()
 
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
