@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1085</width>
-    <height>580</height>
+    <width>1151</width>
+    <height>648</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -20,7 +20,7 @@
    <string notr="true">Rebirth configurator</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="icons.qrc">
+   <iconset>
     <normaloff>:/wrench.png</normaloff>:/wrench.png</iconset>
   </property>
   <property name="locale">
@@ -767,16 +767,6 @@
      </item>
     </widget>
    </widget>
-   <widget class="QTableWidget" name="tableMods">
-    <property name="geometry">
-     <rect>
-      <x>400</x>
-      <y>10</y>
-      <width>671</width>
-      <height>511</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QGroupBox" name="groupBox_Misc">
     <property name="geometry">
      <rect>
@@ -855,13 +845,62 @@
      </property>
     </widget>
    </widget>
+   <widget class="QGroupBox" name="groupModsBox">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>0</y>
+      <width>691</width>
+      <height>581</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Mods</string>
+    </property>
+    <widget class="QPushButton" name="deactivateButton">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>550</y>
+       <width>80</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Turn off</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="activateButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>550</y>
+       <width>80</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Turn on</string>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="tableMods">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>671</width>
+       <height>511</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1085</width>
+     <width>1151</width>
      <height>21</height>
     </rect>
    </property>
@@ -979,8 +1018,6 @@
    </property>
   </action>
  </widget>
- <resources>
-  <include location="icons.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

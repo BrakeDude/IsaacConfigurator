@@ -697,7 +697,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::LoadApp(QString FullDir, QString gameExe){
     if (QFile::exists(FullDir+"/"+gameExe)){
-        ui->tableMods->setEnabled(true);
+        ui->groupModsBox->setEnabled(true);
         ui->groupBox_Console->setEnabled(true);
         ui->groupBox_GFX->setEnabled(true);
         ui->groupBox_Misc->setEnabled(true);
@@ -717,14 +717,14 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
             });
             loadMods(str);
         }else{
-            ui->tableMods->setEnabled(false);
+            ui->groupModsBox->setEnabled(false);
             QMessageBox::information(this, modMessage1, modMessage2);
         }
         LoadConfigFile();
         setWindowTitle(IsaacDLC(GetFullDir()) + " configurator");
     }else {
         QMessageBox::information(this, gameMessage1, gameMessage2);
-        ui->tableMods->setEnabled(false);
+        ui->groupModsBox->setEnabled(false);
         ui->groupBox_Console->setEnabled(false);
         ui->groupBox_GFX->setEnabled(false);
         ui->groupBox_Misc->setEnabled(false);
@@ -791,6 +791,36 @@ void MainWindow::SyncMods(QString directory){
        ui->tableMods->setItem(i,0, new QTableWidgetCheckBox());
 
     }
+
+    connect(ui->activateButton, &QPushButton::clicked, this, [=](){
+        //SyncMods(getModPath());
+        for(int i=0; i < ui->tableMods->rowCount(); ++i){
+            QWidget *widget = ui->tableMods->cellWidget(i, 0);
+            QCheckBox *checkBox = qobject_cast<QCheckBox *>(widget);
+            QString folder = ui->tableMods->item(i,2)->text();
+            if(checkBox->checkState() == Qt::Unchecked){
+                if (QFile::exists(directory + "/" + folder + "/disable.it")) {
+                    QFile::remove(directory + "/" + folder + "/disable.it");
+                    checkBox->setCheckState(Qt::Checked);
+                }
+            }
+        }
+    });
+
+    connect(ui->deactivateButton, &QPushButton::clicked, this, [=](){
+        //SyncMods(getModPath());
+        for(int i=0; i < ui->tableMods->rowCount(); ++i){
+            QWidget *widget = ui->tableMods->cellWidget(i, 0);
+            QCheckBox *checkBox = qobject_cast<QCheckBox *>(widget);
+            QString folder = ui->tableMods->item(i,2)->text();
+            if(checkBox->checkState() == Qt::Checked && !QFile::exists(directory + "/" + folder + "/disable.it")){
+                QFile file(directory + "/" + folder + "/disable.it");
+                file.open(QIODevice::WriteOnly | QIODevice::Text);
+                file.close();
+                checkBox->setCheckState(Qt::Unchecked);
+            }
+        }
+    });
     //ui->tableMods->sortItems(1);
 }
 
@@ -812,7 +842,11 @@ void MainWindow::loadMods(QString directory) {
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    ui->tableMods->setGeometry(ui->tableMods->pos().x(), ui->tableMods->pos().y(), event->size().width() - ui->tableMods->pos().x() - 10, event->size().height() - ui->tableMods->pos().y() - 41);
+    ui->groupModsBox->setGeometry(ui->groupModsBox->pos().x(), ui->groupModsBox->pos().y(), event->size().width() - ui->groupModsBox->pos().x() - 10, event->size().height() - ui->groupModsBox->pos().y() - 41);
+    ui->tableMods->setGeometry(ui->tableMods->pos().x(), ui->tableMods->pos().y(),  ui->groupModsBox->size().width() - ui->tableMods->pos().x() - 10,  ui->groupModsBox->size().height() - ui->tableMods->pos().y() - 41);
+    ui->activateButton->move(ui->activateButton->pos().x(),  ui->groupModsBox->size().height() - 31);
+    ui->deactivateButton->move(ui->deactivateButton->pos().x(),  ui->groupModsBox->size().height() - 31);
+
 }
 
 MainWindow::~MainWindow()
