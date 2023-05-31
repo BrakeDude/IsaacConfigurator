@@ -2,16 +2,11 @@
 #include "ui_mainwindow.h"
 #include <QDir>
 #include <QFile>
-#include <QXmlStreamReader>
-#include <QTableWidgetItem>
 #include <QFileDialog>
-#include <QDebug>
-#include <QHBoxLayout>
+
 #include <QMessageBox>
 #include <QProcess>
 #include <QDesktopServices>
-#include <QTranslator>
-#include <QLocale>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
