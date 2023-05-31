@@ -9,8 +9,12 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    conifg.cpp \
+    directoryFuncs.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    mods.cpp \
+    translations.cpp
 
 HEADERS += \
     mainwindow.h
@@ -27,3 +31,8 @@ CONFIG += embed_translations
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+        icons.qrc
+
+RC_ICONS = wrench.ico

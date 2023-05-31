@@ -1,5 +1,6 @@
-<!DOCTYPE RCC><RCC version="1.0">
- <qresource>
-     <file>wrench.png</file>
- </qresource>
- </RCC>
+<RCC>
+    <qresource prefix="/">
+        <file>wrench.png</file>
+        <file>wrench.ico</file>
+    </qresource>
+</RCC>

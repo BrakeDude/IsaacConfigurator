@@ -181,8 +181,8 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="940"/>
-        <source>Reload mods list</source>
-        <translation>Перезагрузить список модов</translation>
+        <source>Sync mods</source>
+        <translation>Синхронизировать моды</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="951"/>
@@ -345,52 +345,52 @@
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="67"/>
+        <location filename="translations.cpp" line="13"/>
         <source>Can&apos;t find file</source>
         <translation>Файл не найден</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="68"/>
+        <location filename="translations.cpp" line="14"/>
         <source>File &apos;options.ini&apos; doesn&apos;t exists. Try launching game first</source>
         <translation>Файл &apos;options.ini&apos; не существует. Попробуйте сначала запустить игру</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="71"/>
+        <location filename="translations.cpp" line="17"/>
         <source>Open Directory</source>
         <translation>Открыть папку</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="72"/>
+        <location filename="translations.cpp" line="18"/>
         <source>No mod folder</source>
         <translation>Папка с модами не найдена</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="73"/>
+        <location filename="translations.cpp" line="19"/>
         <source>Couldn&apos;t locate mod folder. Please, make sure you have Afterbirth+ or Repentance installed</source>
         <translation>Не возможно найти папку с модами.Убедитесь, что у вас установлен Afterbirth+ или Repentance</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="74"/>
+        <location filename="translations.cpp" line="20"/>
         <source>No game found</source>
         <translation>Игра не найдена</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="75"/>
+        <location filename="translations.cpp" line="21"/>
         <source>Install game first before running app</source>
         <translation>Сначала установите игру перед ее запуском</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="69"/>
+        <location filename="translations.cpp" line="15"/>
         <source>Active</source>
         <translation>Активный</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="69"/>
+        <location filename="translations.cpp" line="15"/>
         <source>Mod Name</source>
         <translation>Название мода</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="69"/>
+        <location filename="translations.cpp" line="15"/>
         <source>Folder</source>
         <translation>Папка</translation>
     </message>

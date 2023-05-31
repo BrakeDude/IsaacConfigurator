@@ -40,6 +40,14 @@ public:
     ~MainWindow();
 
 private:
+    QString optionMessage1;
+    QString optionMessage2;
+    QStringList modTableHeaders;
+    QString openDirName;
+    QString modMessage1;
+    QString modMessage2;
+    QString gameMessage1;
+    QString gameMessage2;
 
     Ui::MainWindow *ui;
     QString configDir;
@@ -54,6 +62,10 @@ private:
     void ReSyncConfig(QString confDir);
     void LoadApp(QString FullDir, QString gameExe);
     void UpdateApp(QString FullDir, QString gameExe);
+    QString getModPath();
+    QString IsaacDLC(QString directory);
+    QString GetExeName();
+    QString GetFullDir();
 
 };
 

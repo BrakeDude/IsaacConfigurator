@@ -20,7 +20,7 @@
    <string notr="true">Rebirth configurator</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="icons.qrc">
     <normaloff>:/wrench.png</normaloff>:/wrench.png</iconset>
   </property>
   <property name="locale">
@@ -937,7 +937,10 @@
   </widget>
   <action name="actionSyncMods">
    <property name="text">
-    <string>Reload mods list</string>
+    <string>Check mods</string>
+   </property>
+   <property name="toolTip">
+    <string>Resyncs states of mods</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
@@ -1018,6 +1021,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>
