@@ -52,8 +52,8 @@ private:
     Ui::MainWindow *ui;
     QString configDir;
     QString currentTranslator;
-    void initLanguages();
-    void retranslateStrings();
+    void initLanguages(QString translation);
+    void retranslateStrings(QString translator);
     void loadMods(QString directory);
     void SyncMods(QString directory);
     void LoadConfigFile();

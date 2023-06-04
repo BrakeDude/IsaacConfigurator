@@ -3,7 +3,6 @@
 #include <QDir>
 #include <QFile>
 #include <QFileDialog>
-
 #include <QMessageBox>
 #include <QProcess>
 #include <QDesktopServices>
@@ -13,8 +12,24 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    initLanguages();
+    if (!QFile::exists(QApplication::applicationDirPath() + "/imc.ini")) {
+        QFile file(QApplication::applicationDirPath() + "/imc.ini");
+        file.open(QIODevice::WriteOnly | QIODevice::Text);
+        file.close();
+        QSettings *config = new QSettings(QApplication::applicationDirPath() + "/imc.ini", QSettings::IniFormat);
+        config->beginGroup("Options");
+        config->setValue("Language","en_EN");
+        config->endGroup();
+        config->sync();
+        currentTranslator = "en_EN";
+    }else{
+        QSettings *config = new QSettings(QApplication::applicationDirPath() + "/imc.ini", QSettings::IniFormat);
+        config->beginGroup("Options");
+        currentTranslator = config->value("Language").toString();
+        config->endGroup();
+        config->sync();
+    }
+    initLanguages(currentTranslator);
 
     LoadApp(GetFullDir(), GetExeName());
 

@@ -1,15 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QDir>
 #include <QFile>
-#include <QXmlStreamReader>
-#include <QTableWidgetItem>
 #include <QTranslator>
-#include <QLocale>
+#include <QMapIterator>
+#include <QSettings>
 
-QStringList langs = QStringList{"ru_RU"};
 
-void MainWindow::retranslateStrings(){
+QMap<QString, QString> langs;
+
+void MainWindow::retranslateStrings(QString translator){
     optionMessage1 = tr("Can't find file");
     optionMessage2 = tr("File 'options.ini' doesn't exists. Try launching game first");
     modTableHeaders = QStringList() << tr("Active") << tr("Mod Name") <<  tr("Folder");
@@ -19,14 +18,25 @@ void MainWindow::retranslateStrings(){
     modMessage2 = tr("Couldn't locate mod folder. Please, make sure you have Afterbirth+ or Repentance installed");
     gameMessage1 = tr("No game found");
     gameMessage2 = tr("Install game first before running app");
+    if(QFile::exists(QApplication::applicationDirPath() + "/imc.ini")){
+        QSettings *config = new QSettings(QApplication::applicationDirPath() + "/imc.ini", QSettings::IniFormat);
+        config->beginGroup("Options");
+        config->setValue("Language",translator);
+        config->endGroup();
+        config->sync();
+    }
 }
 
-void MainWindow::initLanguages(){
+void MainWindow::initLanguages(QString translation){
     QTranslator translator;
-    for (const QString &baseName : qAsConst(langs)) {
-        QLocale *qloc = new QLocale(baseName);
+    langs.insert("ru_RU","Русский");
+    QMapIterator<QString, QString> i(langs);
+
+    while (i.hasNext()) {
+        i.next();
+        QString baseName = i.key();
         if (translator.load(":/i18n/imc_" + baseName)) {
-            QString langN = qloc->nativeLanguageName();
+            QString langN = i.value();
             QAction *action = new QAction(langN,this);
             action->setCheckable(true);
             connect(action, &QAction::triggered, this, [=](){
@@ -43,13 +53,20 @@ void MainWindow::initLanguages(){
 
                         // Retranslate the UI elements
                         ui->retranslateUi(this);
-                        retranslateStrings();
+                        retranslateStrings(baseName);
                         ui->tableMods->resizeColumnToContents(0);
                     }
                     currentTranslator = baseName;
                 }
             });
             ui->menuLanguage->addAction(action);
+            if (translation == baseName){
+                action->setChecked(true);
+                qApp->installTranslator(&translator);
+                ui->retranslateUi(this);
+                retranslateStrings(baseName);
+                ui->tableMods->resizeColumnToContents(0);
+            }
         }
     }
     connect(ui->actionEnglish, &QAction::triggered, this, [=](){
@@ -58,7 +75,7 @@ void MainWindow::initLanguages(){
             act->setChecked(false);
         }
         ui->actionEnglish->setChecked(true);
-        if (!currentTranslator.isEmpty()){
+        if (currentTranslator != "en_EN"){
             QTranslator translator;
             if(translator.load(":/i18n/imc_" + currentTranslator)){
 
@@ -66,11 +83,16 @@ void MainWindow::initLanguages(){
 
                 // Retranslate the UI elements
                 ui->retranslateUi(this);
-                retranslateStrings();
+                retranslateStrings("en_EN");
                 ui->tableMods->resizeColumnToContents(0);
             }
-            currentTranslator = QString();
+            currentTranslator = "en_EN";
         }
     });
-    retranslateStrings();
+    if (translation == "en_EN"){
+        ui->actionEnglish->setChecked(true);
+    }else{
+        ui->actionEnglish->setChecked(false);
+    }
+    retranslateStrings(translation);
 }
