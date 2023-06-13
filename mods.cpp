@@ -1,7 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QDir>
-#include <QFile>
 #include <QXmlStreamReader>
 #include <QTableWidgetItem>
 

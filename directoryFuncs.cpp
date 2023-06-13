@@ -1,6 +1,4 @@
 #include "mainwindow.h"
-#include <QDir>
-#include <QFile>
 
 QString MainWindow::IsaacDLC(QString directory)
 {
@@ -17,9 +15,19 @@ QString MainWindow::IsaacDLC(QString directory)
 }
 
 QString MainWindow::GetExeName(){
-    QString gameExe = "isaac-ng";
+    QString gameExe = "";
 #ifdef Q_OS_WIN
-    gameExe = gameExe + ".exe";
+    gameExe = "isaac-ng.exe";
+#elif defined(Q_OS_LINUX)
+    if (IsaacDLC(GetFullDir()) == "Repentance"){
+        gameExe = "isaac-ng.exe";
+    }else{
+    #ifdef Q_PROCESSOR_X86_64
+        gameExe = "run-x64.sh";
+    #elif defined(Q_PROCESSOR_X86)
+        gameExe = "run-i386.sh";
+    #endif
+    }
 #endif
     return gameExe;
 }
@@ -33,7 +41,7 @@ QString MainWindow::GetFullDir(){
         QSettings registry64("HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Valve\\Steam", QSettings::NativeFormat);
         steamPath = registry64.value("InstallPath").toString();
     }
-#elif Q_OS_LINUX
+#elif defined(Q_OS_LINUX)
     QString homePath = QDir::homePath();
     QString configPath = homePath + "/.steam/steam/steamapps/libraryfolders.vdf";
     if (QFile::exists(configPath)) {
@@ -54,7 +62,7 @@ QString MainWindow::getModPath() {
         QString directory;
 #ifdef Q_OS_WIN
         directory = QString(getenv("USERPROFILE"))+"/Documents/My Games/Binding of Isaac Afterbirth+ Mods";
-#elif Q_OS_LINUX
+#elif defined(Q_OS_LINUX)
         directory = QString(getenv("HOME"))+"/.local/share/binding of isaac afterbirth+ mods";
 #endif
         return directory;

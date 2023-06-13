@@ -6,6 +6,9 @@
 #include <QCheckBox>
 #include <QSettings>
 #include <QResizeEvent>
+#include <QFile>
+#include <QDir>
+#include <QMessageBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

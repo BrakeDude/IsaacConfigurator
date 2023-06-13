@@ -1,7 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QFile>
-#include <QMessageBox>
 
 void MainWindow::SyncConfigFile(QSettings *settings){
     //GFX and HUD
@@ -483,13 +481,16 @@ void MainWindow::LoadConfig(QString confDir){
 }
 
 void MainWindow::LoadConfigFile(){
-    QString osDir = "";
+    QString DLCName = IsaacDLC(GetFullDir());
 #ifdef Q_OS_WINDOWS
-    osDir = QString(getenv("USERPROFILE")) + "/Documents/My Games/Binding of Isaac ";
-#elif Q_OS_LINUX
-    osDir = QString(getenv("HOME"));
+    configDir = QString(getenv("USERPROFILE")) + "/Documents/My Games/Binding of Isaac " + DLCName;
+#elif defined(Q_OS_LINUX)
+    if (DLCName == "Repentance") {
+        configDir = QDir::homePath() + "/.steam/steam/steamapps/compatdata/250900/pfx/drive_c/users/steamuser/Documents/My Games/Binding of Isaac Repentance/";
+    }else{
+        configDir = QDir::homePath() + "/.local/share/binding of isaac " + DLCName.toLower();
+    }
 #endif
-    configDir = osDir + IsaacDLC(GetFullDir());
     LoadConfig(configDir);
 }
 

@@ -1,9 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QDir>
-#include <QFile>
 #include <QFileDialog>
-#include <QMessageBox>
 #include <QProcess>
 #include <QDesktopServices>
 
@@ -47,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
         ReSyncConfig(configDir);
     });
 
+#ifdef Q_OS_WINDOWS
     connect(ui->actionStartGame, &QAction::triggered, this, [=](){
         QProcess::startDetached(GetFullDir()+"/"+GetExeName(),QStringList());
 
@@ -56,6 +54,10 @@ MainWindow::MainWindow(QWidget *parent)
         process.start("taskkill", QStringList() << "/IM" << GetExeName());
         process.waitForFinished();
     });
+#else
+    ui->actionStartGame->setEnabled(false);
+    ui->actionCloseGame->setEnabled(false);
+#endif
 
 }
 
