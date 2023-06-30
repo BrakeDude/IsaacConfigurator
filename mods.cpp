@@ -3,6 +3,25 @@
 #include <QXmlStreamReader>
 #include <QTableWidgetItem>
 
+void MainWindow::SortLineEdit(){
+    QString str = ui->lineEdit->text();
+    int modRow = std::abs(ui->modsButtonGroup->checkedId() + 1);
+    for (int i = 0; i < ui->tableMods->rowCount(); ++i) {
+        if (str == ""){
+            ui->tableMods->showRow(i);
+        }
+        else
+        {
+            if (ui->tableMods->item(i,modRow)->text().contains(str, Qt::CaseInsensitive)){
+                ui->tableMods->showRow(i);
+            }
+            else{
+                ui->tableMods->hideRow(i);
+            }
+        }
+    }
+}
+
 void MainWindow::SyncMods(QString directory){
 
     for (int i = 0; i < ui->tableMods->rowCount(); ++i) {

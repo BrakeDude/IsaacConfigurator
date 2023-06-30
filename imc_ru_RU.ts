@@ -175,83 +175,88 @@
         <translation>Включить</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="925"/>
+        <location filename="mainwindow.ui" line="935"/>
+        <source>Mod Folder</source>
+        <translation>Папка мода</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="970"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="940"/>
+        <location filename="mainwindow.ui" line="985"/>
         <source>Check mods</source>
         <oldsource>Sync mods</oldsource>
         <translation>Проверить моды</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="943"/>
+        <location filename="mainwindow.ui" line="988"/>
         <source>Resyncs states of mods</source>
         <translation>Синхронизирует состояния модов</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="954"/>
+        <location filename="mainwindow.ui" line="999"/>
         <source>Close the app</source>
         <translation>Закрыть программу</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="987"/>
+        <location filename="mainwindow.ui" line="1032"/>
         <source>Close the game</source>
         <translation>Закрыть игру</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1012"/>
+        <location filename="mainwindow.ui" line="1057"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1020"/>
+        <location filename="mainwindow.ui" line="1065"/>
         <source>Русский</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="957"/>
+        <location filename="mainwindow.ui" line="1002"/>
         <source>Esc</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="962"/>
+        <location filename="mainwindow.ui" line="1007"/>
         <source>Sync options.ini</source>
         <translation>Синхронизировать options.ini</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="965"/>
+        <location filename="mainwindow.ui" line="1010"/>
         <source>Sync changes in options.ini</source>
         <translation>Синхронизировать изменения в options.ini</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="976"/>
+        <location filename="mainwindow.ui" line="1021"/>
         <source>Start the game</source>
         <translation>Начать игру</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="979"/>
+        <location filename="mainwindow.ui" line="1024"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="990"/>
+        <location filename="mainwindow.ui" line="1035"/>
         <source>Ctrl+Shift+C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="995"/>
+        <location filename="mainwindow.ui" line="1040"/>
         <source>Open game folder</source>
         <translation>Открыть папку с игрой</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="998"/>
+        <location filename="mainwindow.ui" line="1043"/>
         <source>Open game install folder</source>
         <translation>Открыть папку установленной игры</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1001"/>
+        <location filename="mainwindow.ui" line="1046"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
@@ -316,87 +321,88 @@
         <translation>Синхронизация Steam</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="909"/>
+        <location filename="mainwindow.ui" line="954"/>
         <source>Configurator</source>
         <translation>Конфигуратор</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="918"/>
+        <location filename="mainwindow.ui" line="963"/>
         <source>Game</source>
         <translation>Игра</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="946"/>
+        <location filename="mainwindow.ui" line="991"/>
         <source>Ctrl+R</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="968"/>
+        <location filename="mainwindow.ui" line="1013"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="973"/>
+        <location filename="mainwindow.ui" line="1018"/>
         <source>Start</source>
         <translation>Запустить</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="984"/>
+        <location filename="mainwindow.ui" line="1029"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="951"/>
+        <location filename="mainwindow.ui" line="996"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="translations.cpp" line="13"/>
+        <location filename="translations.cpp" line="11"/>
         <source>Can&apos;t find file</source>
         <translation>Файл не найден</translation>
     </message>
     <message>
-        <location filename="translations.cpp" line="14"/>
+        <location filename="translations.cpp" line="12"/>
         <source>File &apos;options.ini&apos; doesn&apos;t exists. Try launching game first</source>
         <translation>Файл &apos;options.ini&apos; не существует. Попробуйте сначала запустить игру</translation>
     </message>
     <message>
-        <location filename="translations.cpp" line="17"/>
+        <location filename="translations.cpp" line="15"/>
         <source>Open Directory</source>
         <translation>Открыть папку</translation>
     </message>
     <message>
-        <location filename="translations.cpp" line="18"/>
+        <location filename="translations.cpp" line="16"/>
         <source>No mod folder</source>
         <translation>Папка с модами не найдена</translation>
     </message>
     <message>
-        <location filename="translations.cpp" line="19"/>
+        <location filename="translations.cpp" line="17"/>
         <source>Couldn&apos;t locate mod folder. Please, make sure you have Afterbirth+ or Repentance installed</source>
         <translation>Не возможно найти папку с модами.Убедитесь, что у вас установлен Afterbirth+ или Repentance</translation>
     </message>
     <message>
-        <location filename="translations.cpp" line="20"/>
+        <location filename="translations.cpp" line="18"/>
         <source>No game found</source>
         <translation>Игра не найдена</translation>
     </message>
     <message>
-        <location filename="translations.cpp" line="21"/>
+        <location filename="translations.cpp" line="19"/>
         <source>Install game first before running app</source>
         <translation>Сначала установите игру перед ее запуском</translation>
     </message>
     <message>
-        <location filename="translations.cpp" line="15"/>
+        <location filename="translations.cpp" line="13"/>
         <source>Active</source>
         <translation>Активный</translation>
     </message>
     <message>
-        <location filename="translations.cpp" line="15"/>
+        <location filename="mainwindow.ui" line="916"/>
+        <location filename="translations.cpp" line="13"/>
         <source>Mod Name</source>
         <translation>Название мода</translation>
     </message>
     <message>
-        <location filename="translations.cpp" line="15"/>
+        <location filename="translations.cpp" line="13"/>
         <source>Folder</source>
         <translation>Папка</translation>
     </message>

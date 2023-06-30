@@ -9,6 +9,7 @@
 #include <QFile>
 #include <QDir>
 #include <QMessageBox>
+#include <QDebug>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -42,6 +43,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_modRadioButton_Name_toggled(bool checked);
+
+    void on_modRadioButton_Folder_toggled(bool checked);
+
+    void on_lineEdit_textChanged(const QString &arg1);
+
 private:
     QString optionMessage1;
     QString optionMessage2;
@@ -65,6 +73,7 @@ private:
     void ReSyncConfig(QString confDir);
     void LoadApp(QString FullDir, QString gameExe);
     void UpdateApp(QString FullDir, QString gameExe);
+    void SortLineEdit();
     QString getModPath();
     QString IsaacDLC(QString directory);
     QString GetExeName();

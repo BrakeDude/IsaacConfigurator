@@ -105,6 +105,9 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 {
     ui->groupModsBox->setGeometry(ui->groupModsBox->pos().x(), ui->groupModsBox->pos().y(), event->size().width() - ui->groupModsBox->pos().x() - 10, event->size().height() - ui->groupModsBox->pos().y() - 41);
     ui->tableMods->setGeometry(ui->tableMods->pos().x(), ui->tableMods->pos().y(),  ui->groupModsBox->size().width() - ui->tableMods->pos().x() - 10,  ui->groupModsBox->size().height() - ui->tableMods->pos().y() - 41);
+    ui->modRadioButton_Folder->move(ui->groupModsBox->width() - 80,  ui->modRadioButton_Folder->pos().y());
+    ui->modRadioButton_Name->move(ui->modRadioButton_Folder->pos().x() - 100,  ui->modRadioButton_Name->pos().y());
+    ui->lineEdit->setGeometry(ui->lineEdit->pos().x(), ui->lineEdit->pos().y(), event->size().width() - ui->groupModsBox->pos().x() - 210, ui->lineEdit->height());
     ui->activateButton->move(ui->activateButton->pos().x(),  ui->groupModsBox->size().height() - 31);
     ui->deactivateButton->move(ui->deactivateButton->pos().x(),  ui->groupModsBox->size().height() - 31);
 
@@ -113,5 +116,27 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+
+void MainWindow::on_modRadioButton_Name_toggled(bool checked)
+{
+    if(checked){
+        SortLineEdit();
+    }
+}
+
+
+void MainWindow::on_modRadioButton_Folder_toggled(bool checked)
+{
+    if(checked){
+        SortLineEdit();
+    }
+}
+
+
+void MainWindow::on_lineEdit_textChanged(const QString &arg1)
+{
+    SortLineEdit();
 }
 
