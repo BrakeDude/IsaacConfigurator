@@ -73,6 +73,11 @@ void MainWindow::loadMods(QString directory) {
                         }
                     }
                 }
+                if(xml.hasError()){
+                    QTableWidgetItem *failitem = new QTableWidgetItem(folder);
+                    failitem->setFlags(failitem->flags() ^ Qt::ItemIsEditable);
+                    ui->tableMods->setItem(i,1,failitem);
+                }
                 file.close();
             }
         }
