@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1151</width>
-    <height>648</height>
+    <height>670</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -937,6 +937,136 @@
      <attribute name="buttonGroup">
       <string notr="true">modsButtonGroup</string>
      </attribute>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_Effects">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>520</y>
+      <width>371</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Effects</string>
+    </property>
+    <widget class="QCheckBox" name="checkBox_ColorCorrection">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>111</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Color Correction</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_Caustics">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>78</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Caustics</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_Shockwave">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>78</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Shockwave</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_Lighting">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>20</y>
+       <width>78</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Lighting</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_EffectsFilter">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>40</y>
+       <width>78</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Filter</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_Pixelation">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>60</y>
+       <width>78</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Pixelation</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_Bloom">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>20</y>
+       <width>78</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Bloom</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_WaterSurface">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>40</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Water Sruface</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_Interpolation">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>60</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Interpolation</string>
+     </property>
     </widget>
    </widget>
   </widget>

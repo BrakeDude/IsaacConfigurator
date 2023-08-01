@@ -11,10 +11,12 @@ CONFIG += c++17
 SOURCES += \
     conifg.cpp \
     directoryFuncs.cpp \
+    iniconfig.cpp \
     main.cpp \
     mainwindow.cpp \
     mods.cpp \
-    translations.cpp
+    translations.cpp \
+    iniconfig.cpp
 
 HEADERS += \
     mainwindow.h

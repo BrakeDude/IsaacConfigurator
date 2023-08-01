@@ -67,6 +67,7 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
         ui->groupBox_Console->setEnabled(true);
         ui->groupBox_GFX->setEnabled(true);
         ui->groupBox_Misc->setEnabled(true);
+        ui->groupBox_Effects->setEnabled(true);
         ui->groupBox_SFX->setEnabled(true);
         ui->menuGame->setEnabled(true);
         ui->actionSyncMods->setEnabled(true);
@@ -87,11 +88,13 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
             QMessageBox::information(this, modMessage1, modMessage2);
         }
         LoadConfigFile();
+        ConfigIniLoad();
         setWindowTitle(IsaacDLC(GetFullDir()) + " configurator");
     }else {
         QMessageBox::information(this, gameMessage1, gameMessage2);
         ui->groupModsBox->setEnabled(false);
         ui->groupBox_Console->setEnabled(false);
+        ui->groupBox_Effects->setEnabled(false);
         ui->groupBox_GFX->setEnabled(false);
         ui->groupBox_Misc->setEnabled(false);
         ui->groupBox_SFX->setEnabled(false);

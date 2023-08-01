@@ -74,6 +74,8 @@ private:
     void LoadApp(QString FullDir, QString gameExe);
     void UpdateApp(QString FullDir, QString gameExe);
     void SortLineEdit();
+    void ReSyncConfigIni(QSettings *settings);
+    void ConfigIniLoad();
     QString getModPath();
     QString IsaacDLC(QString directory);
     QString GetExeName();
