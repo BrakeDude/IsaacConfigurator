@@ -1,14 +1,26 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QTextStream>
+#include <QDebug>
 
 void MainWindow::ConfigIniLoad(){
     QString configIniDir = GetFullDir() + "/resources";
     if (!QFile::exists(configIniDir + "/config.ini")) {
-        QFile file(configIniDir + "/config.ini");
-        file.open(QIODevice::WriteOnly | QIODevice::Text);
-        file.close();
+        QSettings *settings = new QSettings(configIniDir + "/config.ini", QSettings::IniFormat);
+        settings->beginGroup("Options");
+        settings->setValue("EnableColorCorrection",1);
+        settings->setValue("EnableCaustics",1);
+        settings->setValue("EnableShockwave",1);
+        settings->setValue("EnableLighting",1);
+        settings->setValue("EnableFilter",1);
+        settings->setValue("EnablePixelation",1);
+        settings->setValue("EnableBloom",1);
+        settings->setValue("EnableWaterSurface",1);
+        settings->setValue("EnableInterpolation",1);
+        settings->endGroup();
+        settings->sync();
     }
-    QSettings *settings = new QSettings(configDir + "/config.ini", QSettings::IniFormat);
+    QSettings *settings = new QSettings(configIniDir + "/config.ini", QSettings::IniFormat);
 
     ReSyncConfigIni(settings);
 
@@ -135,38 +147,38 @@ void MainWindow::ReSyncConfigIni(QSettings *settings){
     }
 
     if (settings->value("EnableLighting") == 1) {
-        ui->checkBox_Shockwave->setCheckState(Qt::Checked);
+        ui->checkBox_Lighting->setCheckState(Qt::Checked);
     }else{
-        ui->checkBox_Shockwave->setCheckState(Qt::Unchecked);
+        ui->checkBox_Lighting->setCheckState(Qt::Unchecked);
     }
 
     if (settings->value("EnableFilter") == 1) {
-        ui->checkBox_Shockwave->setCheckState(Qt::Checked);
+        ui->checkBox_EffectsFilter->setCheckState(Qt::Checked);
     }else{
-        ui->checkBox_Shockwave->setCheckState(Qt::Unchecked);
+        ui->checkBox_EffectsFilter->setCheckState(Qt::Unchecked);
     }
 
     if (settings->value("EnablePixelation") == 1) {
-        ui->checkBox_Shockwave->setCheckState(Qt::Checked);
+        ui->checkBox_Pixelation->setCheckState(Qt::Checked);
     }else{
-        ui->checkBox_Shockwave->setCheckState(Qt::Unchecked);
+        ui->checkBox_Pixelation->setCheckState(Qt::Unchecked);
     }
 
     if (settings->value("EnableBloom") == 1) {
-        ui->checkBox_Shockwave->setCheckState(Qt::Checked);
+        ui->checkBox_Bloom->setCheckState(Qt::Checked);
     }else{
-        ui->checkBox_Shockwave->setCheckState(Qt::Unchecked);
+        ui->checkBox_Bloom->setCheckState(Qt::Unchecked);
     }
 
     if (settings->value("EnableWaterSurface") == 1) {
-        ui->checkBox_Shockwave->setCheckState(Qt::Checked);
+        ui->checkBox_WaterSurface->setCheckState(Qt::Checked);
     }else{
-        ui->checkBox_Shockwave->setCheckState(Qt::Unchecked);
+        ui->checkBox_WaterSurface->setCheckState(Qt::Unchecked);
     }
     if (settings->value("EnableInterpolation") == 1) {
-        ui->checkBox_Shockwave->setCheckState(Qt::Checked);
+        ui->checkBox_Interpolation->setCheckState(Qt::Checked);
     }else{
-        ui->checkBox_Shockwave->setCheckState(Qt::Unchecked);
+        ui->checkBox_Interpolation->setCheckState(Qt::Unchecked);
     }
 
     settings->endGroup();

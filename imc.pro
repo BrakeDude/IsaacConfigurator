@@ -15,8 +15,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     mods.cpp \
-    translations.cpp \
-    iniconfig.cpp
+    translations.cpp
 
 HEADERS += \
     mainwindow.h
