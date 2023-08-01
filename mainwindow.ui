@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1151</width>
-    <height>670</height>
+    <width>1154</width>
+    <height>634</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1085</width>
-    <height>580</height>
+    <width>1154</width>
+    <height>634</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -507,7 +507,7 @@
       <x>10</x>
       <y>360</y>
       <width>191</width>
-      <height>161</height>
+      <height>131</height>
      </rect>
     </property>
     <property name="title">
@@ -773,7 +773,7 @@
       <x>210</x>
       <y>360</y>
       <width>171</width>
-      <height>161</height>
+      <height>131</height>
      </rect>
     </property>
     <property name="title">
@@ -850,7 +850,7 @@
      <rect>
       <x>390</x>
       <y>0</y>
-      <width>691</width>
+      <width>731</width>
       <height>581</height>
      </rect>
     </property>
@@ -896,9 +896,9 @@
     <widget class="QLineEdit" name="lineEdit">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>310</x>
        <y>30</y>
-       <width>461</width>
+       <width>371</width>
        <height>24</height>
       </rect>
      </property>
@@ -906,9 +906,9 @@
     <widget class="QRadioButton" name="modRadioButton_Name">
      <property name="geometry">
       <rect>
-       <x>490</x>
+       <x>120</x>
        <y>30</y>
-       <width>91</width>
+       <width>101</width>
        <height>22</height>
       </rect>
      </property>
@@ -925,9 +925,9 @@
     <widget class="QRadioButton" name="modRadioButton_Folder">
      <property name="geometry">
       <rect>
-       <x>590</x>
+       <x>220</x>
        <y>30</y>
-       <width>91</width>
+       <width>101</width>
        <height>22</height>
       </rect>
      </property>
@@ -938,12 +938,28 @@
       <string notr="true">modsButtonGroup</string>
      </attribute>
     </widget>
+    <widget class="QLabel" name="label_FindBy">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>101</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Find by:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_Effects">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>520</y>
+      <y>490</y>
       <width>371</width>
       <height>91</height>
      </rect>
@@ -969,7 +985,7 @@
       <rect>
        <x>10</x>
        <y>40</y>
-       <width>78</width>
+       <width>111</width>
        <height>22</height>
       </rect>
      </property>
@@ -982,7 +998,7 @@
       <rect>
        <x>10</x>
        <y>60</y>
-       <width>78</width>
+       <width>111</width>
        <height>22</height>
       </rect>
      </property>
@@ -995,7 +1011,7 @@
       <rect>
        <x>140</x>
        <y>20</y>
-       <width>78</width>
+       <width>101</width>
        <height>22</height>
       </rect>
      </property>
@@ -1008,7 +1024,7 @@
       <rect>
        <x>140</x>
        <y>40</y>
-       <width>78</width>
+       <width>101</width>
        <height>22</height>
       </rect>
      </property>
@@ -1021,7 +1037,7 @@
       <rect>
        <x>140</x>
        <y>60</y>
-       <width>78</width>
+       <width>101</width>
        <height>22</height>
       </rect>
      </property>
@@ -1034,7 +1050,7 @@
       <rect>
        <x>250</x>
        <y>20</y>
-       <width>78</width>
+       <width>111</width>
        <height>22</height>
       </rect>
      </property>
@@ -1047,7 +1063,7 @@
       <rect>
        <x>250</x>
        <y>40</y>
-       <width>101</width>
+       <width>111</width>
        <height>22</height>
       </rect>
      </property>
@@ -1060,7 +1076,7 @@
       <rect>
        <x>250</x>
        <y>60</y>
-       <width>101</width>
+       <width>111</width>
        <height>22</height>
       </rect>
      </property>
@@ -1075,7 +1091,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1151</width>
+     <width>1154</width>
      <height>21</height>
     </rect>
    </property>

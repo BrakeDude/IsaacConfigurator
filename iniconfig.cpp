@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QTextStream>
-#include <QDebug>
 
 void MainWindow::ConfigIniLoad(){
     QString configIniDir = GetFullDir() + "/resources";
