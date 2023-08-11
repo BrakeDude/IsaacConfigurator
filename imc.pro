@@ -24,7 +24,8 @@ FORMS += \
     mainwindow.ui
 
 TRANSLATIONS += \
-    imc_ru_RU.ts
+    imc_ru_RU.ts \
+    imc_es_ES.ts
 CONFIG += lrelease
 CONFIG += embed_translations
 

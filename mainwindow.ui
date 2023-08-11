@@ -1211,6 +1211,17 @@
     <string>Русский</string>
    </property>
   </action>
+  <action name="actionSpanish">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Русский</string>
+   </property>
+   <property name="toolTip">
+    <string>Español</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="icons.qrc"/>

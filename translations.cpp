@@ -29,6 +29,7 @@ void MainWindow::retranslateStrings(QString translator){
 void MainWindow::initLanguages(QString translation){
     QTranslator translator;
     langs.insert("ru_RU","Русский");
+    langs.insert("es_ES","Español");
     QMapIterator<QString, QString> i(langs);
 
     while (i.hasNext()) {
