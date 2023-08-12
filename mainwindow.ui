@@ -784,7 +784,7 @@
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>141</width>
+       <width>151</width>
        <height>22</height>
       </rect>
      </property>
@@ -797,7 +797,7 @@
       <rect>
        <x>10</x>
        <y>40</y>
-       <width>141</width>
+       <width>151</width>
        <height>22</height>
       </rect>
      </property>
@@ -810,7 +810,7 @@
       <rect>
        <x>10</x>
        <y>100</y>
-       <width>141</width>
+       <width>151</width>
        <height>22</height>
       </rect>
      </property>
@@ -823,7 +823,7 @@
       <rect>
        <x>10</x>
        <y>80</y>
-       <width>141</width>
+       <width>151</width>
        <height>22</height>
       </rect>
      </property>
@@ -836,7 +836,7 @@
       <rect>
        <x>10</x>
        <y>60</y>
-       <width>141</width>
+       <width>151</width>
        <height>22</height>
       </rect>
      </property>
@@ -896,9 +896,9 @@
     <widget class="QLineEdit" name="lineEdit">
      <property name="geometry">
       <rect>
-       <x>310</x>
+       <x>360</x>
        <y>30</y>
-       <width>371</width>
+       <width>321</width>
        <height>24</height>
       </rect>
      </property>
@@ -1111,15 +1111,21 @@
     <addaction name="actionStartGame"/>
     <addaction name="actionCloseGame"/>
    </widget>
-   <widget class="QMenu" name="menuLanguage">
+   <widget class="QMenu" name="menuOptions">
     <property name="title">
-     <string>Language</string>
+     <string>Options</string>
     </property>
-    <addaction name="actionEnglish"/>
+    <widget class="QMenu" name="menuLanguage">
+     <property name="title">
+      <string>Language</string>
+     </property>
+     <addaction name="actionEnglish"/>
+    </widget>
+    <addaction name="menuLanguage"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuGame"/>
-   <addaction name="menuLanguage"/>
+   <addaction name="menuOptions"/>
   </widget>
   <widget class="QStatusBar" name="statusbar">
    <property name="enabled">
@@ -1201,25 +1207,6 @@
    </property>
    <property name="text">
     <string>English</string>
-   </property>
-  </action>
-  <action name="actionRussian">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Русский</string>
-   </property>
-  </action>
-  <action name="actionSpanish">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Русский</string>
-   </property>
-   <property name="toolTip">
-    <string>Español</string>
    </property>
   </action>
  </widget>
