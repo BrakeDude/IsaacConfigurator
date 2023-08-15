@@ -244,7 +244,7 @@
     <message>
         <location filename="mainwindow.ui" line="1133"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ayuda</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1144"/>
@@ -275,7 +275,7 @@
     <message>
         <location filename="mainwindow.ui" line="1221"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">A cerca de</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1161"/>
@@ -474,7 +474,7 @@
     <message>
         <location filename="about.ui" line="57"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Isaac Configurator is a tool to manage game settings of &lt;a href=&quot;https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;The Binding of Isaac: Rebirth&lt;/span&gt;&lt;/a&gt; and its DLCs and mods for Afterbirth+/Repentance. Source code can be found on &lt;a href=&quot;https://github.com/BrakeDude/imc&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Isaac Configurator es una herramienta para manejar configuraciones de of &lt;a href=&quot;https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;The Binding of Isaac: Rebirth&lt;/span&gt;&lt;/a&gt; sus DLCs y mods para Afterbirth+ y Repentance. El código fuente se encuentra en: &lt;a href=&quot;https://github.com/BrakeDude/imc&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 </TS>
