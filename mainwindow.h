@@ -9,6 +9,7 @@
 #include <QFile>
 #include <QDir>
 #include <QMessageBox>
+#include "ui_about.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -49,6 +50,8 @@ private slots:
 
     void on_lineEdit_textChanged(const QString &arg1);
 
+    void on_actionAbout_triggered();
+
 private:
     QString optionMessage1;
     QString optionMessage2;
@@ -60,6 +63,8 @@ private:
     QString gameMessage2;
 
     Ui::MainWindow *ui;
+    Ui::about *ui_about;
+    QDialog *aboutDialog;
     QString configDir;
     QString currentTranslator;
     void initLanguages(QString translation);

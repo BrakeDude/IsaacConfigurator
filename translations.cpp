@@ -53,6 +53,7 @@ void MainWindow::initLanguages(QString translation){
 
                         // Retranslate the UI elements
                         ui->retranslateUi(this);
+                        ui_about->retranslateUi(aboutDialog);
                         retranslateStrings(baseName);
                         ui->tableMods->resizeColumnToContents(0);
                     }
@@ -64,6 +65,7 @@ void MainWindow::initLanguages(QString translation){
                 action->setChecked(true);
                 qApp->installTranslator(&translator);
                 ui->retranslateUi(this);
+                ui_about->retranslateUi(aboutDialog);
                 retranslateStrings(baseName);
                 ui->tableMods->resizeColumnToContents(0);
             }
@@ -83,6 +85,7 @@ void MainWindow::initLanguages(QString translation){
 
                 // Retranslate the UI elements
                 ui->retranslateUi(this);
+                ui_about->retranslateUi(aboutDialog);
                 retranslateStrings("en_EN");
                 ui->tableMods->resizeColumnToContents(0);
             }

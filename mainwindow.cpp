@@ -9,6 +9,10 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui_about = new Ui::about();
+    aboutDialog = new QDialog(this);
+    aboutDialog->setWindowFlags(aboutDialog->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    ui_about->setupUi(aboutDialog);
     if (!QFile::exists(QApplication::applicationDirPath() + "/imc.ini")) {
         QFile file(QApplication::applicationDirPath() + "/imc.ini");
         file.open(QIODevice::WriteOnly | QIODevice::Text);
@@ -89,7 +93,7 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
         }
         LoadConfigFile();
         ConfigIniLoad();
-        setWindowTitle(IsaacDLC(GetFullDir()) + " configurator");
+        //setWindowTitle(IsaacDLC(GetFullDir()) + " Configurator");
     }else {
         QMessageBox::information(this, gameMessage1, gameMessage2);
         ui->groupModsBox->setEnabled(false);
@@ -139,5 +143,13 @@ void MainWindow::on_modRadioButton_Folder_toggled(bool checked)
 void MainWindow::on_lineEdit_textChanged(const QString &arg1)
 {
     SortLineEdit();
+}
+
+
+void MainWindow::on_actionAbout_triggered()
+{
+    ui_about->labelAboutText->setFixedHeight(ui_about->labelAboutText->sizeHint().height());
+    aboutDialog->setFixedSize(QSize(300, ui_about->labelAboutText->sizeHint().height() + ui_about->labelAboutName->sizeHint().height() + 5));
+    aboutDialog->exec();
 }
 

@@ -232,88 +232,93 @@
         <translation>Interpolación</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1116"/>
+        <location filename="mainwindow.ui" line="1121"/>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opciones</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1120"/>
+        <location filename="mainwindow.ui" line="1125"/>
         <source>Language</source>
         <translation>Idioma</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1138"/>
+        <location filename="mainwindow.ui" line="1133"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1144"/>
         <source>Check mods</source>
         <oldsource>Sync mods</oldsource>
         <translation>Checar mods</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1141"/>
+        <location filename="mainwindow.ui" line="1147"/>
         <source>Resyncs states of mods</source>
         <translation>Синхронизирует состояния модов</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1152"/>
+        <location filename="mainwindow.ui" line="1158"/>
         <source>Close the app</source>
         <translation>Cerrar el programa</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1185"/>
+        <location filename="mainwindow.ui" line="1191"/>
         <source>Close the game</source>
         <translation>Cerrar el juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1210"/>
+        <location filename="mainwindow.ui" line="1216"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1218"/>
-        <source>Dark mode</source>
+        <location filename="mainwindow.ui" line="1221"/>
+        <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1155"/>
+        <location filename="mainwindow.ui" line="1161"/>
         <source>Esc</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1160"/>
+        <location filename="mainwindow.ui" line="1166"/>
         <source>Sync options.ini</source>
         <translation>Sincronizar con el archivo options.ini</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1163"/>
+        <location filename="mainwindow.ui" line="1169"/>
         <source>Sync changes in options.ini</source>
         <translation>Sincronizar cambios con el archivo options.ini</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1174"/>
+        <location filename="mainwindow.ui" line="1180"/>
         <source>Start the game</source>
         <translation>Iniciar el juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1177"/>
+        <location filename="mainwindow.ui" line="1183"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1188"/>
+        <location filename="mainwindow.ui" line="1194"/>
         <source>Ctrl+Shift+C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1193"/>
+        <location filename="mainwindow.ui" line="1199"/>
         <source>Open game folder</source>
         <translation>Abrir carpeta del juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1196"/>
+        <location filename="mainwindow.ui" line="1202"/>
         <source>Open game install folder</source>
         <translation>Abrir carpeta de instalación del juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1199"/>
+        <location filename="mainwindow.ui" line="1205"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
@@ -378,37 +383,37 @@
         <translation>Sincroniczar con Steam Cloud</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1100"/>
+        <location filename="mainwindow.ui" line="1105"/>
         <source>Configurator</source>
         <translation>Configuración</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1109"/>
+        <location filename="mainwindow.ui" line="1114"/>
         <source>Game</source>
         <translation>Juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1144"/>
+        <location filename="mainwindow.ui" line="1150"/>
         <source>Ctrl+R</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1166"/>
+        <location filename="mainwindow.ui" line="1172"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1171"/>
+        <location filename="mainwindow.ui" line="1177"/>
         <source>Start</source>
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1182"/>
+        <location filename="mainwindow.ui" line="1188"/>
         <source>Close</source>
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1149"/>
+        <location filename="mainwindow.ui" line="1155"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>
@@ -462,6 +467,14 @@
         <location filename="translations.cpp" line="13"/>
         <source>Folder</source>
         <translation>Carpeta</translation>
+    </message>
+</context>
+<context>
+    <name>about</name>
+    <message>
+        <location filename="about.ui" line="57"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Isaac Configurator is a tool to manage game settings of &lt;a href=&quot;https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;The Binding of Isaac: Rebirth&lt;/span&gt;&lt;/a&gt; and its DLCs and mods for Afterbirth+/Repentance. Source code can be found on &lt;a href=&quot;https://github.com/BrakeDude/imc&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
