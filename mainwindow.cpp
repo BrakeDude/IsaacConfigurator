@@ -110,8 +110,8 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    ui->groupModsBox->setGeometry(ui->groupModsBox->pos().x(), ui->groupModsBox->pos().y(), event->size().width() - ui->groupModsBox->pos().x() - 10, event->size().height() - ui->groupModsBox->pos().y() - 41);
-    ui->tableMods->setGeometry(ui->tableMods->pos().x(), ui->tableMods->pos().y(),  ui->groupModsBox->size().width() - ui->tableMods->pos().x() - 10,  ui->groupModsBox->size().height() - ui->tableMods->pos().y() - 41);
+    ui->groupModsBox->setGeometry(ui->groupModsBox->pos().x(), ui->groupModsBox->pos().y(), event->size().width() - ui->groupModsBox->pos().x() - 10, event->size().height() - ui->groupModsBox->pos().y() - 53);
+    ui->tableMods->setGeometry(ui->tableMods->pos().x(), ui->tableMods->pos().y(),  ui->groupModsBox->size().width() - ui->tableMods->pos().x() - 10,  ui->groupModsBox->size().height() - ui->tableMods->pos().y() - 53);
     ui->lineEdit->setGeometry(ui->lineEdit->pos().x(), ui->lineEdit->pos().y(), ui->groupModsBox->size().width() - ui->lineEdit->pos().x() - 10, ui->lineEdit->height());
     ui->activateButton->move(ui->activateButton->pos().x(),  ui->groupModsBox->size().height() - 31);
     ui->deactivateButton->move(ui->deactivateButton->pos().x(),  ui->groupModsBox->size().height() - 31);
@@ -149,7 +149,7 @@ void MainWindow::on_lineEdit_textChanged(const QString &arg1)
 void MainWindow::on_actionAbout_triggered()
 {
     ui_about->labelAboutText->setFixedHeight(ui_about->labelAboutText->sizeHint().height());
-    aboutDialog->setFixedSize(QSize(300, ui_about->labelAboutText->sizeHint().height() + ui_about->labelAboutName->sizeHint().height() + 5));
+    aboutDialog->setFixedSize(QSize(300, ui_about->labelAboutText->sizeHint().height() + ui_about->labelAboutName->sizeHint().height()));
     aboutDialog->exec();
 }
 

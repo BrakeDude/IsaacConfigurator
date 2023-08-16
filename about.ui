@@ -11,13 +11,13 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string notr="true">Isaac Configurator</string>
+   <string>About</string>
   </property>
   <widget class="QLabel" name="labelAboutName">
    <property name="geometry">
     <rect>
      <x>9</x>
-     <y>10</y>
+     <y>0</y>
      <width>291</width>
      <height>28</height>
     </rect>
@@ -42,7 +42,7 @@
    <property name="geometry">
     <rect>
      <x>14</x>
-     <y>40</y>
+     <y>30</y>
      <width>281</width>
      <height>71</height>
     </rect>
