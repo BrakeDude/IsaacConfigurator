@@ -960,9 +960,9 @@
     <widget class="QLineEdit" name="lineEdit">
      <property name="geometry">
       <rect>
-       <x>360</x>
+       <x>270</x>
        <y>30</y>
-       <width>321</width>
+       <width>411</width>
        <height>24</height>
       </rect>
      </property>
@@ -970,9 +970,9 @@
     <widget class="QRadioButton" name="modRadioButton_Name">
      <property name="geometry">
       <rect>
-       <x>120</x>
+       <x>60</x>
        <y>30</y>
-       <width>101</width>
+       <width>81</width>
        <height>22</height>
       </rect>
      </property>
@@ -989,9 +989,9 @@
     <widget class="QRadioButton" name="modRadioButton_Folder">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>150</x>
        <y>30</y>
-       <width>101</width>
+       <width>81</width>
        <height>22</height>
       </rect>
      </property>
@@ -1007,7 +1007,7 @@
       <rect>
        <x>10</x>
        <y>30</y>
-       <width>101</width>
+       <width>41</width>
        <height>21</height>
       </rect>
      </property>

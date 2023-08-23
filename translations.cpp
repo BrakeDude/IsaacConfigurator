@@ -24,6 +24,13 @@ void MainWindow::retranslateStrings(QString translator){
         config->endGroup();
         config->sync();
     }
+    ui->label_FindBy->resize(ui->label_FindBy->sizeHint().width(),ui->label_FindBy->height());
+    ui->modRadioButton_Name->move(ui->label_FindBy->pos().rx() + ui->label_FindBy->width(), ui->modRadioButton_Name->pos().ry());
+    ui->modRadioButton_Name->resize(ui->modRadioButton_Name->sizeHint().width(),ui->modRadioButton_Name->height());
+    ui->modRadioButton_Folder->move(ui->modRadioButton_Name->pos().rx() + ui->modRadioButton_Name->width(), ui->modRadioButton_Folder->pos().ry());
+    ui->modRadioButton_Folder->resize(ui->modRadioButton_Folder->sizeHint().width(),ui->modRadioButton_Folder->height());
+    ui->lineEdit->move(ui->modRadioButton_Folder->pos().rx() + ui->modRadioButton_Folder->width(), ui->lineEdit->pos().ry());
+    ui->lineEdit->setGeometry(ui->lineEdit->pos().x(), ui->lineEdit->pos().y(), ui->groupModsBox->size().width() - ui->lineEdit->pos().x() - 10, ui->lineEdit->height());
 }
 
 void MainWindow::initLanguages(QString translation){

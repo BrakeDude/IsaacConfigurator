@@ -115,7 +115,6 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     ui->lineEdit->setGeometry(ui->lineEdit->pos().x(), ui->lineEdit->pos().y(), ui->groupModsBox->size().width() - ui->lineEdit->pos().x() - 10, ui->lineEdit->height());
     ui->activateButton->move(ui->activateButton->pos().x(),  ui->groupModsBox->size().height() - 31);
     ui->deactivateButton->move(ui->deactivateButton->pos().x(),  ui->groupModsBox->size().height() - 31);
-
 }
 
 MainWindow::~MainWindow()
