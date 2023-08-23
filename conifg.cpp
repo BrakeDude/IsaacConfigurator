@@ -84,6 +84,8 @@ void MainWindow::SyncConfigFile(QSettings *settings){
     ui->spinBox_Height->setValue((settings->value("WindowHeight").toInt()));
     ui->spinBox_PosX->setValue((settings->value("WindowPosX").toInt()));
     ui->spinBox_PosY->setValue((settings->value("WindowPosY").toInt()));
+    ui->spinBox_MaxScale->setValue((settings->value("MaxScale").toInt()));
+    ui->spinBox_MaxRenderScale->setValue((settings->value("MaxRenderScale").toInt()));
 
     //Music and SFX
     if (settings->value("MusicEnabled") == 1) {
@@ -343,6 +345,20 @@ void MainWindow::LoadConfig(QString confDir){
         connect(ui->spinBox_PosY, &QSpinBox::textChanged, this, [=](QString text) {
             settings->beginGroup("Options");
             settings->setValue("WindowPosY",text.toInt());
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->spinBox_MaxScale, &QSpinBox::textChanged, this, [=](QString text) {
+            settings->beginGroup("Options");
+            settings->setValue("MaxScale",text.toInt());
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->spinBox_MaxRenderScale, &QSpinBox::textChanged, this, [=](QString text) {
+            settings->beginGroup("Options");
+            settings->setValue("MaxRenderScale",text.toInt());
             settings->endGroup();
             settings->sync();
         });
