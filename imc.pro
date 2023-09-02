@@ -43,3 +43,5 @@ RESOURCES += \
 RC_ICONS = wrench.ico
 
 TARGET = IsaacConfigurator
+
+QMAKE_LFLAGS += -static
