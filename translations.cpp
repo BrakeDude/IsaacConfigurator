@@ -17,8 +17,8 @@ void MainWindow::retranslateStrings(QString translator){
     modMessage2 = tr("Couldn't locate mod folder. Please, make sure you have Afterbirth+ or Repentance installed");
     gameMessage1 = tr("No game found");
     gameMessage2 = tr("Install game first before running app");
-    if(QFile::exists(QApplication::applicationDirPath() + "/imc.ini")){
-        QSettings *config = new QSettings(QApplication::applicationDirPath() + "/imc.ini", QSettings::IniFormat);
+    if(QFile::exists(QApplication::applicationDirPath() + "/IsaacConfigurator.ini")){
+        QSettings *config = new QSettings(QApplication::applicationDirPath() + "/IsaacConfigurator.ini", QSettings::IniFormat);
         config->beginGroup("Options");
         config->setValue("Language",translator);
         config->endGroup();

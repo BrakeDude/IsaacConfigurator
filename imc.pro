@@ -41,3 +41,5 @@ RESOURCES += \
         icons.qrc
 
 RC_ICONS = wrench.ico
+
+TARGET = IsaacConfigurator

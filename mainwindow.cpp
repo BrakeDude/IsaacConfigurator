@@ -13,18 +13,18 @@ MainWindow::MainWindow(QWidget *parent)
     aboutDialog = new QDialog(this);
     aboutDialog->setWindowFlags(aboutDialog->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     ui_about->setupUi(aboutDialog);
-    if (!QFile::exists(QApplication::applicationDirPath() + "/imc.ini")) {
-        QFile file(QApplication::applicationDirPath() + "/imc.ini");
+    if (!QFile::exists(QApplication::applicationDirPath() + "/IsaacConfigurator.ini")) {
+        QFile file(QApplication::applicationDirPath() + "/IsaacConfigurator.ini");
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         file.close();
-        QSettings *config = new QSettings(QApplication::applicationDirPath() + "/imc.ini", QSettings::IniFormat);
+        QSettings *config = new QSettings(QApplication::applicationDirPath() + "/IsaacConfigurator.ini", QSettings::IniFormat);
         config->beginGroup("Options");
         config->setValue("Language","en_EN");
         config->endGroup();
         config->sync();
         currentTranslator = "en_EN";
     }else{
-        QSettings *config = new QSettings(QApplication::applicationDirPath() + "/imc.ini", QSettings::IniFormat);
+        QSettings *config = new QSettings(QApplication::applicationDirPath() + "/IsaacConfigurator.ini", QSettings::IniFormat);
         config->beginGroup("Options");
         currentTranslator = config->value("Language").toString();
         config->endGroup();
