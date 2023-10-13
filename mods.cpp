@@ -22,29 +22,17 @@ void MainWindow::SortLineEdit(){
     }
 }
 
-void MainWindow::SyncMods(QString directory){
-
-    for (int i = 0; i < ui->tableMods->rowCount(); ++i) {
-
-        QString folder = ui->tableMods->item(i,2)->text();
-        QWidget *widget = ui->tableMods->cellWidget(i, 0);
-        QCheckBox *checkBox = qobject_cast<QCheckBox *>(widget);
-        if (QFile::exists(directory + "/" + folder + "/disable.it")){
-            checkBox->setCheckState(Qt::Unchecked);
-        }else{
-            checkBox->setCheckState(Qt::Checked);
-        }
-    }
-    //ui->tableMods->sortItems(1);
-}
-
-void MainWindow::loadMods(QString directory) {
+void MainWindow::SyncMods(QString directory) {
     QDir dir(directory);
     QStringList folders = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
     ui->tableMods->setColumnCount(3);
     ui->tableMods->setRowCount(folders.length());
     ui->tableMods->setSortingEnabled(true);
     ui->tableMods->setHorizontalHeaderLabels(modTableHeaders);
+    int sortedColumn = ui->tableMods->horizontalHeader()->sortIndicatorSection();
+    Qt::SortOrder sortOrder = ui->tableMods->horizontalHeader()->sortIndicatorOrder();
+    sortedColumn = sortedColumn > -1 ? sortedColumn : 1;
+    ui->tableMods->sortItems(0, Qt::SortOrder::DescendingOrder);
     ui->tableMods->clear();
     ui->tableMods->setHorizontalHeaderLabels(modTableHeaders);
 
@@ -65,7 +53,7 @@ void MainWindow::loadMods(QString directory) {
                     QXmlStreamReader::TokenType token = xml.readNext();
                     if (token == QXmlStreamReader::StartDocument) continue;
                     if (token == QXmlStreamReader::StartElement) {
-                        if (xml.name() == "name") {
+                        if (xml.name() == (QString)"name") {
                             QTableWidgetItem *modname = new QTableWidgetItem(xml.readElementText());
                             modname->setFlags(modname->flags() ^ Qt::ItemIsEditable);
                             ui->tableMods->setItem(i,1,modname);
@@ -105,6 +93,17 @@ void MainWindow::loadMods(QString directory) {
         ui->tableMods->setItem(i,0, new QTableWidgetCheckBox());
 
     }
+    ui->tableMods->sortItems(sortedColumn, sortOrder);
+    ui->tableMods->resizeColumnToContents(0);
+    ui->tableMods->resizeColumnToContents(1);
+    ui->tableMods->resizeColumnToContents(2);
+    ui->tableMods->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    ui->tableMods->horizontalHeader()->setSectionResizeMode(0,QHeaderView::Fixed);
+}
+
+void MainWindow::loadMods(QString directory) {
+
+    SyncMods(directory);
 
     connect(ui->activateButton, &QPushButton::clicked, this, [=](){
         //SyncMods(getModPath());
@@ -135,10 +134,5 @@ void MainWindow::loadMods(QString directory) {
             }
         }
     });
-    //ui->tableMods->sortItems(1);
-    ui->tableMods->resizeColumnToContents(0);
-    ui->tableMods->resizeColumnToContents(1);
-    ui->tableMods->resizeColumnToContents(2);
-    ui->tableMods->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-    ui->tableMods->horizontalHeader()->setSectionResizeMode(0,QHeaderView::Fixed);
+
 }

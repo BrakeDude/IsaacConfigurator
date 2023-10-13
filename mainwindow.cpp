@@ -77,10 +77,9 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
         ui->actionSyncMods->setEnabled(true);
         ui->actionSyncOptions->setEnabled(true);
         QString str = getModPath();
-        if (str != NULL){
+        if (!str.isNull()){
             connect(ui->actionSyncMods, &QAction::triggered, this, [=](){
-               //ui->tableMods->horizontalHeader()->sortIndicatorOrder();
-               SyncMods(getModPath());
+               SyncMods(str);
             });
             connect(ui->tableMods, &QTableWidget::itemDoubleClicked, ui->tableMods, [=](){
                 QString folder = ui->tableMods->item(ui->tableMods->currentRow(), 2)->text();
