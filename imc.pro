@@ -13,7 +13,6 @@ SOURCES += \
     conifg.cpp \
     directoryFuncs.cpp \
     iniconfig.cpp \
-    log.cpp \
     main.cpp \
     mainwindow.cpp \
     mods.cpp \

@@ -120,6 +120,10 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 
 MainWindow::~MainWindow()
 {
+    fileMonitor->stopTimer();
+    monitorThread->quit();
+    monitorThread->wait();
+    delete fileMonitor;
     delete ui;
 }
 
