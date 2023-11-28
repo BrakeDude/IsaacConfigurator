@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1154</width>
-    <height>648</height>
+    <width>1156</width>
+    <height>659</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -909,114 +909,147 @@
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupModsBox">
+   <widget class="QTabWidget" name="tabBox">
     <property name="geometry">
      <rect>
       <x>390</x>
       <y>0</y>
       <width>731</width>
-      <height>581</height>
+      <height>601</height>
      </rect>
     </property>
-    <property name="title">
-     <string>Mods</string>
+    <property name="currentIndex">
+     <number>0</number>
     </property>
-    <widget class="QPushButton" name="deactivateButton">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>550</y>
-       <width>80</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Turn off</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="activateButton">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>550</y>
-       <width>80</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Turn on</string>
-     </property>
-    </widget>
-    <widget class="QTableWidget" name="tableMods">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>60</y>
-       <width>671</width>
-       <height>481</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>30</y>
-       <width>411</width>
-       <height>24</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="modRadioButton_Name">
-     <property name="geometry">
-      <rect>
-       <x>60</x>
-       <y>30</y>
-       <width>81</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Mod Name</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-     <attribute name="buttonGroup">
-      <string notr="true">modsButtonGroup</string>
+    <widget class="QWidget" name="groupModsBox">
+     <attribute name="title">
+      <string>Mods</string>
      </attribute>
+     <widget class="QPushButton" name="deactivateButton">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>540</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Turn off</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="activateButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>540</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Turn on</string>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="tableMods">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>671</width>
+        <height>481</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>10</y>
+        <width>411</width>
+        <height>24</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="modRadioButton_Name">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>10</y>
+        <width>81</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Mod Name</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">modsButtonGroup</string>
+      </attribute>
+     </widget>
+     <widget class="QRadioButton" name="modRadioButton_Folder">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>10</y>
+        <width>81</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Mod Folder</string>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">modsButtonGroup</string>
+      </attribute>
+     </widget>
+     <widget class="QLabel" name="label_FindBy">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Find by:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
     </widget>
-    <widget class="QRadioButton" name="modRadioButton_Folder">
-     <property name="geometry">
-      <rect>
-       <x>150</x>
-       <y>30</y>
-       <width>81</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Mod Folder</string>
-     </property>
-     <attribute name="buttonGroup">
-      <string notr="true">modsButtonGroup</string>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Log</string>
      </attribute>
-    </widget>
-    <widget class="QLabel" name="label_FindBy">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>41</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Find by:</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
+     <widget class="QTextBrowser" name="logBrowser">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>731</width>
+        <height>521</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="updateLogButton">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>530</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Update</string>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_Effects">
@@ -1160,7 +1193,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1154</width>
+     <width>1156</width>
      <height>21</height>
     </rect>
    </property>

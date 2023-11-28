@@ -67,7 +67,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::LoadApp(QString FullDir, QString gameExe){
     if (QFile::exists(FullDir+"/"+gameExe)){
-        ui->groupModsBox->setEnabled(true);
+        ui->tabBox->setEnabled(true);
         ui->groupBox_Console->setEnabled(true);
         ui->groupBox_GFX->setEnabled(true);
         ui->groupBox_Misc->setEnabled(true);
@@ -87,7 +87,7 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
             });
             loadMods(str);
         }else{
-            ui->groupModsBox->setEnabled(false);
+            ui->tabBox->setEnabled(false);
             QMessageBox::information(this, modMessage1, modMessage2);
         }
         LoadConfigFile();
@@ -95,7 +95,7 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
         //setWindowTitle(IsaacDLC(GetFullDir()) + " Configurator");
     }else {
         QMessageBox::information(this, gameMessage1, gameMessage2);
-        ui->groupModsBox->setEnabled(false);
+        ui->tabBox->setEnabled(false);
         ui->groupBox_Console->setEnabled(false);
         ui->groupBox_Effects->setEnabled(false);
         ui->groupBox_GFX->setEnabled(false);
@@ -109,11 +109,13 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    ui->groupModsBox->setGeometry(ui->groupModsBox->pos().x(), ui->groupModsBox->pos().y(), event->size().width() - ui->groupModsBox->pos().x() - 10, event->size().height() - ui->groupModsBox->pos().y() - 53);
-    ui->tableMods->setGeometry(ui->tableMods->pos().x(), ui->tableMods->pos().y(),  ui->groupModsBox->size().width() - ui->tableMods->pos().x() - 10,  ui->groupModsBox->size().height() - ui->tableMods->pos().y() - 53);
-    ui->lineEdit->setGeometry(ui->lineEdit->pos().x(), ui->lineEdit->pos().y(), ui->groupModsBox->size().width() - ui->lineEdit->pos().x() - 10, ui->lineEdit->height());
-    ui->activateButton->move(ui->activateButton->pos().x(),  ui->groupModsBox->size().height() - 31);
-    ui->deactivateButton->move(ui->deactivateButton->pos().x(),  ui->groupModsBox->size().height() - 31);
+    ui->tabBox->setGeometry(ui->tabBox->pos().x(), ui->tabBox->pos().y(), event->size().width() - ui->tabBox->pos().x() - 10, event->size().height() - ui->tabBox->pos().y() - 53);
+    ui->tableMods->setGeometry(ui->tableMods->pos().x(), ui->tableMods->pos().y(),  ui->tabBox->size().width() - ui->tableMods->pos().x() - 10,  ui->tabBox->size().height() - ui->tableMods->pos().y() - 53);
+    ui->logBrowser->setGeometry(ui->logBrowser->pos().x(), ui->logBrowser->pos().y(), ui->tabBox->size().width() - ui->tableMods->pos().x() , ui->tabBox->size().height() - ui->tableMods->pos().y() - 33);
+    ui->lineEdit->setGeometry(ui->lineEdit->pos().x(), ui->lineEdit->pos().y(), ui->tabBox->size().width() - ui->lineEdit->pos().x() - 10, ui->lineEdit->height());
+    ui->activateButton->move(ui->activateButton->pos().x(),  ui->tabBox->size().height() - 51);
+    ui->deactivateButton->move(ui->deactivateButton->pos().x(),  ui->tabBox->size().height() - 51);
+    ui->updateLogButton->move(ui->updateLogButton->pos().x(),  ui->tabBox->size().height() - 61);
 }
 
 MainWindow::~MainWindow()

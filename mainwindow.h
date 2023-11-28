@@ -9,6 +9,8 @@
 #include <QFile>
 #include <QDir>
 #include <QMessageBox>
+#include <QTimer>
+#include <QTextStream>
 #include "ui_about.h"
 
 QT_BEGIN_NAMESPACE
@@ -51,6 +53,8 @@ private slots:
     void on_lineEdit_textChanged(const QString &arg1);
 
     void on_actionAbout_triggered();
+
+    void updateLogFile();
 
 private:
     QString optionMessage1;

@@ -508,6 +508,12 @@ void MainWindow::LoadConfigFile(){
     }
 #endif
     LoadConfig(configDir);
+    if (QFile::exists(configDir + "/log.txt")){
+        updateLogFile();
+        connect(ui->updateLogButton, &QPushButton::clicked, this, [=](){
+            updateLogFile();
+        });
+    }
 }
 
 void MainWindow::ReSyncConfig(QString confDir){
