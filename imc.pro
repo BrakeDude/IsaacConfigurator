@@ -12,6 +12,7 @@ SOURCES += \
     about.cpp \
     conifg.cpp \
     directoryFuncs.cpp \
+    filemonitor.cpp \
     iniconfig.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -20,7 +21,9 @@ SOURCES += \
 
 HEADERS += \
     about.h \
-    mainwindow.h
+    filemonitor.h \
+    mainwindow.h \
+    qtablewidgetcheckbox.h
 
 FORMS += \
     about.ui \

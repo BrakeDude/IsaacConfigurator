@@ -509,20 +509,9 @@ void MainWindow::LoadConfigFile(){
 #endif
     LoadConfig(configDir);
     if (QFile::exists(configDir + "/log.txt")){
-        // Create the file monitor object
         fileMonitor = new FileMonitor(configDir + "/log.txt");
 
-        // Move the file monitor object to the monitor thread
-        fileMonitor->moveToThread(monitorThread);
-
-        // Connect the monitor thread's started signal to the file monitor's monitorFile slot
-        connect(monitorThread, SIGNAL(started()), fileMonitor, SLOT(monitorFile()));
-
-        // Connect the file monitor's signal to the QTextBrowser's slot
-        connect(fileMonitor, SIGNAL(fileLoaded(QString)), ui->logBrowser, SLOT(setText(QString)));
-
-        // Start the monitor thread
-        monitorThread->start();
+        connect(fileMonitor, SIGNAL(fileLoaded(QString)), this, SLOT(onFileLoaded(QString)));
     }
 }
 

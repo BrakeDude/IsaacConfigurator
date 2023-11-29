@@ -3,6 +3,8 @@
 #include <QFileDialog>
 #include <QProcess>
 #include <QDesktopServices>
+#include <QScrollBar>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -111,18 +113,15 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 {
     ui->tabBox->setGeometry(ui->tabBox->pos().x(), ui->tabBox->pos().y(), event->size().width() - ui->tabBox->pos().x() - 10, event->size().height() - ui->tabBox->pos().y() - 53);
     ui->tableMods->setGeometry(ui->tableMods->pos().x(), ui->tableMods->pos().y(),  ui->tabBox->size().width() - ui->tableMods->pos().x() - 10,  ui->tabBox->size().height() - ui->tableMods->pos().y() - 53);
-    ui->logBrowser->setGeometry(ui->logBrowser->pos().x(), ui->logBrowser->pos().y(), ui->tabBox->size().width() - ui->tableMods->pos().x() , ui->tabBox->size().height() - ui->tableMods->pos().y() - 33);
+    ui->logBrowser->setGeometry(ui->logBrowser->pos().x(), ui->logBrowser->pos().y(), ui->tabBox->size().width() - ui->tableMods->pos().x() + 1, ui->tabBox->size().height() - ui->tableMods->pos().y());
     ui->lineEdit->setGeometry(ui->lineEdit->pos().x(), ui->lineEdit->pos().y(), ui->tabBox->size().width() - ui->lineEdit->pos().x() - 10, ui->lineEdit->height());
     ui->activateButton->move(ui->activateButton->pos().x(),  ui->tabBox->size().height() - 51);
     ui->deactivateButton->move(ui->deactivateButton->pos().x(),  ui->tabBox->size().height() - 51);
-    ui->updateLogButton->move(ui->updateLogButton->pos().x(),  ui->tabBox->size().height() - 61);
 }
 
 MainWindow::~MainWindow()
 {
     fileMonitor->stopTimer();
-    monitorThread->quit();
-    monitorThread->wait();
     delete fileMonitor;
     delete ui;
 }
@@ -155,5 +154,11 @@ void MainWindow::on_actionAbout_triggered()
     ui_about->labelAboutText->setFixedHeight(ui_about->labelAboutText->sizeHint().height());
     aboutDialog->setFixedSize(QSize(300, ui_about->labelAboutText->sizeHint().height() + ui_about->labelAboutName->sizeHint().height()));
     aboutDialog->exec();
+}
+
+void MainWindow::onFileLoaded(QString text)
+{
+    ui->logBrowser->setPlainText(text);
+    ui->logBrowser->verticalScrollBar()->setValue(ui->logBrowser->verticalScrollBar()->maximum());
 }
 

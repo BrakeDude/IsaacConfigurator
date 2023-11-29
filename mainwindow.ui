@@ -1023,31 +1023,24 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab">
+    <widget class="QWidget" name="groupLogBox">
      <attribute name="title">
       <string>Log</string>
      </attribute>
-     <widget class="QTextBrowser" name="logBrowser">
+     <widget class="QPlainTextEdit" name="logBrowser">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
         <width>731</width>
-        <height>521</height>
+        <height>571</height>
        </rect>
       </property>
-     </widget>
-     <widget class="QPushButton" name="updateLogButton">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>530</y>
-        <width>80</width>
-        <height>24</height>
-       </rect>
+      <property name="undoRedoEnabled">
+       <bool>false</bool>
       </property>
-      <property name="text">
-       <string>Update</string>
+      <property name="readOnly">
+       <bool>true</bool>
       </property>
      </widget>
     </widget>
