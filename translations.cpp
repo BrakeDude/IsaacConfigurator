@@ -31,6 +31,7 @@ void MainWindow::retranslateStrings(QString translator){
     ui->modRadioButton_Folder->resize(ui->modRadioButton_Folder->sizeHint().width(),ui->modRadioButton_Folder->height());
     ui->lineEdit->move(ui->modRadioButton_Folder->pos().rx() + ui->modRadioButton_Folder->width(), ui->lineEdit->pos().ry());
     ui->lineEdit->setGeometry(ui->lineEdit->pos().x(), ui->lineEdit->pos().y(), ui->groupModsBox->size().width() - ui->lineEdit->pos().x() - 10, ui->lineEdit->height());
+    ui->checkBoxLogUpdate->resize(ui->checkBoxLogUpdate->sizeHint().width(),ui->checkBoxLogUpdate->height());
 }
 
 void MainWindow::initLanguages(QString translation){

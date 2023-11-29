@@ -4,7 +4,6 @@
 #include <QProcess>
 #include <QDesktopServices>
 #include <QScrollBar>
-#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -22,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
         QSettings *config = new QSettings(QApplication::applicationDirPath() + "/IsaacConfigurator.ini", QSettings::IniFormat);
         config->beginGroup("Options");
         config->setValue("Language","en_EN");
+        config->setValue("CheckUpdate", 1);
         config->endGroup();
         config->sync();
         currentTranslator = "en_EN";
@@ -29,10 +29,31 @@ MainWindow::MainWindow(QWidget *parent)
         QSettings *config = new QSettings(QApplication::applicationDirPath() + "/IsaacConfigurator.ini", QSettings::IniFormat);
         config->beginGroup("Options");
         currentTranslator = config->value("Language").toString();
+
+        Qt::CheckState checkState;
+        if (config->value("CheckUpdate") == 0) {
+            checkState = Qt::Unchecked;
+        } else {
+            checkState = Qt::Checked;
+        }
+        ui->checkBoxLogUpdate->setCheckState(checkState);
         config->endGroup();
         config->sync();
     }
     initLanguages(currentTranslator);
+
+    connect(ui->checkBoxLogUpdate, &QCheckBox::stateChanged, this, [=](int state) {
+        QSettings *config = new QSettings(QApplication::applicationDirPath() + "/IsaacConfigurator.ini", QSettings::IniFormat);
+        config->beginGroup("Options");
+
+        if (state == 0) {
+            config->setValue("CheckUpdate", 0);
+        } else {
+            config->setValue("CheckUpdate", 1);
+        }
+        config->endGroup();
+        config->sync();
+    });
 
     LoadApp(GetFullDir(), GetExeName());
 
@@ -113,10 +134,12 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 {
     ui->tabBox->setGeometry(ui->tabBox->pos().x(), ui->tabBox->pos().y(), event->size().width() - ui->tabBox->pos().x() - 10, event->size().height() - ui->tabBox->pos().y() - 53);
     ui->tableMods->setGeometry(ui->tableMods->pos().x(), ui->tableMods->pos().y(),  ui->tabBox->size().width() - ui->tableMods->pos().x() - 10,  ui->tabBox->size().height() - ui->tableMods->pos().y() - 53);
-    ui->logBrowser->setGeometry(ui->logBrowser->pos().x(), ui->logBrowser->pos().y(), ui->tabBox->size().width() - ui->tableMods->pos().x() + 1, ui->tabBox->size().height() - ui->tableMods->pos().y());
+    ui->logBrowser->setGeometry(ui->logBrowser->pos().x(), ui->logBrowser->pos().y(), ui->tabBox->size().width() - ui->tableMods->pos().x() + 1, ui->tabBox->size().height() - ui->tableMods->pos().y() - 20);
     ui->lineEdit->setGeometry(ui->lineEdit->pos().x(), ui->lineEdit->pos().y(), ui->tabBox->size().width() - ui->lineEdit->pos().x() - 10, ui->lineEdit->height());
     ui->activateButton->move(ui->activateButton->pos().x(),  ui->tabBox->size().height() - 51);
     ui->deactivateButton->move(ui->deactivateButton->pos().x(),  ui->tabBox->size().height() - 51);
+    ui->checkBoxLogUpdate->move(ui->checkBoxLogUpdate->pos().x(),  ui->tabBox->size().height() - 51);
+    ui->pushButtonLogUpdate->move(ui->pushButtonLogUpdate->pos().x(),  ui->tabBox->size().height() - 51);
 }
 
 MainWindow::~MainWindow()
@@ -156,9 +179,11 @@ void MainWindow::on_actionAbout_triggered()
     aboutDialog->exec();
 }
 
-void MainWindow::onFileLoaded(QString text)
+void MainWindow::onFileLoaded(QString text, bool force = false)
 {
-    ui->logBrowser->setPlainText(text);
-    ui->logBrowser->verticalScrollBar()->setValue(ui->logBrowser->verticalScrollBar()->maximum());
+    if(ui->checkBoxLogUpdate->checkState() == Qt::Checked || force == true){
+        ui->logBrowser->setPlainText(text);
+        ui->logBrowser->verticalScrollBar()->setValue(ui->logBrowser->verticalScrollBar()->maximum());
+    }
 }
 

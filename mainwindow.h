@@ -40,7 +40,7 @@ private slots:
 
     void on_actionAbout_triggered();
 
-    void onFileLoaded(QString text);
+    void onFileLoaded(QString text, bool force);
 
 private:
     QString optionMessage1;

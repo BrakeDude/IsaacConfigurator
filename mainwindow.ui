@@ -1033,7 +1033,7 @@
         <x>0</x>
         <y>0</y>
         <width>731</width>
-        <height>571</height>
+        <height>531</height>
        </rect>
       </property>
       <property name="undoRedoEnabled">
@@ -1041,6 +1041,35 @@
       </property>
       <property name="readOnly">
        <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBoxLogUpdate">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>540</y>
+        <width>121</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Update Constantly</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonLogUpdate">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>540</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Update</string>
       </property>
      </widget>
     </widget>

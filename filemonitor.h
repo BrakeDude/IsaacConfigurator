@@ -14,7 +14,7 @@ public:
         : QObject(parent), m_filename(filename), m_previousSize(0)
     {
         m_timer = new QTimer(this);
-        connect(m_timer, SIGNAL(timeout()), this, SLOT(monitorFile()));
+        connect(m_timer, SIGNAL(timeout()), this, SLOT(doMonitor()));
         m_timer->start(1000);
     }
 
@@ -22,10 +22,12 @@ public slots:
 
     void stopTimer();
 
-    void monitorFile();
+    void monitorFile(bool force);
+
+    void doMonitor();
 
 signals:
-    void fileLoaded(const QString& content);
+    void fileLoaded(const QString& content, const bool& force);
 
 private:
     QString m_filename;

@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QPushButton>
 
 void MainWindow::SyncConfigFile(QSettings *settings){
     //GFX and HUD
@@ -511,7 +512,15 @@ void MainWindow::LoadConfigFile(){
     if (QFile::exists(configDir + "/log.txt")){
         fileMonitor = new FileMonitor(configDir + "/log.txt");
 
-        connect(fileMonitor, SIGNAL(fileLoaded(QString)), this, SLOT(onFileLoaded(QString)));
+        connect(fileMonitor, SIGNAL(fileLoaded(QString, bool)), this, SLOT(onFileLoaded(QString, bool)));
+        connect(ui->pushButtonLogUpdate, &QPushButton::clicked, this, [=](){
+            fileMonitor->monitorFile(true);
+        });
+        connect(ui->checkBoxLogUpdate, &QCheckBox::stateChanged, this, [=](int state) {
+            if (state == Qt::Checked) {
+                fileMonitor->monitorFile(true);
+            }
+        });
     }
 }
 
