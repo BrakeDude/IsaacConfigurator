@@ -11,7 +11,7 @@
 #include <QMessageBox>
 #include <QTimer>
 #include <QTextStream>
-#include <QTextBrowser>
+#include <QFileDialog>
 #include "ui_about.h"
 #include "qtablewidgetcheckbox.h"
 #include "filemonitor.h"

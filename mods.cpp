@@ -2,6 +2,9 @@
 #include "ui_mainwindow.h"
 #include <QXmlStreamReader>
 #include <QTableWidgetItem>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonDocument>
 
 void MainWindow::SortLineEdit(){
     QString str = ui->lineEdit->text();
@@ -131,6 +134,76 @@ void MainWindow::loadMods(QString directory) {
                 file.open(QIODevice::WriteOnly | QIODevice::Text);
                 file.close();
                 checkBox->setCheckState(Qt::Unchecked);
+            }
+        }
+    });
+
+    connect(ui->savePresetButton, &QPushButton::clicked, this, [=](){
+        if (ui->tableMods->rowCount() > 0){
+            QJsonObject jsonObject;
+            QJsonArray jsonArray;
+
+            for (int i = 0; i < ui->tableMods->rowCount(); ++i) {
+                QJsonObject item;
+                item["folder"] = ui->tableMods->item(i,2)->text();
+                QWidget *widget = ui->tableMods->cellWidget(i, 0);
+                QCheckBox *checkBox = qobject_cast<QCheckBox *>(widget);
+                item["active"] = checkBox->checkState() == Qt::Checked ? true : false;
+                jsonArray.append(item);
+            }
+
+            jsonObject["mods"] = jsonArray;
+
+            QJsonDocument jsonDoc(jsonObject);
+            QByteArray jsonData = jsonDoc.toJson();
+
+            QString filePath = QFileDialog::getSaveFileName(this, tr("Save File"), "", tr("JSON Files (*.json)"));
+
+            if (!filePath.isEmpty()) {
+                QFile file(filePath);
+                if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+                    file.write(jsonData);
+                    file.close();
+                }
+            }
+        }
+    });
+
+    connect(ui->loadPresetButton, &QPushButton::clicked, this, [=](){
+        if (ui->tableMods->rowCount() > 0){
+            QString fileName = QFileDialog::getOpenFileName(nullptr, "Open JSON File", "", "JSON Files (*.json)");
+            QFile file(fileName);
+            if (!file.open(QIODevice::ReadOnly)) {
+                qWarning("Couldn't open file.");
+                return;
+            }
+
+            QByteArray data = file.readAll();
+            QJsonDocument doc(QJsonDocument::fromJson(data));
+            QJsonObject json = doc.object();
+
+            QJsonArray items = json["mods"].toArray();
+            for (const QJsonValueRef item : items) {
+                QJsonObject obj = item.toObject();
+                QString folder = obj["folder"].toString();
+                bool checked = obj["active"].toBool();
+                // Do something with the loaded data
+                int rowCount = ui->tableMods->rowCount();
+                int targetRow = -1;
+
+                for (int row = 0; row < rowCount; ++row) {
+                    QTableWidgetItem *item = ui->tableMods->item(row, 2);
+                    if (item && item->text() == folder) {
+                        targetRow = row;
+                        break;
+                    }
+                }
+
+                if (targetRow != -1) {
+                    QWidget *widget = ui->tableMods->cellWidget(targetRow, 0);
+                    QCheckBox *checkBox = qobject_cast<QCheckBox *>(widget);
+                    checkBox->setCheckState(checked ? Qt::Checked : Qt::Unchecked);
+                }
             }
         }
     });
