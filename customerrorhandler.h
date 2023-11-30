@@ -36,7 +36,7 @@ public:
         }
 
         // Log the message to a file
-        QFile file("error.log");
+        QFile file("ICError.log");
         if (file.open(QIODevice::WriteOnly | QIODevice::Append)) {
             QTextStream out(&file);
             out << logMessage << "\n";
