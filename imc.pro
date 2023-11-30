@@ -21,6 +21,7 @@ SOURCES += \
 
 HEADERS += \
     about.h \
+    customerrorhandler.h \
     filemonitor.h \
     mainwindow.h \
     qtablewidgetcheckbox.h
