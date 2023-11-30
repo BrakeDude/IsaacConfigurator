@@ -1022,6 +1022,32 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
+     <widget class="QPushButton" name="savePresetButton">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>540</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Save preset</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="loadPresetButton">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>540</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Load preset</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="groupLogBox">
      <attribute name="title">

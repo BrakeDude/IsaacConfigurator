@@ -138,6 +138,8 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     ui->lineEdit->setGeometry(ui->lineEdit->pos().x(), ui->lineEdit->pos().y(), ui->tabBox->size().width() - ui->lineEdit->pos().x() - 10, ui->lineEdit->height());
     ui->activateButton->move(ui->activateButton->pos().x(),  ui->tabBox->size().height() - 51);
     ui->deactivateButton->move(ui->deactivateButton->pos().x(),  ui->tabBox->size().height() - 51);
+    ui->savePresetButton->move(ui->savePresetButton->pos().x(),  ui->tabBox->size().height() - 51);
+    ui->loadPresetButton->move(ui->loadPresetButton->pos().x(),  ui->tabBox->size().height() - 51);
     ui->checkBoxLogUpdate->move(ui->checkBoxLogUpdate->pos().x(),  ui->tabBox->size().height() - 51);
     ui->pushButtonLogUpdate->move(ui->pushButtonLogUpdate->pos().x(),  ui->tabBox->size().height() - 51);
 }
