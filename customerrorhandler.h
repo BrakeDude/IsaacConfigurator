@@ -14,9 +14,6 @@ public:
         QString logMessage;
 
         switch (type) {
-        case QtDebugMsg:
-            logMessage = QString("Debug: %1").arg(msg);
-            break;
         case QtInfoMsg:
             logMessage = QString("Info: %1").arg(msg);
             break;
@@ -40,6 +37,7 @@ public:
         if (file.open(QIODevice::WriteOnly | QIODevice::Append)) {
             QTextStream out(&file);
             out << logMessage << "\n";
+            file.close();
         }
     }
 };

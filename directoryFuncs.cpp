@@ -2,7 +2,7 @@
 
 QString MainWindow::IsaacDLC(QString directory)
 {
-    if (QFile(directory+"/resources/packed/repentance.a").exists()){
+    if (QFile(directory+"/resources/packed/repentance.a").exists() || QFile(directory+"/resources/packed/repentance_ru.a").exists()){
         return "Repentance";
     }else if(QFile(directory+"/resources/packed/afterbirthp.a").exists()){
         return "Afterbirth+";
