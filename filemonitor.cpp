@@ -9,10 +9,14 @@ void FileMonitor::stopTimer()
 
 void FileMonitor::doMonitor()
 {
-    monitorFile(false);
+    if(m_logOption == 1){
+        monitorLog(false);
+    }else if(m_logOption == 2){
+            monitorOption(m_filename);
+        }
 }
 
-void FileMonitor::monitorFile(bool force = false)
+void FileMonitor::monitorLog(bool force = false)
 {
     QFile file(m_filename);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -31,10 +35,15 @@ void FileMonitor::monitorFile(bool force = false)
             }
 
             QString numberedContent = lines.join("\n");
-            emit fileLoaded(numberedContent, force);
+            emit logLoaded(numberedContent, force);
             m_previousSize = currentSize;
         }
 
         file.close();
     }
+}
+
+void FileMonitor::monitorOption(QString configDir)
+{
+    emit optionLoaded(configDir);
 }

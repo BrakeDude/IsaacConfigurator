@@ -23,11 +23,14 @@ void MainWindow::SyncConfigFile(QSettings *settings){
         ui->checkBox_Filter->setCheckState(Qt::Unchecked);
     }
 
-    if (settings->value("PopUps") == 1) {
-        ui->checkBox_PopUp->setCheckState(Qt::Checked);
-    }else{
-        ui->checkBox_PopUp->setCheckState(Qt::Unchecked);
+    int popup_value = settings->value("PopUps").toInt();
+    if (ui->comboBox_PopUp->count() == 3 && !settings->contains("AcceptedPublicBeta")){
+        ui->comboBox_PopUp->removeItem(2);
+        popup_value = std::max(popup_value, 1);
+    }else if(ui->comboBox_PopUp->count() == 2 && settings->contains("AcceptedPublicBeta")){
+        ui->comboBox_PopUp->addItem(tr("Small"));
     }
+    ui->comboBox_PopUp->setCurrentIndex(popup_value);
 
     if (settings->value("CameraStyle") == 1) {
         ui->checkBox_Camera->setCheckState(Qt::Checked);
@@ -153,6 +156,19 @@ void MainWindow::SyncConfigFile(QSettings *settings){
         ui->checkBox_ModsEnabled->setCheckState(Qt::Unchecked);
     }
 
+    //Online beta
+    if (settings->value("StreamerMode") == 1) {
+        ui->checkBox_Steamer->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_Steamer->setCheckState(Qt::Unchecked);
+    }
+
+    if (settings->value("JacobEsauControls") == 1) {
+        ui->checkBox_JEcontrols->setCheckState(Qt::Checked);
+    }else{
+        ui->checkBox_JEcontrols->setCheckState(Qt::Unchecked);
+    }
+
     settings->endGroup();
 }
 
@@ -199,13 +215,9 @@ void MainWindow::LoadConfig(QString confDir){
             settings->sync();
         });
 
-        connect(ui->checkBox_PopUp, &QCheckBox::stateChanged, this, [=](int state) {
+        connect(ui->comboBox_PopUp, &QComboBox::currentTextChanged, this, [=](){
             settings->beginGroup("Options");
-            if (state == Qt::Unchecked) {
-                settings->setValue("PopUps",0);
-            } else {
-                settings->setValue("PopUps",1);
-            }
+            settings->setValue("PopUps",ui->comboBox_PopUp->currentIndex());
             settings->endGroup();
             settings->sync();
         });
@@ -488,13 +500,40 @@ void MainWindow::LoadConfig(QString confDir){
             settings->sync();
         });
 
+        //Online Beta
+        connect(ui->checkBox_JEcontrols, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("JacobEsauControls",0);
+            } else {
+                settings->setValue("JacobEsauControls",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+        connect(ui->checkBox_Steamer, &QCheckBox::stateChanged, this, [=](int state) {
+            settings->beginGroup("Options");
+            if (state == Qt::Unchecked) {
+                settings->setValue("StreamerMode",0);
+            } else {
+                settings->setValue("StreamerMode",1);
+            }
+            settings->endGroup();
+            settings->sync();
+        });
+
     }else{
         ui->groupBox_Console->setEnabled(false);
         ui->groupBox_GFX->setEnabled(false);
         ui->groupBox_Misc->setEnabled(false);
         ui->groupBox_SFX->setEnabled(false);
+        ui->groupBox_OnlineBetaSettings->setEnabled(false);
         QMessageBox::information(this, optionMessage1, optionMessage2);
     }
+}
+
+void MainWindow::ReSyncConfigSlot(QString configDir){
+    ReSyncConfig(configDir);
 }
 
 void MainWindow::LoadConfigFile(){
@@ -510,17 +549,21 @@ void MainWindow::LoadConfigFile(){
 #endif
     LoadConfig(configDir);
     if (QFile::exists(configDir + "/log.txt")){
-        fileMonitor = new FileMonitor(configDir + "/log.txt");
+        logMonitor = new FileMonitor(configDir + "/log.txt", 1);
 
-        connect(fileMonitor, SIGNAL(fileLoaded(QString, bool)), this, SLOT(onFileLoaded(QString, bool)));
+        connect(logMonitor, SIGNAL(logLoaded(QString, bool)), this, SLOT(onFileLoaded(QString,bool)));
         connect(ui->pushButtonLogUpdate, &QPushButton::clicked, this, [=](){
-            fileMonitor->monitorFile(true);
+            logMonitor->monitorLog(true);
         });
         connect(ui->checkBoxLogUpdate, &QCheckBox::stateChanged, this, [=](int state) {
             if (state == Qt::Checked) {
-                fileMonitor->monitorFile(true);
+                logMonitor->monitorLog(true);
             }
         });
+    }
+    if (QFile::exists(configDir + "/options.ini")){
+        optionMonitor = new FileMonitor(configDir, 2);
+        connect(optionMonitor, SIGNAL(optionLoaded(QString)), this, SLOT(ReSyncConfigSlot(QString)));
     }
 }
 
@@ -531,13 +574,20 @@ void MainWindow::ReSyncConfig(QString confDir){
         ui->groupBox_GFX->setEnabled(true);
         ui->groupBox_Misc->setEnabled(true);
         ui->groupBox_SFX->setEnabled(true);
+        ui->groupBox_OnlineBetaSettings->setEnabled(true);
         QSettings *settings = new QSettings(configDir + "/options.ini", QSettings::IniFormat);
+        settings->beginGroup("Options");
+        if (!settings->contains("AcceptedPublicBeta")){
+            ui->groupBox_OnlineBetaSettings->setEnabled(false);
+        }
+        settings->endGroup();
         SyncConfigFile(settings);
     }else{
         ui->groupBox_Console->setEnabled(false);
         ui->groupBox_GFX->setEnabled(false);
         ui->groupBox_Misc->setEnabled(false);
         ui->groupBox_SFX->setEnabled(false);
+        ui->groupBox_OnlineBetaSettings->setEnabled(false);
         QMessageBox::information(this, optionMessage1, optionMessage2);
     }
 }

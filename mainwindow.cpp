@@ -145,8 +145,10 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 
 MainWindow::~MainWindow()
 {
-    fileMonitor->stopTimer();
-    delete fileMonitor;
+    logMonitor->stopTimer();
+    delete logMonitor;
+    optionMonitor->stopTimer();
+    delete optionMonitor;
     delete ui;
 }
 

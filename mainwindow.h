@@ -42,6 +42,8 @@ private slots:
 
     void onFileLoaded(QString text, bool force);
 
+    void ReSyncConfigSlot(QString configDir);
+
 private:
     QString optionMessage1;
     QString optionMessage2;
@@ -51,7 +53,8 @@ private:
     QString modMessage2;
     QString gameMessage1;
     QString gameMessage2;
-    FileMonitor* fileMonitor;
+    FileMonitor* logMonitor;
+    FileMonitor* optionMonitor;
 
     Ui::MainWindow *ui;
     Ui::about *ui_about;

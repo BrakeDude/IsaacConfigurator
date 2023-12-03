@@ -9,446 +9,469 @@
         <translation>Графика и ХУД</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="86"/>
+        <location filename="mainwindow.ui" line="589"/>
         <source>Pop-ups</source>
         <translation>Всплывашки</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="102"/>
+        <location filename="mainwindow.ui" line="86"/>
         <source>Fullscreen</source>
         <translation>Полный экран</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="118"/>
-        <location filename="mainwindow.ui" line="1177"/>
+        <location filename="mainwindow.ui" line="102"/>
+        <location filename="mainwindow.ui" line="1202"/>
         <source>Filter</source>
         <translation>Фильтр</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="134"/>
+        <location filename="mainwindow.ui" line="118"/>
         <source>Active Camera</source>
         <translation>Актив. камера</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="147"/>
+        <location filename="mainwindow.ui" line="131"/>
         <source>HUD Offset</source>
         <translation>Сместить HUD</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="182"/>
+        <location filename="mainwindow.ui" line="166"/>
         <source>Gamma</source>
         <translation>Гамма</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="229"/>
+        <location filename="mainwindow.ui" line="213"/>
         <source>Map Opacity</source>
         <translation>Прозрачность карты</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="248"/>
+        <location filename="mainwindow.ui" line="232"/>
         <source>Charge Bars</source>
         <translation>Полоска заряда</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="265"/>
-        <location filename="mainwindow.ui" line="824"/>
+        <location filename="mainwindow.ui" line="249"/>
+        <location filename="mainwindow.ui" line="565"/>
+        <location filename="mainwindow.ui" line="849"/>
         <source>Off</source>
         <translation>Выкл</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="270"/>
+        <location filename="mainwindow.ui" line="254"/>
         <source>Normal</source>
         <translation>Обычный</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="275"/>
+        <location filename="mainwindow.ui" line="259"/>
         <source>Mini</source>
         <translation>Мини</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="289"/>
+        <location filename="mainwindow.ui" line="273"/>
         <source>Extra HUD</source>
         <translation>Доп. ХУД</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="305"/>
+        <location filename="mainwindow.ui" line="289"/>
         <source>Found HUD</source>
         <translation>Found ХУД</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="321"/>
+        <location filename="mainwindow.ui" line="305"/>
         <source>Boss HP on Bottom</source>
         <translation>ХП босса снизу</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="337"/>
+        <location filename="mainwindow.ui" line="321"/>
         <source>VSync</source>
         <translation>Верт. синх</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="356"/>
+        <location filename="mainwindow.ui" line="340"/>
         <source>Borderless</source>
         <translation>Без рамки</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="372"/>
+        <location filename="mainwindow.ui" line="356"/>
         <source>Bullet Visibility</source>
         <translation>Видимость слёз</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="385"/>
+        <location filename="mainwindow.ui" line="369"/>
         <source>Window Width</source>
         <translation>Длина окна</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="398"/>
+        <location filename="mainwindow.ui" line="382"/>
         <source>Window Height</source>
         <translation>Ширина окна</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="449"/>
+        <location filename="mainwindow.ui" line="433"/>
         <source>Window Pos X</source>
         <translation>Позиция окна X</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="500"/>
+        <location filename="mainwindow.ui" line="484"/>
         <source>Window Pos Y</source>
         <translation>Позиция окна Y</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="513"/>
+        <location filename="mainwindow.ui" line="497"/>
         <source>Max Render Scale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="526"/>
+        <location filename="mainwindow.ui" line="510"/>
         <source>Max Scale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="609"/>
+        <location filename="mainwindow.ui" line="570"/>
+        <source>Big</source>
+        <translation>Большой</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="634"/>
         <source>Save CMD History</source>
         <translation>Сохранать историю КС</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="680"/>
+        <location filename="mainwindow.ui" line="705"/>
         <source>Music and SFX</source>
         <translation>Музыка и звуковые эффекты</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="726"/>
+        <location filename="mainwindow.ui" line="751"/>
         <source>Music</source>
         <translation>Музыка</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="739"/>
+        <location filename="mainwindow.ui" line="764"/>
         <source>Music Volume</source>
         <translation>Громкость музыки</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="755"/>
+        <location filename="mainwindow.ui" line="780"/>
         <source>SFX Volume</source>
         <translation>Громкость звуков</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="802"/>
+        <location filename="mainwindow.ui" line="827"/>
         <source>Announcer</source>
         <translation>Диктор</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="819"/>
+        <location filename="mainwindow.ui" line="844"/>
         <source>Random</source>
         <translation>Случайно</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="829"/>
+        <location filename="mainwindow.ui" line="854"/>
         <source>Always</source>
         <translation>Всегда</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="908"/>
+        <location filename="mainwindow.ui" line="933"/>
         <source>Mods Enabled</source>
         <translation>Моды активированы</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="926"/>
+        <location filename="mainwindow.ui" line="951"/>
         <source>Mods</source>
         <translation>Моды</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="938"/>
+        <location filename="mainwindow.ui" line="963"/>
         <source>Turn off</source>
         <translation>Выключить</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="951"/>
+        <location filename="mainwindow.ui" line="976"/>
         <source>Turn on</source>
         <translation>Включить</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1003"/>
+        <location filename="mainwindow.ui" line="1028"/>
         <source>Mod Folder</source>
         <translation>Папка мода</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1019"/>
+        <location filename="mainwindow.ui" line="1044"/>
         <source>Find by:</source>
         <oldsource>Sort by</oldsource>
         <translation>Найти по:</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1035"/>
+        <location filename="mainwindow.ui" line="1060"/>
         <source>Save preset</source>
         <translation>Сохранить пресет</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1048"/>
+        <location filename="mainwindow.ui" line="1073"/>
         <source>Load preset</source>
         <translation>Загрузить пресет</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1054"/>
+        <location filename="mainwindow.ui" line="1079"/>
         <source>Log</source>
         <translation>Лог</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1082"/>
+        <location filename="mainwindow.ui" line="1107"/>
         <source>Update Constantly</source>
         <translation>Постоянно обновлять</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1098"/>
+        <location filename="mainwindow.ui" line="1123"/>
         <source>Update</source>
         <translation>Обновить</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1113"/>
+        <location filename="mainwindow.ui" line="1138"/>
         <source>Effects</source>
         <translation>Эффекты</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1125"/>
+        <location filename="mainwindow.ui" line="1150"/>
         <source>Color Correction</source>
         <translation>Коррекция цвета</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1138"/>
+        <location filename="mainwindow.ui" line="1163"/>
         <source>Caustics</source>
         <translation>Каустики</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1151"/>
+        <location filename="mainwindow.ui" line="1176"/>
         <source>Shockwave</source>
         <translation>Ударная волна</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1164"/>
+        <location filename="mainwindow.ui" line="1189"/>
         <source>Lighting</source>
         <translation>Свет</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1190"/>
+        <location filename="mainwindow.ui" line="1215"/>
         <source>Pixelation</source>
         <translation>Пикселизация</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1203"/>
+        <location filename="mainwindow.ui" line="1228"/>
         <source>Bloom</source>
         <translation>Блум</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1216"/>
+        <location filename="mainwindow.ui" line="1241"/>
         <source>Water Sruface</source>
         <translation>Поверхность воды</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1229"/>
+        <location filename="mainwindow.ui" line="1254"/>
         <source>Interpolation</source>
         <translation>Интерполяция</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1266"/>
+        <location filename="mainwindow.ui" line="1268"/>
+        <source>Online Beta</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1280"/>
+        <source>Streamer mode</source>
+        <translation>Режим стримера</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1293"/>
+        <source>Better brothers controls</source>
+        <translation>Новое управление братьями</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1330"/>
         <source>Options</source>
         <translation>Опции</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1270"/>
+        <location filename="mainwindow.ui" line="1334"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1278"/>
+        <location filename="mainwindow.ui" line="1342"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1289"/>
+        <location filename="mainwindow.ui" line="1353"/>
         <source>Check mods</source>
         <oldsource>Sync mods</oldsource>
         <translation>Проверить моды</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1292"/>
+        <location filename="mainwindow.ui" line="1356"/>
         <source>Resyncs states of mods</source>
         <translation>Синхронизирует состояния модов</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1303"/>
+        <location filename="mainwindow.ui" line="1367"/>
         <source>Close the app</source>
         <translation>Закрыть программу</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1336"/>
+        <location filename="mainwindow.ui" line="1400"/>
         <source>Close the game</source>
         <translation>Закрыть игру</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1361"/>
+        <location filename="mainwindow.ui" line="1425"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1366"/>
+        <location filename="mainwindow.ui" line="1430"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1306"/>
+        <location filename="mainwindow.ui" line="1370"/>
         <source>Esc</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1311"/>
+        <location filename="mainwindow.ui" line="1375"/>
         <source>Sync options.ini</source>
         <translation>Синхронизировать options.ini</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1314"/>
+        <location filename="mainwindow.ui" line="1378"/>
         <source>Sync changes in options.ini</source>
         <translation>Синхронизировать изменения в options.ini</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1325"/>
+        <location filename="mainwindow.ui" line="1389"/>
         <source>Start the game</source>
         <translation>Начать игру</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1328"/>
+        <location filename="mainwindow.ui" line="1392"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1339"/>
+        <location filename="mainwindow.ui" line="1403"/>
         <source>Ctrl+Shift+C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1344"/>
+        <location filename="mainwindow.ui" line="1408"/>
         <source>Open game folder</source>
         <translation>Открыть папку с игрой</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1347"/>
+        <location filename="mainwindow.ui" line="1411"/>
         <source>Open game install folder</source>
         <translation>Открыть папку установленной игры</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1350"/>
+        <location filename="mainwindow.ui" line="1414"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="578"/>
+        <location filename="mainwindow.ui" line="603"/>
         <source>Console and Debugging</source>
         <translation>Консоль и отладка</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="593"/>
+        <location filename="mainwindow.ui" line="618"/>
         <source>Faded Console</source>
         <translation>Исчезающая консоль</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="626"/>
+        <location filename="mainwindow.ui" line="651"/>
         <source>Default</source>
         <translation>Обычный</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="631"/>
+        <location filename="mainwindow.ui" line="575"/>
+        <location filename="mainwindow.ui" line="656"/>
+        <location filename="conifg.cpp" line="31"/>
         <source>Small</source>
         <translation>Мелкий</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="636"/>
+        <location filename="mainwindow.ui" line="661"/>
         <source>Tiny</source>
         <translation>Очень мелкий</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="650"/>
+        <location filename="mainwindow.ui" line="675"/>
         <source>Console Font</source>
         <translation>Шрифт консоли</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="666"/>
+        <location filename="mainwindow.ui" line="691"/>
         <source>Console Enabled</source>
         <translation>Консоль включена</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="844"/>
+        <location filename="mainwindow.ui" line="869"/>
         <source>Misc</source>
         <translation>Разное</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="856"/>
+        <location filename="mainwindow.ui" line="881"/>
         <source>Controller Rumble</source>
         <translation>Вибрация контроллера</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="869"/>
+        <location filename="mainwindow.ui" line="894"/>
         <source>Mouse Controls</source>
         <translation>Управление мышкой</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="882"/>
+        <location filename="mainwindow.ui" line="907"/>
         <source>Pause on Focus Lost</source>
         <translation>Пауза при потере фокуса</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="895"/>
+        <location filename="mainwindow.ui" line="920"/>
         <source>Steam Cloud Sync</source>
         <translation>Синхронизация Steam</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1250"/>
+        <location filename="mainwindow.ui" line="1314"/>
         <source>Configurator</source>
         <translation>Конфигуратор</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1259"/>
+        <location filename="mainwindow.ui" line="1323"/>
         <source>Game</source>
         <translation>Игра</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1295"/>
+        <location filename="mainwindow.ui" line="1359"/>
         <source>Ctrl+R</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1317"/>
+        <location filename="mainwindow.ui" line="1381"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1322"/>
+        <location filename="mainwindow.ui" line="1386"/>
         <source>Start</source>
         <translation>Запустить</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1333"/>
+        <location filename="mainwindow.ui" line="1397"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1300"/>
+        <location filename="mainwindow.ui" line="1364"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
@@ -493,7 +516,7 @@
         <translation>Активный</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="984"/>
+        <location filename="mainwindow.ui" line="1009"/>
         <location filename="translations.cpp" line="13"/>
         <source>Mod Name</source>
         <translation>Название мода</translation>
@@ -502,6 +525,16 @@
         <location filename="translations.cpp" line="13"/>
         <source>Folder</source>
         <translation>Папка</translation>
+    </message>
+    <message>
+        <location filename="mods.cpp" line="160"/>
+        <source>Save File</source>
+        <translation>Сохранить файл</translation>
+    </message>
+    <message>
+        <location filename="mods.cpp" line="160"/>
+        <source>JSON Files (*.json)</source>
+        <translation>Файлы JSON (*.json)</translation>
     </message>
 </context>
 <context>
