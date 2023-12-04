@@ -588,6 +588,6 @@ void MainWindow::ReSyncConfig(QString confDir){
         ui->groupBox_Misc->setEnabled(false);
         ui->groupBox_SFX->setEnabled(false);
         ui->groupBox_OnlineBetaSettings->setEnabled(false);
-        QMessageBox::information(this, optionMessage1, optionMessage2);
+        //QMessageBox::information(this, optionMessage1, optionMessage2);
     }
 }

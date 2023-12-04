@@ -27,6 +27,28 @@ void MainWindow::SortLineEdit(){
 
 void MainWindow::SyncMods(QString directory) {
     QDir dir(directory);
+    if(!dir.exists()){
+        ui->modRadioButton_Folder->setEnabled(false);
+        ui->modRadioButton_Name->setEnabled(false);
+        ui->activateButton->setEnabled(false);
+        ui->deactivateButton->setEnabled(false);
+        ui->savePresetButton->setEnabled(false);
+        ui->loadPresetButton->setEnabled(false);
+        ui->lineEdit->setEnabled(false);
+        ui->tableMods->setEnabled(false);
+        ui->tableMods->clear();
+        QMessageBox::information(this, modMessage1, modMessage2);
+        return;
+    }else{
+        ui->modRadioButton_Folder->setEnabled(true);
+        ui->modRadioButton_Name->setEnabled(true);
+        ui->activateButton->setEnabled(true);
+        ui->deactivateButton->setEnabled(true);
+        ui->savePresetButton->setEnabled(true);
+        ui->loadPresetButton->setEnabled(true);
+        ui->lineEdit->setEnabled(true);
+        ui->tableMods->setEnabled(true);
+    }
     QStringList folders = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
     ui->tableMods->setColumnCount(3);
     ui->tableMods->setRowCount(folders.length());
@@ -136,6 +158,10 @@ void MainWindow::loadMods(QString directory) {
                 checkBox->setCheckState(Qt::Unchecked);
             }
         }
+    });
+
+    connect(ui->pushButton_UpdateMods, &QPushButton::clicked, this, [=](){
+        SyncMods(getModPath());
     });
 
     connect(ui->savePresetButton, &QPushButton::clicked, this, [=](){

@@ -36,6 +36,9 @@ void MainWindow::retranslateStrings(QString translator){
     ui->savePresetButton->resize(ui->savePresetButton->sizeHint().width(),ui->savePresetButton->height());
     ui->loadPresetButton->resize(ui->loadPresetButton->sizeHint().width(),ui->loadPresetButton->height());
     ui->loadPresetButton->move(ui->savePresetButton->pos().rx() + ui->savePresetButton->width() + 5, ui->loadPresetButton->pos().ry());
+    ui->checkBox_JEcontrols->resize(ui->checkBox_JEcontrols->sizeHint().width(),ui->checkBox_JEcontrols->height());
+    ui->label_PopUp->resize(ui->label_PopUp->sizeHint().width(),ui->label_PopUp->height());
+    ui->checkBox_WaterSurface->resize(ui->checkBox_WaterSurface->sizeHint().width(),ui->checkBox_WaterSurface->height());
 }
 
 void MainWindow::initLanguages(QString translation){

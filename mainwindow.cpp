@@ -66,9 +66,6 @@ MainWindow::MainWindow(QWidget *parent)
                                                   QFileDialog::ShowDirsOnly
                                                       | QFileDialog::DontResolveSymlinks),GetExeName());
     });
-    connect(ui->actionSyncOptions, &QAction::triggered, this, [=](){
-        ReSyncConfig(configDir);
-    });
 
 #ifdef Q_OS_WINDOWS
     connect(ui->actionStartGame, &QAction::triggered, this, [=](){
@@ -89,27 +86,29 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::LoadApp(QString FullDir, QString gameExe){
     if (QFile::exists(FullDir+"/"+gameExe)){
-        ui->tabBox->setEnabled(true);
+        ui->tabBox->widget(0)->setEnabled(true);
         ui->groupBox_Console->setEnabled(true);
         ui->groupBox_GFX->setEnabled(true);
         ui->groupBox_Misc->setEnabled(true);
         ui->groupBox_Effects->setEnabled(true);
         ui->groupBox_SFX->setEnabled(true);
         ui->menuGame->setEnabled(true);
-        ui->actionSyncMods->setEnabled(true);
-        ui->actionSyncOptions->setEnabled(true);
         QString str = getModPath();
         if (!str.isNull()){
-            connect(ui->actionSyncMods, &QAction::triggered, this, [=](){
-               SyncMods(str);
-            });
             connect(ui->tableMods, &QTableWidget::itemDoubleClicked, ui->tableMods, [=](){
                 QString folder = ui->tableMods->item(ui->tableMods->currentRow(), 2)->text();
                 QDesktopServices::openUrl(QUrl::fromLocalFile(QDir::toNativeSeparators(getModPath()+"/"+folder)));
             });
             loadMods(str);
         }else{
-            ui->tabBox->setEnabled(false);
+            ui->modRadioButton_Folder->setEnabled(false);
+            ui->modRadioButton_Name->setEnabled(false);
+            ui->activateButton->setEnabled(false);
+            ui->deactivateButton->setEnabled(false);
+            ui->savePresetButton->setEnabled(false);
+            ui->loadPresetButton->setEnabled(false);
+            ui->lineEdit->setEnabled(false);
+            ui->tableMods->setEnabled(false);
             QMessageBox::information(this, modMessage1, modMessage2);
         }
         LoadConfigFile();
@@ -117,15 +116,20 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
         //setWindowTitle(IsaacDLC(GetFullDir()) + " Configurator");
     }else {
         QMessageBox::information(this, gameMessage1, gameMessage2);
-        ui->tabBox->setEnabled(false);
+        ui->modRadioButton_Folder->setEnabled(false);
+        ui->modRadioButton_Name->setEnabled(false);
+        ui->activateButton->setEnabled(false);
+        ui->deactivateButton->setEnabled(false);
+        ui->savePresetButton->setEnabled(false);
+        ui->loadPresetButton->setEnabled(false);
+        ui->lineEdit->setEnabled(false);
+        ui->tableMods->setEnabled(false);
         ui->groupBox_Console->setEnabled(false);
         ui->groupBox_Effects->setEnabled(false);
         ui->groupBox_GFX->setEnabled(false);
         ui->groupBox_Misc->setEnabled(false);
         ui->groupBox_SFX->setEnabled(false);
         ui->menuGame->setEnabled(false);
-        ui->actionSyncMods->setEnabled(false);
-        ui->actionSyncOptions->setEnabled(false);
     }
 }
 
@@ -137,6 +141,7 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     ui->lineEdit->setGeometry(ui->lineEdit->pos().x(), ui->lineEdit->pos().y(), ui->tabBox->size().width() - ui->lineEdit->pos().x() - 10, ui->lineEdit->height());
     ui->activateButton->move(ui->activateButton->pos().x(),  ui->tabBox->size().height() - 51);
     ui->deactivateButton->move(ui->deactivateButton->pos().x(),  ui->tabBox->size().height() - 51);
+    ui->pushButton_UpdateMods->move(ui->pushButton_UpdateMods->pos().x(),  ui->tabBox->size().height() - 51);
     ui->savePresetButton->move(ui->savePresetButton->pos().x(),  ui->tabBox->size().height() - 51);
     ui->loadPresetButton->move(ui->loadPresetButton->pos().x(),  ui->tabBox->size().height() - 51);
     ui->checkBoxLogUpdate->move(ui->checkBoxLogUpdate->pos().x(),  ui->tabBox->size().height() - 51);

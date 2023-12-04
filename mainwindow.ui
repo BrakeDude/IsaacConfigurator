@@ -260,7 +260,7 @@
       </property>
      </item>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="label_ExtraHUD">
      <property name="geometry">
       <rect>
        <x>260</x>
@@ -576,7 +576,7 @@
       </property>
      </item>
     </widget>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="label_PopUp">
      <property name="geometry">
       <rect>
        <x>100</x>
@@ -1050,7 +1050,7 @@
      <widget class="QPushButton" name="savePresetButton">
       <property name="geometry">
        <rect>
-        <x>200</x>
+        <x>280</x>
         <y>540</y>
         <width>80</width>
         <height>24</height>
@@ -1063,7 +1063,7 @@
      <widget class="QPushButton" name="loadPresetButton">
       <property name="geometry">
        <rect>
-        <x>290</x>
+        <x>370</x>
         <y>540</y>
         <width>80</width>
         <height>24</height>
@@ -1071,6 +1071,19 @@
       </property>
       <property name="text">
        <string>Load preset</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_UpdateMods">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>540</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Update</string>
       </property>
      </widget>
     </widget>
@@ -1314,8 +1327,6 @@
      <string>Configurator</string>
     </property>
     <addaction name="actionFind_game_folder"/>
-    <addaction name="actionSyncMods"/>
-    <addaction name="actionSyncOptions"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuGame">
@@ -1348,17 +1359,6 @@
    <addaction name="menuOptions"/>
    <addaction name="menuHelp"/>
   </widget>
-  <action name="actionSyncMods">
-   <property name="text">
-    <string>Check mods</string>
-   </property>
-   <property name="toolTip">
-    <string>Resyncs states of mods</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+R</string>
-   </property>
-  </action>
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
@@ -1368,17 +1368,6 @@
    </property>
    <property name="shortcut">
     <string>Esc</string>
-   </property>
-  </action>
-  <action name="actionSyncOptions">
-   <property name="text">
-    <string>Sync options.ini</string>
-   </property>
-   <property name="toolTip">
-    <string>Sync changes in options.ini</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="actionStartGame">

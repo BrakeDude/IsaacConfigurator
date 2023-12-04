@@ -498,7 +498,7 @@
     <message>
         <location filename="translations.cpp" line="17"/>
         <source>Couldn&apos;t locate mod folder. Please, make sure you have Afterbirth+ or Repentance installed</source>
-        <translation>Не возможно найти папку с модами.Убедитесь, что у вас установлен Afterbirth+ или Repentance</translation>
+        <translation>Не возможно найти папку с модами. Убедитесь, что у вас установлен Afterbirth+ или Repentance</translation>
     </message>
     <message>
         <location filename="translations.cpp" line="18"/>
