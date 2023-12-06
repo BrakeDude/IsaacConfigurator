@@ -119,12 +119,12 @@
     <message>
         <location filename="mainwindow.ui" line="497"/>
         <source>Max Render Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Escala de renderizado máxima</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="510"/>
         <source>Max Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Escala máxima</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="570"/>
@@ -205,7 +205,7 @@
     <message>
         <location filename="mainwindow.ui" line="1060"/>
         <source>Save preset</source>
-        <translation>Guardar preestablecido</translation>
+        <translation>Guardar preajuste</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1073"/>
@@ -215,7 +215,7 @@
     <message>
         <location filename="mainwindow.ui" line="1079"/>
         <source>Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Log</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1107"/>
@@ -230,7 +230,7 @@
     <message>
         <location filename="mainwindow.ui" line="1138"/>
         <source>Effects</source>
-        <translation>Effectos</translation>
+        <translation>Efectos</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1150"/>
@@ -275,17 +275,18 @@
     <message>
         <location filename="mainwindow.ui" line="1268"/>
         <source>Online Beta</source>
-        <translation type="unfinished"></translation>
+        <translation>Beta co-op online</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1280"/>
         <source>Streamer mode</source>
-        <translation type="unfinished"></translation>
+         <translation>Modo streamer</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1293"/>
         <source>Better brothers controls</source>
-        <translation type="unfinished"></translation>
+		<translation>Interpolación</translation>
+        <translation>Mejor control de los hermanos</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1330"/>
