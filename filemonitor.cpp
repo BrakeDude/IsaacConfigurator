@@ -29,6 +29,7 @@ void FileMonitor::monitorLog(bool force = false)
             QString content = in.readAll();
 
             QStringList lines = content.split("\n");
+            lines.removeAll("");
 
             for (int i = 0; i < lines.size(); ++i) {
                 lines[i] = QString::number(i + 1) + ": " + lines[i];
