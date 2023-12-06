@@ -20,7 +20,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="102"/>
-        <location filename="mainwindow.ui" line="1202"/>
+        <location filename="mainwindow.ui" line="1215"/>
         <source>Filter</source>
         <translation>Filtro</translation>
     </message>
@@ -213,106 +213,90 @@
         <translation>Cargar preajuste</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1079"/>
+        <location filename="mainwindow.ui" line="1092"/>
         <source>Log</source>
         <translation>Log</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1107"/>
+        <location filename="mainwindow.ui" line="1120"/>
         <source>Update Constantly</source>
         <translation>Actualizar constantemente</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1123"/>
+        <location filename="mainwindow.ui" line="1086"/>
+        <location filename="mainwindow.ui" line="1136"/>
         <source>Update</source>
         <translation>Actualizar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1138"/>
+        <location filename="mainwindow.ui" line="1151"/>
         <source>Effects</source>
         <translation>Efectos</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1150"/>
+        <location filename="mainwindow.ui" line="1163"/>
         <source>Color Correction</source>
         <translation>Corrección de colores</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1163"/>
+        <location filename="mainwindow.ui" line="1176"/>
         <source>Caustics</source>
         <translation>Cáusticos</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1176"/>
+        <location filename="mainwindow.ui" line="1189"/>
         <source>Shockwave</source>
         <translation>Onda de choque</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1189"/>
+        <location filename="mainwindow.ui" line="1202"/>
         <source>Lighting</source>
         <translation>Iluminación</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1215"/>
+        <location filename="mainwindow.ui" line="1228"/>
         <source>Pixelation</source>
         <translation>Pixelación</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1228"/>
+        <location filename="mainwindow.ui" line="1241"/>
         <source>Bloom</source>
         <translation>Resplandor</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1241"/>
+        <location filename="mainwindow.ui" line="1254"/>
         <source>Water Sruface</source>
         <translation>Superficie del agua</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1254"/>
+        <location filename="mainwindow.ui" line="1267"/>
         <source>Interpolation</source>
         <translation>Interpolación</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1268"/>
-        <source>Online Beta</source>
-        <translation>Beta co-op online</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="1280"/>
-        <source>Streamer mode</source>
-         <translation>Modo streamer</translation>
-    </message>
-    <message>
         <location filename="mainwindow.ui" line="1293"/>
+        <source>Streamer mode</source>
+        <translation>Modo streamer</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1306"/>
         <source>Better brothers controls</source>
-		<translation>Interpolación</translation>
         <translation>Mejor control de los hermanos</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1330"/>
+        <location filename="mainwindow.ui" line="1341"/>
         <source>Options</source>
         <translation>Opciones</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1334"/>
+        <location filename="mainwindow.ui" line="1345"/>
         <source>Language</source>
         <translation>Idioma</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1342"/>
-        <source>Help</source>
-        <translation type="unfinished">Ayuda</translation>
-    </message>
-    <message>
         <location filename="mainwindow.ui" line="1353"/>
-        <source>Check mods</source>
-        <oldsource>Sync mods</oldsource>
-        <translation>Checar mods</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="1356"/>
-        <source>Resyncs states of mods</source>
-        <translation>Синхронизирует состояния модов</translation>
+        <source>Help</source>
+        <translation>Ayuda</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1367"/>
@@ -320,19 +304,19 @@
         <translation>Cerrar el programa</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1400"/>
+        <location filename="mainwindow.ui" line="1389"/>
         <source>Close the game</source>
         <translation>Cerrar el juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1425"/>
+        <location filename="mainwindow.ui" line="1414"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1430"/>
+        <location filename="mainwindow.ui" line="1419"/>
         <source>About</source>
-        <translation type="unfinished">A cerca de</translation>
+        <translation>A cerca de</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1370"/>
@@ -340,42 +324,32 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1375"/>
-        <source>Sync options.ini</source>
-        <translation>Sincronizar con el archivo options.ini</translation>
-    </message>
-    <message>
         <location filename="mainwindow.ui" line="1378"/>
-        <source>Sync changes in options.ini</source>
-        <translation>Sincronizar cambios con el archivo options.ini</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="1389"/>
         <source>Start the game</source>
         <translation>Iniciar el juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1392"/>
+        <location filename="mainwindow.ui" line="1381"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1403"/>
+        <location filename="mainwindow.ui" line="1392"/>
         <source>Ctrl+Shift+C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1408"/>
+        <location filename="mainwindow.ui" line="1397"/>
         <source>Open game folder</source>
         <translation>Abrir carpeta del juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1411"/>
+        <location filename="mainwindow.ui" line="1400"/>
         <source>Open game install folder</source>
         <translation>Abrir carpeta de instalación del juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1414"/>
+        <location filename="mainwindow.ui" line="1403"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
@@ -442,32 +416,28 @@
         <translation>Sincroniczar con Steam Cloud</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1314"/>
+        <location filename="mainwindow.ui" line="1281"/>
+        <source>Beta co-op online</source>
+        <oldsource>Beta online co-op</oldsource>
+        <translation>Beta co-op online</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1327"/>
         <source>Configurator</source>
         <translation>Configuración</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1323"/>
+        <location filename="mainwindow.ui" line="1334"/>
         <source>Game</source>
         <translation>Juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1359"/>
-        <source>Ctrl+R</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="1381"/>
-        <source>Ctrl+S</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="1386"/>
+        <location filename="mainwindow.ui" line="1375"/>
         <source>Start</source>
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1397"/>
+        <location filename="mainwindow.ui" line="1386"/>
         <source>Close</source>
         <translation>Cerrar</translation>
     </message>
@@ -528,12 +498,12 @@
         <translation>Carpeta</translation>
     </message>
     <message>
-        <location filename="mods.cpp" line="160"/>
+        <location filename="mods.cpp" line="186"/>
         <source>Save File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mods.cpp" line="160"/>
+        <location filename="mods.cpp" line="186"/>
         <source>JSON Files (*.json)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -543,12 +513,12 @@
     <message>
         <location filename="about.ui" line="14"/>
         <source>About</source>
-        <translation type="unfinished">A cerca de</translation>
+        <translation>A cerca de</translation>
     </message>
     <message>
         <location filename="about.ui" line="57"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Isaac Configurator is a tool to manage game settings of &lt;a href=&quot;https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;The Binding of Isaac: Rebirth&lt;/span&gt;&lt;/a&gt; and its DLCs and mods for Afterbirth+/Repentance. Source code can be found on &lt;a href=&quot;https://github.com/BrakeDude/imc&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Isaac Configurator es una herramienta para manejar configuraciones de of &lt;a href=&quot;https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;The Binding of Isaac: Rebirth&lt;/span&gt;&lt;/a&gt; sus DLCs y mods para Afterbirth+ y Repentance. El código fuente se encuentra en: &lt;a href=&quot;https://github.com/BrakeDude/imc&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Isaac Configurator es una herramienta para manejar configuraciones de of &lt;a href=&quot;https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;The Binding of Isaac: Rebirth&lt;/span&gt;&lt;/a&gt; sus DLCs y mods para Afterbirth+ y Repentance. El código fuente se encuentra en: &lt;a href=&quot;https://github.com/BrakeDude/imc&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 </TS>

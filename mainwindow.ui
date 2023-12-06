@@ -1278,7 +1278,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>Online Beta</string>
+     <string>Beta co-op online</string>
     </property>
     <widget class="QCheckBox" name="checkBox_Steamer">
      <property name="geometry">

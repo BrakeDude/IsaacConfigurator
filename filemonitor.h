@@ -10,12 +10,12 @@ class FileMonitor : public QObject
     Q_OBJECT
 
 public:
-    explicit FileMonitor(const QString& filename, int logOrOption, QObject* parent = nullptr)
+    explicit FileMonitor(const QString& filename, int logOrOption, int updateTime = 1000, QObject* parent = nullptr)
         : QObject(parent), m_filename(filename), m_logOption(logOrOption), m_previousSize(0)
     {
         m_timer = new QTimer(this);
         connect(m_timer, SIGNAL(timeout()), this, SLOT(doMonitor()));
-        m_timer->start(1000);
+        m_timer->start(updateTime);
     }
 
 public slots:

@@ -549,7 +549,7 @@ void MainWindow::LoadConfigFile(){
 #endif
     LoadConfig(configDir);
     if (QFile::exists(configDir + "/log.txt")){
-        logMonitor = new FileMonitor(configDir + "/log.txt", 1);
+        logMonitor = new FileMonitor(configDir + "/log.txt", 1, 100);
 
         connect(logMonitor, SIGNAL(logLoaded(QString, bool)), this, SLOT(onFileLoaded(QString,bool)));
         connect(ui->pushButtonLogUpdate, &QPushButton::clicked, this, [=](){
@@ -562,7 +562,7 @@ void MainWindow::LoadConfigFile(){
         });
     }
     if (QFile::exists(configDir + "/options.ini")){
-        optionMonitor = new FileMonitor(configDir, 2);
+        optionMonitor = new FileMonitor(configDir, 2, 100);
         connect(optionMonitor, SIGNAL(optionLoaded(QString)), this, SLOT(ReSyncConfigSlot(QString)));
     }
 }
