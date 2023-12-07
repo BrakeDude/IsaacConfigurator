@@ -436,7 +436,7 @@
         <location filename="mainwindow.ui" line="1281"/>
         <source>Beta co-op online</source>
         <oldsource>Beta online co-op</oldsource>
-        <translation>Beta co-op online</translation>
+        <translation>Бета онлайн кооператив</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1327"/>
