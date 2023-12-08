@@ -169,6 +169,12 @@ void MainWindow::SyncConfigFile(QSettings *settings){
         ui->checkBox_JEcontrols->setCheckState(Qt::Unchecked);
     }
 
+    ui->horizontalSlider_PlayersSFX->setValue(settings->value("OnlinePlayerVolume").toInt());
+
+    ui->horizontalSlider_PlayerOpacity->setValue(settings->value("OnlinePlayerOpacity").toInt());
+
+    ui->horizontalSlider_HUD->setValue((settings->value("HudOffset").toFloat()*10));
+
     settings->endGroup();
 }
 
@@ -521,6 +527,21 @@ void MainWindow::LoadConfig(QString confDir){
             settings->endGroup();
             settings->sync();
         });
+
+        connect(ui->horizontalSlider_PlayerOpacity, &QSlider::valueChanged, this, [=](int val) {
+            settings->beginGroup("Options");
+            settings->setValue("OnlinePlayerOpacity",QString::number(val));
+            settings->endGroup();
+            settings->sync();
+        });
+
+        connect(ui->horizontalSlider_PlayersSFX, &QSlider::valueChanged, this, [=](int val) {
+            settings->beginGroup("Options");
+            settings->setValue("OnlinePlayerVolume",QString::number(val));
+            settings->endGroup();
+            settings->sync();
+        });
+
 
     }else{
         ui->groupBox_Console->setEnabled(false);
