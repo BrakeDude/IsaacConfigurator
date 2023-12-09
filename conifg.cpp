@@ -590,6 +590,12 @@ void MainWindow::LoadConfigFile(){
 
 void MainWindow::ReSyncConfig(QString confDir){
     configDir = confDir;
+    if (QDir(configDir).exists())
+    {
+        ui->actionOpen_config_folder->setEnabled(true);
+    }else{
+        ui->actionOpen_config_folder->setEnabled(false);
+    }
     if (QFile::exists(configDir + "/options.ini")){
         ui->groupBox_Console->setEnabled(true);
         ui->groupBox_GFX->setEnabled(true);

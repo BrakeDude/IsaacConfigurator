@@ -1421,6 +1421,10 @@
      <string>Configurator</string>
     </property>
     <addaction name="actionFind_game_folder"/>
+    <addaction name="separator"/>
+    <addaction name="actionOpen_game_folder"/>
+    <addaction name="actionOpen_config_folder"/>
+    <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuGame">
@@ -1488,10 +1492,10 @@
   </action>
   <action name="actionFind_game_folder">
    <property name="text">
-    <string>Open game folder</string>
+    <string>Set game folder</string>
    </property>
    <property name="toolTip">
-    <string>Open game install folder</string>
+    <string>Set game folder</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -1511,6 +1515,19 @@
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionOpen_game_folder">
+   <property name="text">
+    <string>Open game folder</string>
+   </property>
+   <property name="toolTip">
+    <string>Open game install folder</string>
+   </property>
+  </action>
+  <action name="actionOpen_config_folder">
+   <property name="text">
+    <string>Open config folder</string>
    </property>
   </action>
  </widget>

@@ -60,6 +60,18 @@ MainWindow::MainWindow(QWidget *parent)
         QApplication::quit();
     });
 
+    connect(ui->actionOpen_config_folder, &QAction::triggered, this, [=](){
+        if(QDir(configDir).exists()){
+            QDesktopServices::openUrl(QUrl::fromLocalFile(QDir::toNativeSeparators(configDir)));
+        }
+    });
+
+    connect(ui->actionOpen_game_folder, &QAction::triggered, this, [=](){
+        if(QDir(configDir).exists()){
+            QDesktopServices::openUrl(QUrl::fromLocalFile(QDir::toNativeSeparators(GetFullDir())));
+        }
+    });
+
     connect(ui->actionFind_game_folder, &QAction::triggered, this, [=](){
         LoadApp(QFileDialog::getExistingDirectory(this, openDirName,
                                                   configDir,

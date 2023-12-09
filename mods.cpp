@@ -102,6 +102,7 @@ void MainWindow::SyncMods(QString directory) {
             checkBox->setCheckState(Qt::Checked);
         }
 
+
         connect(checkBox, &QCheckBox::stateChanged, this, [=](int state) {
             if (state == Qt::Unchecked) {
                 QFile file(directory + "/" + folder + "/disable.it");
