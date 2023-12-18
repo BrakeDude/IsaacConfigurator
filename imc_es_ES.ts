@@ -129,7 +129,7 @@
     <message>
         <location filename="mainwindow.ui" line="570"/>
         <source>Big</source>
-        <translation type="unfinished"></translation>
+        <translation>Grande</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="634"/>
@@ -225,7 +225,7 @@
     <message>
         <location filename="mainwindow.ui" line="1530"/>
         <source>Open config folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir carpeta de Configuración</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1086"/>
@@ -291,12 +291,12 @@
     <message>
         <location filename="mainwindow.ui" line="1381"/>
         <source>Player Opacity</source>
-        <translation type="unfinished"></translation>
+        <translation>Opacidad de jugador</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1397"/>
         <source>Player Sound</source>
-        <translation type="unfinished"></translation>
+        <translation>Sonido de jugador</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1439"/>
@@ -327,14 +327,14 @@
         <location filename="mainwindow.ui" line="1495"/>
         <location filename="mainwindow.ui" line="1498"/>
         <source>Set game folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Establecer carpeta de juego</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1495"/>
         <location filename="mainwindow.ui" line="1498"/>
         <source>Set game folder</source>
         <oldsource>Set game install folder</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Establecer carpeta de instalación</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1512"/>
@@ -528,12 +528,12 @@
     <message>
         <location filename="mods.cpp" line="187"/>
         <source>Save File</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de guardado</translation>
     </message>
     <message>
         <location filename="mods.cpp" line="187"/>
         <source>JSON Files (*.json)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos JSON (*.json)</translation>
     </message>
 </context>
 <context>
