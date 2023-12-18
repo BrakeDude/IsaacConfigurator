@@ -184,7 +184,7 @@ void MainWindow::loadMods(QString directory) {
             QJsonDocument jsonDoc(jsonObject);
             QByteArray jsonData = jsonDoc.toJson();
 
-            QString filePath = QFileDialog::getSaveFileName(this, tr("Save File"), "", tr("JSON Files (*.json)"));
+            QString filePath = QFileDialog::getSaveFileName(this, saveFileText, "", jsonFilterText);
 
             if (!filePath.isEmpty()) {
                 QFile file(filePath);
@@ -198,7 +198,7 @@ void MainWindow::loadMods(QString directory) {
 
     connect(ui->loadPresetButton, &QPushButton::clicked, this, [=](){
         if (ui->tableMods->rowCount() > 0){
-            QString fileName = QFileDialog::getOpenFileName(nullptr, "Open JSON File", "", "JSON Files (*.json)");
+            QString fileName = QFileDialog::getOpenFileName(nullptr, openFileText, "",  jsonFilterText);
             QFile file(fileName);
             if (!file.open(QIODevice::ReadOnly)) {
                 qWarning("Couldn't open file.");

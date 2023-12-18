@@ -17,6 +17,9 @@ void MainWindow::retranslateStrings(QString translator){
     modMessage2 = tr("Couldn't locate mod folder. Please, make sure you have Afterbirth+ or Repentance installed");
     gameMessage1 = tr("No game found");
     gameMessage2 = tr("Install game first before running app");
+    jsonFilterText = tr("JSON Files (*.json)");
+    saveFileText = tr("Save File");
+    openFileText = tr("Open File");
     if(QFile::exists(QApplication::applicationDirPath() + "/IsaacConfigurator.ini")){
         QSettings *config = new QSettings(QApplication::applicationDirPath() + "/IsaacConfigurator.ini", QSettings::IniFormat);
         config->beginGroup("Options");

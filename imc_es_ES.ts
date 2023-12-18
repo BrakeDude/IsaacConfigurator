@@ -330,13 +330,6 @@
         <translation>Establecer carpeta de juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1495"/>
-        <location filename="mainwindow.ui" line="1498"/>
-        <source>Set game folder</source>
-        <oldsource>Set game install folder</oldsource>
-        <translation>Establecer carpeta de instalación</translation>
-    </message>
-    <message>
         <location filename="mainwindow.ui" line="1512"/>
         <source>English</source>
         <translation></translation>
@@ -510,6 +503,11 @@
         <translation>Instala el juego antes de iniciar el programa</translation>
     </message>
     <message>
+        <location filename="translations.cpp" line="22"/>
+        <source>Open File</source>
+        <translation>Abrir archivo</translation>
+    </message>
+    <message>
         <location filename="translations.cpp" line="13"/>
         <source>Active</source>
         <translation>Activo</translation>
@@ -526,12 +524,12 @@
         <translation>Carpeta</translation>
     </message>
     <message>
-        <location filename="mods.cpp" line="187"/>
+        <location filename="translations.cpp" line="21"/>
         <source>Save File</source>
         <translation>Archivo de guardado</translation>
     </message>
     <message>
-        <location filename="mods.cpp" line="187"/>
+        <location filename="translations.cpp" line="20"/>
         <source>JSON Files (*.json)</source>
         <translation>Archivos JSON (*.json)</translation>
     </message>

@@ -520,6 +520,11 @@
         <translation>Сначала установите игру перед ее запуском</translation>
     </message>
     <message>
+        <location filename="translations.cpp" line="22"/>
+        <source>Open File</source>
+        <translation>Открыть файл</translation>
+    </message>
+    <message>
         <location filename="translations.cpp" line="13"/>
         <source>Active</source>
         <translation>Активный</translation>
@@ -536,12 +541,12 @@
         <translation>Папка</translation>
     </message>
     <message>
-        <location filename="mods.cpp" line="187"/>
+        <location filename="translations.cpp" line="21"/>
         <source>Save File</source>
         <translation>Сохранить файл</translation>
     </message>
     <message>
-        <location filename="mods.cpp" line="187"/>
+        <location filename="translations.cpp" line="20"/>
         <source>JSON Files (*.json)</source>
         <translation>Файлы JSON (*.json)</translation>
     </message>

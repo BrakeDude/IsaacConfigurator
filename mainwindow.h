@@ -53,6 +53,9 @@ private:
     QString modMessage2;
     QString gameMessage1;
     QString gameMessage2;
+    QString jsonFilterText;
+    QString saveFileText;
+    QString openFileText;
     FileMonitor* logMonitor;
     FileMonitor* optionMonitor;
 
