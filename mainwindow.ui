@@ -1445,6 +1445,7 @@
      <addaction name="actionEnglish"/>
     </widget>
     <addaction name="menuLanguage"/>
+    <addaction name="actionDark_theme"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -1528,6 +1529,14 @@
   <action name="actionOpen_config_folder">
    <property name="text">
     <string>Open config folder</string>
+   </property>
+  </action>
+  <action name="actionDark_theme">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Dark theme</string>
    </property>
   </action>
  </widget>

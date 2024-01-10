@@ -3,11 +3,13 @@
 #include <QProcess>
 #include <QDesktopServices>
 #include <QScrollBar>
+#include <QStyleFactory>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    qApp->setStyle(QStyleFactory::create("fusion"));
     ui->setupUi(this);
     ui_about = new Ui::about();
     aboutDialog = new QDialog(this);
@@ -21,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
         config->beginGroup("Options");
         config->setValue("Language","en_EN");
         config->setValue("CheckUpdate", 1);
+        config->setValue("DarkMode", 0);
         config->endGroup();
         config->sync();
         currentTranslator = "en_EN";
@@ -36,6 +39,9 @@ MainWindow::MainWindow(QWidget *parent)
             checkState = Qt::Checked;
         }
         ui->checkBoxLogUpdate->setCheckState(checkState);
+
+        ui->actionDark_theme->setChecked(config->value("DarkMode") == 1);
+        DarkMode(config->value("DarkMode") == 1);
         config->endGroup();
         config->sync();
     }
@@ -49,6 +55,20 @@ MainWindow::MainWindow(QWidget *parent)
             config->setValue("CheckUpdate", 0);
         } else {
             config->setValue("CheckUpdate", 1);
+        }
+        config->endGroup();
+        config->sync();
+    });
+
+    connect(ui->actionDark_theme, &QAction::triggered, this, [=](){
+        DarkMode(ui->actionDark_theme->isChecked());
+        QSettings *config = new QSettings(QApplication::applicationDirPath() + "/IsaacConfigurator.ini", QSettings::IniFormat);
+        config->beginGroup("Options");
+
+        if (ui->actionDark_theme->isChecked()) {
+            config->setValue("DarkMode", 1);
+        } else {
+            config->setValue("DarkMode", 0);
         }
         config->endGroup();
         config->sync();
@@ -94,6 +114,42 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionCloseGame->setEnabled(false);
 #endif
 
+}
+
+void MainWindow::DarkMode(bool dark){
+    if(dark){
+        QPalette palette;
+        palette.setColor(QPalette::Window, QColor(53,53,53));
+        palette.setColor(QPalette::WindowText, Qt::white);
+        palette.setColor(QPalette::Base, QColor(15,15,15));
+        palette.setColor(QPalette::AlternateBase, QColor(53,53,53));
+        palette.setColor(QPalette::ToolTipBase, Qt::white);
+        palette.setColor(QPalette::ToolTipText, Qt::white);
+        palette.setColor(QPalette::Text, Qt::white);
+        palette.setColor(QPalette::Button, QColor(53,53,53));
+        palette.setColor(QPalette::ButtonText, Qt::white);
+        palette.setColor(QPalette::BrightText, Qt::red);
+
+        palette.setColor(QPalette::Highlight, QColor(142,45,197).lighter());
+        palette.setColor(QPalette::HighlightedText, Qt::black);
+        qApp->setPalette(palette);
+    }else{
+        QPalette palette;
+        palette.setColor(QPalette::Window, QColor(240,240,240));
+        palette.setColor(QPalette::WindowText, Qt::black);
+        palette.setColor(QPalette::Base, QColor(255,255,255));
+        palette.setColor(QPalette::AlternateBase, QColor(245,245,245));
+        palette.setColor(QPalette::ToolTipBase, QColor(255,255,220));
+        palette.setColor(QPalette::ToolTipText, Qt::black);
+        palette.setColor(QPalette::Text, Qt::black);
+        palette.setColor(QPalette::Button, QColor(240,240,240));
+        palette.setColor(QPalette::ButtonText, Qt::black);
+        palette.setColor(QPalette::BrightText, Qt::white);
+
+        palette.setColor(QPalette::Highlight, QColor(0,120,215).lighter());
+        palette.setColor(QPalette::HighlightedText, Qt::white);
+        qApp->setPalette(palette);
+    }
 }
 
 void MainWindow::LoadApp(QString FullDir, QString gameExe){

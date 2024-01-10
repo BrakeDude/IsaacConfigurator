@@ -223,9 +223,14 @@
         <translation>Actualizar constantemente</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1530"/>
+        <location filename="mainwindow.ui" line="1531"/>
         <source>Open config folder</source>
         <translation>Abrir carpeta de Configuración</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1539"/>
+        <source>Dark theme</source>
+        <translation>Tema oscuro</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1086"/>
@@ -309,68 +314,68 @@
         <translation>Idioma</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1451"/>
+        <location filename="mainwindow.ui" line="1452"/>
         <source>Help</source>
         <translation>Ayuda</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1465"/>
+        <location filename="mainwindow.ui" line="1466"/>
         <source>Close the app</source>
         <translation>Cerrar el programa</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1487"/>
+        <location filename="mainwindow.ui" line="1488"/>
         <source>Close the game</source>
         <translation>Cerrar el juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1495"/>
-        <location filename="mainwindow.ui" line="1498"/>
+        <location filename="mainwindow.ui" line="1496"/>
+        <location filename="mainwindow.ui" line="1499"/>
         <source>Set game folder</source>
         <translation>Establecer carpeta de juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1512"/>
+        <location filename="mainwindow.ui" line="1513"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1517"/>
+        <location filename="mainwindow.ui" line="1518"/>
         <source>About</source>
         <translation>A cerca de</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1468"/>
+        <location filename="mainwindow.ui" line="1469"/>
         <source>Esc</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1476"/>
+        <location filename="mainwindow.ui" line="1477"/>
         <source>Start the game</source>
         <translation>Iniciar el juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1479"/>
+        <location filename="mainwindow.ui" line="1480"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1490"/>
+        <location filename="mainwindow.ui" line="1491"/>
         <source>Ctrl+Shift+C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1522"/>
+        <location filename="mainwindow.ui" line="1523"/>
         <source>Open game folder</source>
         <translation>Abrir carpeta del juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1525"/>
+        <location filename="mainwindow.ui" line="1526"/>
         <source>Open game install folder</source>
         <translation>Abrir carpeta de instalación del juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1501"/>
+        <location filename="mainwindow.ui" line="1502"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
@@ -453,17 +458,17 @@
         <translation>Juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1473"/>
+        <location filename="mainwindow.ui" line="1474"/>
         <source>Start</source>
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1484"/>
+        <location filename="mainwindow.ui" line="1485"/>
         <source>Close</source>
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1462"/>
+        <location filename="mainwindow.ui" line="1463"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>

@@ -223,9 +223,14 @@
         <translation>Постоянно обновлять</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1530"/>
+        <location filename="mainwindow.ui" line="1531"/>
         <source>Open config folder</source>
         <translation>Открыть папку настроек</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1539"/>
+        <source>Dark theme</source>
+        <translation>Тёмная тема</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1086"/>
@@ -309,7 +314,7 @@
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1451"/>
+        <location filename="mainwindow.ui" line="1452"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
@@ -323,27 +328,27 @@
         <translation type="vanished">Синхронизирует состояния модов</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1465"/>
+        <location filename="mainwindow.ui" line="1466"/>
         <source>Close the app</source>
         <translation>Закрыть программу</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1487"/>
+        <location filename="mainwindow.ui" line="1488"/>
         <source>Close the game</source>
         <translation>Закрыть игру</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1512"/>
+        <location filename="mainwindow.ui" line="1513"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1517"/>
+        <location filename="mainwindow.ui" line="1518"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1468"/>
+        <location filename="mainwindow.ui" line="1469"/>
         <source>Esc</source>
         <translation></translation>
     </message>
@@ -356,38 +361,38 @@
         <translation type="vanished">Синхронизировать изменения в options.ini</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1476"/>
+        <location filename="mainwindow.ui" line="1477"/>
         <source>Start the game</source>
         <translation>Начать игру</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1479"/>
+        <location filename="mainwindow.ui" line="1480"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1490"/>
+        <location filename="mainwindow.ui" line="1491"/>
         <source>Ctrl+Shift+C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1495"/>
-        <location filename="mainwindow.ui" line="1498"/>
+        <location filename="mainwindow.ui" line="1496"/>
+        <location filename="mainwindow.ui" line="1499"/>
         <source>Set game folder</source>
         <translation>Назначить папку с игрой</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1522"/>
+        <location filename="mainwindow.ui" line="1523"/>
         <source>Open game folder</source>
         <translation>Открыть папку с игрой</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1525"/>
+        <location filename="mainwindow.ui" line="1526"/>
         <source>Open game install folder</source>
         <translation>Открыть папку установленной игры</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1501"/>
+        <location filename="mainwindow.ui" line="1502"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
@@ -470,17 +475,17 @@
         <translation>Игра</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1473"/>
+        <location filename="mainwindow.ui" line="1474"/>
         <source>Start</source>
         <translation>Запустить</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1484"/>
+        <location filename="mainwindow.ui" line="1485"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1462"/>
+        <location filename="mainwindow.ui" line="1463"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>

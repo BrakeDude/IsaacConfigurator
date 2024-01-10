@@ -77,6 +77,7 @@ private:
     void SortLineEdit();
     void ReSyncConfigIni(QSettings *settings);
     void ConfigIniLoad();
+    void DarkMode(bool dark);
     QString getModPath();
     QString IsaacDLC(QString directory);
     QString GetExeName();
