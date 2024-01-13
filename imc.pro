@@ -48,4 +48,6 @@ RC_ICONS = wrench.ico
 
 TARGET = IsaacConfigurator
 
-QMAKE_LFLAGS += -static
+contains(QMAKE_HOST.os, "win32"){
+    QMAKE_LFLAGS += -static
+}

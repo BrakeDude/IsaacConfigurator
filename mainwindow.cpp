@@ -110,7 +110,10 @@ MainWindow::MainWindow(QWidget *parent)
         process.waitForFinished();
     });
 #else
-    ui->actionStartGame->setEnabled(false);
+    connect(ui->actionStartGame, &QAction::triggered, this, [=](){
+        QProcess::startDetached("steam",QStringList()<<"-applaunch 250900"<<"-nobrowser");
+
+    });
     ui->actionCloseGame->setEnabled(false);
 #endif
 
