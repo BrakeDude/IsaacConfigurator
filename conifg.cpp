@@ -64,12 +64,6 @@ void MainWindow::SyncConfigFile(QSettings *settings){
         ui->checkBox_BossHPBot->setCheckState(Qt::Unchecked);
     }
 
-    if (settings->value("CameraStyle") == 1) {
-        ui->checkBox_Camera->setCheckState(Qt::Checked);
-    }else{
-        ui->checkBox_Camera->setCheckState(Qt::Unchecked);
-    }
-
     if (settings->value("BulletVisibility") == 1) {
         ui->checkBox_BulletVisibility->setCheckState(Qt::Checked);
     }else{
@@ -242,9 +236,9 @@ void MainWindow::LoadConfig(QString confDir){
         connect(ui->checkBox_ChargeBar, &QCheckBox::stateChanged, this, [=](int state) {
             settings->beginGroup("Options");
             if (state == Qt::Unchecked) {
-                settings->setValue("CameraStyle",0);
+                settings->setValue("ChargeBars",0);
             } else {
-                settings->setValue("CameraStyle",1);
+                settings->setValue("ChargeBars",1);
             }
             settings->endGroup();
             settings->sync();
@@ -283,17 +277,6 @@ void MainWindow::LoadConfig(QString confDir){
             settings->beginGroup("Options");
             if (state == Qt::Unchecked) {
                 settings->setValue("BossHpOnBottom",0);
-            } else {
-                settings->setValue("BossHpOnBottom",1);
-            }
-            settings->endGroup();
-            settings->sync();
-        });
-
-        connect(ui->checkBox_Camera, &QCheckBox::stateChanged, this, [=](int state) {
-            settings->beginGroup("Options");
-            if (state == Qt::Unchecked) {
-                settings->setValue("BossHpOnBottom",2);
             } else {
                 settings->setValue("BossHpOnBottom",1);
             }

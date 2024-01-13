@@ -130,7 +130,7 @@ void MainWindow::DarkMode(bool dark){
         palette.setColor(QPalette::ButtonText, Qt::white);
         palette.setColor(QPalette::BrightText, Qt::red);
 
-        palette.setColor(QPalette::Highlight, QColor(142,45,197).lighter());
+        //palette.setColor(QPalette::Highlight, QColor(142,45,197).lighter());
         palette.setColor(QPalette::HighlightedText, Qt::black);
         qApp->setPalette(palette);
     }else{
@@ -146,7 +146,7 @@ void MainWindow::DarkMode(bool dark){
         palette.setColor(QPalette::ButtonText, Qt::black);
         palette.setColor(QPalette::BrightText, Qt::white);
 
-        palette.setColor(QPalette::Highlight, QColor(0,120,215).lighter());
+        //palette.setColor(QPalette::Highlight, QColor(0,120,215).lighter());
         palette.setColor(QPalette::HighlightedText, Qt::white);
         qApp->setPalette(palette);
     }
