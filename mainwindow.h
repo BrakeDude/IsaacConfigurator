@@ -79,6 +79,7 @@ private:
     void ConfigIniLoad();
     void DarkMode(bool dark);
     QString getModPath();
+    QString GetSteamPath();
     QString IsaacDLC(QString directory);
     QString GetExeName();
     QString GetFullDir();

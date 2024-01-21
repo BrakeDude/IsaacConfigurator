@@ -23,16 +23,16 @@ QString MainWindow::GetExeName(){
         gameExe = "isaac-ng.exe";
     }else{
     #ifdef Q_PROCESSOR_X86_64
-        gameExe = "run-x64.sh";
+        gameExe = "isaac.x64";
     #elif defined(Q_PROCESSOR_X86)
-        gameExe = "run-i386.sh";
+        gameExe = "isaac.i386";
     #endif
     }
 #endif
     return gameExe;
 }
 
-QString MainWindow::GetFullDir(){
+QString MainWindow::GetSteamPath(){
     QString steamPath;
 #ifdef Q_OS_WIN
     QSettings registry32("HKEY_LOCAL_MACHINE\\SOFTWARE\\Valve\\Steam", QSettings::NativeFormat);
@@ -48,7 +48,11 @@ QString MainWindow::GetFullDir(){
         steamPath = homePath + "/.steam/steam";
     }
 #endif
-    return steamPath + "/steamapps/common/The Binding of Isaac Rebirth";
+    return steamPath;
+}
+
+QString MainWindow::GetFullDir(){
+    return GetSteamPath() + "/steamapps/common/The Binding of Isaac Rebirth";
 }
 
 QString MainWindow::getModPath() {

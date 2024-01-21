@@ -99,23 +99,31 @@ MainWindow::MainWindow(QWidget *parent)
                                                       | QFileDialog::DontResolveSymlinks),GetExeName());
     });
 
-#ifdef Q_OS_WINDOWS
+
     connect(ui->actionStartGame, &QAction::triggered, this, [=](){
-        QProcess::startDetached(GetFullDir()+"/"+GetExeName(),QStringList());
+        #ifdef Q_OS_WINDOWS
+            QProcess::startDetached(GetFullDir()+"/"+GetExeName(),QStringList());
+        #elif defined(Q_OS_LINUX)
+            if(GetExeName() == "Repentance"){
+                QProcess proton;
+                proton.setProgram(GetSteamPath() + "/compatibilitytools.d/proton/version/proton");
+                proton.setArguments({"run", GetFullDir()+"/"+GetExeName()});
+                proton.startDetached();
+            }else{
+                QProcess::startDetached("steam", QStringList() << "steam://rungameid/250900");
+            }
+        #endif
 
     });
     connect(ui->actionCloseGame, &QAction::triggered, this, [=](){
         QProcess process;
-        process.start("taskkill", QStringList() << "/IM" << GetExeName());
-        process.waitForFinished();
+        #ifdef Q_OS_WINDOWS
+            process.start("taskkill", QStringList() << "/IM" << GetExeName());
+            process.waitForFinished();
+        #elif defined(Q_OS_LINUX)
+            QProcess::execute("pkill", QStringList() << GetExeName());
+        #endif
     });
-#else
-    connect(ui->actionStartGame, &QAction::triggered, this, [=](){
-        QProcess::startDetached("steam",QStringList()<<"-applaunch 250900"<<"-nobrowser");
-
-    });
-    ui->actionCloseGame->setEnabled(false);
-#endif
 
 }
 
@@ -201,22 +209,23 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
         ui->groupBox_Misc->setEnabled(false);
         ui->groupBox_SFX->setEnabled(false);
         ui->menuGame->setEnabled(false);
+        ui->groupBox_OnlineBetaSettings->setEnabled(false);
     }
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
     ui->tabBox->setGeometry(ui->tabBox->pos().x(), ui->tabBox->pos().y(), event->size().width() - ui->tabBox->pos().x() - 10, event->size().height() - ui->tabBox->pos().y() - 53);
-    ui->tableMods->setGeometry(ui->tableMods->pos().x(), ui->tableMods->pos().y(),  ui->tabBox->size().width() - ui->tableMods->pos().x() - 10,  ui->tabBox->size().height() - ui->tableMods->pos().y() - 53);
+    ui->tableMods->setGeometry(ui->tableMods->pos().x(), ui->tableMods->pos().y(),  ui->tabBox->size().width() - ui->tableMods->pos().x() - 10,  ui->tabBox->size().height() - ui->tableMods->pos().y() - 56);
     ui->logBrowser->setGeometry(ui->logBrowser->pos().x(), ui->logBrowser->pos().y(), ui->tabBox->size().width() - ui->tableMods->pos().x() + 1, ui->tabBox->size().height() - ui->tableMods->pos().y() - 20);
     ui->lineEdit->setGeometry(ui->lineEdit->pos().x(), ui->lineEdit->pos().y(), ui->tabBox->size().width() - ui->lineEdit->pos().x() - 10, ui->lineEdit->height());
-    ui->activateButton->move(ui->activateButton->pos().x(),  ui->tabBox->size().height() - 51);
-    ui->deactivateButton->move(ui->deactivateButton->pos().x(),  ui->tabBox->size().height() - 51);
-    ui->pushButton_UpdateMods->move(ui->pushButton_UpdateMods->pos().x(),  ui->tabBox->size().height() - 51);
-    ui->savePresetButton->move(ui->savePresetButton->pos().x(),  ui->tabBox->size().height() - 51);
-    ui->loadPresetButton->move(ui->loadPresetButton->pos().x(),  ui->tabBox->size().height() - 51);
-    ui->checkBoxLogUpdate->move(ui->checkBoxLogUpdate->pos().x(),  ui->tabBox->size().height() - 51);
-    ui->pushButtonLogUpdate->move(ui->pushButtonLogUpdate->pos().x(),  ui->tabBox->size().height() - 51);
+    ui->activateButton->move(ui->activateButton->pos().x(),  ui->tabBox->size().height() - 54);
+    ui->deactivateButton->move(ui->deactivateButton->pos().x(),  ui->tabBox->size().height() - 54);
+    ui->pushButton_UpdateMods->move(ui->pushButton_UpdateMods->pos().x(),  ui->tabBox->size().height() - 54);
+    ui->savePresetButton->move(ui->savePresetButton->pos().x(),  ui->tabBox->size().height() - 54);
+    ui->loadPresetButton->move(ui->loadPresetButton->pos().x(),  ui->tabBox->size().height() - 54);
+    ui->checkBoxLogUpdate->move(ui->checkBoxLogUpdate->pos().x(),  ui->tabBox->size().height() - 54);
+    ui->pushButtonLogUpdate->move(ui->pushButtonLogUpdate->pos().x(),  ui->tabBox->size().height() - 54);
 }
 
 MainWindow::~MainWindow()
