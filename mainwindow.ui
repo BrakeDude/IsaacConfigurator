@@ -1446,6 +1446,7 @@
     </widget>
     <addaction name="menuLanguage"/>
     <addaction name="actionDark_theme"/>
+    <addaction name="actionDisable_Repentogon"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -1537,6 +1538,14 @@
    </property>
    <property name="text">
     <string>Dark theme</string>
+   </property>
+  </action>
+  <action name="actionDisable_Repentogon">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Disable Repentogon</string>
    </property>
   </action>
  </widget>

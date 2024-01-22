@@ -16,7 +16,7 @@ QString MainWindow::IsaacDLC(QString directory)
 
 QString MainWindow::GetExeName(){
     QString gameExe = "";
-#ifdef Q_OS_WIN
+#ifdef Q_OS_WINDOWS
     gameExe = "isaac-ng.exe";
 #elif defined(Q_OS_LINUX)
     if (IsaacDLC(GetFullDir()) == "Repentance"){

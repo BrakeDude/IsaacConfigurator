@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
         config->setValue("Language","en_EN");
         config->setValue("CheckUpdate", 1);
         config->setValue("DarkMode", 0);
+        config->setValue("DisableRepentogon", 0);
         config->endGroup();
         config->sync();
         currentTranslator = "en_EN";
@@ -39,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent)
             checkState = Qt::Checked;
         }
         ui->checkBoxLogUpdate->setCheckState(checkState);
-
+        ui->actionDisable_Repentogon->setChecked(config->value("DisableRepentogon") == 1);
         ui->actionDark_theme->setChecked(config->value("DarkMode") == 1);
         DarkMode(config->value("DarkMode") == 1);
         config->endGroup();
@@ -74,6 +75,19 @@ MainWindow::MainWindow(QWidget *parent)
         config->sync();
     });
 
+    connect(ui->actionDisable_Repentogon, &QAction::triggered, this, [=](){
+        QSettings *config = new QSettings(QApplication::applicationDirPath() + "/IsaacConfigurator.ini", QSettings::IniFormat);
+        config->beginGroup("Options");
+
+        if (ui->actionDisable_Repentogon->isChecked()) {
+            config->setValue("DisableRepentogon", 1);
+        } else {
+            config->setValue("DisableRepentogon", 0);
+        }
+        config->endGroup();
+        config->sync();
+    });
+
     LoadApp(GetFullDir(), GetExeName());
 
     connect(ui->actionExit, &QAction::triggered, this, [=](){
@@ -101,13 +115,17 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     connect(ui->actionStartGame, &QAction::triggered, this, [=](){
+        QStringList options = QStringList();
+        if (ui->actionDisable_Repentogon->isChecked()){
+            options << "-repentogonoff";
+        }
         #ifdef Q_OS_WINDOWS
-            QProcess::startDetached(GetFullDir()+"/"+GetExeName(),QStringList());
+            QProcess::startDetached(GetFullDir()+"/"+GetExeName(),QStringList() << options);
         #elif defined(Q_OS_LINUX)
             if(GetExeName() == "Repentance"){
                 QProcess proton;
                 proton.setProgram(GetSteamPath() + "/compatibilitytools.d/proton/version/proton");
-                proton.setArguments({"run", GetFullDir()+"/"+GetExeName()});
+                proton.setArguments({"run", GetFullDir()+"/"+GetExeName(), options});
                 proton.startDetached();
             }else{
                 QProcess::startDetached("steam", QStringList() << "steam://rungameid/250900");
