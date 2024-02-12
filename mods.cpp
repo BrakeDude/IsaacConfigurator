@@ -93,6 +93,10 @@ void MainWindow::SyncMods(QString directory) {
                 }
                 file.close();
             }
+        }else{
+            QTableWidgetItem *failitem = new QTableWidgetItem(folder);
+            failitem->setFlags(failitem->flags() ^ Qt::ItemIsEditable);
+            ui->tableMods->setItem(i,1,failitem);
         }
 
         QCheckBox *checkBox = new QCheckBox();
