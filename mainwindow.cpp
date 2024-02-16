@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     aboutDialog = new QDialog(this);
     aboutDialog->setWindowFlags(aboutDialog->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     ui_about->setupUi(aboutDialog);
+    ui->groupBox_OnlineBetaSettings->hide();
     if (!QFile::exists(QApplication::applicationDirPath() + "/IsaacConfigurator.ini")) {
         QFile file(QApplication::applicationDirPath() + "/IsaacConfigurator.ini");
         file.open(QIODevice::WriteOnly | QIODevice::Text);
@@ -233,7 +234,7 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    ui->tabBox->setGeometry(ui->tabBox->pos().x(), ui->tabBox->pos().y(), event->size().width() - ui->tabBox->pos().x() - 10, event->size().height() - ui->tabBox->pos().y() - 53);
+    ui->tabBox->setGeometry(ui->tabBox->pos().x(), ui->tabBox->pos().y(), event->size().width() - ui->tabBox->pos().x() - 10, event->size().height() - ui->tabBox->pos().y() - 45);
     ui->tableMods->setGeometry(ui->tableMods->pos().x(), ui->tableMods->pos().y(),  ui->tabBox->size().width() - ui->tableMods->pos().x() - 10,  ui->tabBox->size().height() - ui->tableMods->pos().y() - 56);
     ui->logBrowser->setGeometry(ui->logBrowser->pos().x(), ui->logBrowser->pos().y(), ui->tabBox->size().width() - ui->tableMods->pos().x() + 1, ui->tabBox->size().height() - ui->tableMods->pos().y() - 20);
     ui->lineEdit->setGeometry(ui->lineEdit->pos().x(), ui->lineEdit->pos().y(), ui->tabBox->size().width() - ui->lineEdit->pos().x() - 10, ui->lineEdit->height());
