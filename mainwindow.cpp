@@ -126,7 +126,9 @@ MainWindow::MainWindow(QWidget *parent)
             if(GetExeName() == "Repentance"){
                 QProcess proton;
                 proton.setProgram(GetSteamPath() + "/compatibilitytools.d/proton/version/proton");
-                proton.setArguments({"run", GetFullDir()+"/"+GetExeName(), options});
+                QStringList command;
+                command << "run"  << GetFullDir()+"/"+GetExeName() << options;
+                proton.setArguments(command);
                 proton.startDetached();
             }else{
                 QProcess::startDetached("steam", QStringList() << "steam://rungameid/250900");

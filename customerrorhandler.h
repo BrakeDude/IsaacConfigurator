@@ -31,7 +31,6 @@ public:
             QMessageBox::critical(nullptr, "Fatal Error", logMessage);
             break;
         }
-
         // Log the message to a file
         QFile file("ICError.log");
         if (file.open(QIODevice::WriteOnly | QIODevice::Append)) {
