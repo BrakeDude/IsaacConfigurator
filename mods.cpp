@@ -124,9 +124,8 @@ void MainWindow::SyncMods(QString directory) {
 
     }
     ui->tableMods->sortItems(sortedColumn, sortOrder);
-    ui->tableMods->resizeColumnToContents(0);
-    ui->tableMods->resizeColumnToContents(1);
-    ui->tableMods->resizeColumnToContents(2);
+
+    ui->tableMods->resizeColumnsToContents();
     ui->tableMods->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     ui->tableMods->horizontalHeader()->setSectionResizeMode(0,QHeaderView::Fixed);
 }
@@ -167,6 +166,7 @@ void MainWindow::loadMods(QString directory) {
 
     connect(ui->pushButton_UpdateMods, &QPushButton::clicked, this, [=](){
         SyncMods(getModPath());
+        SortLineEdit();
     });
 
     connect(ui->savePresetButton, &QPushButton::clicked, this, [=](){

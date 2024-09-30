@@ -10,7 +10,7 @@ class FileMonitor : public QObject
     Q_OBJECT
 
 public:
-    explicit FileMonitor(const QString& filename, int logOrOption, int updateTime = 1000, QObject* parent = nullptr)
+    explicit FileMonitor(const QString& filename, int logOrOption, int updateTime = 15000, QObject* parent = nullptr)
         : QObject(parent), m_filename(filename), m_logOption(logOrOption), m_previousSize(0)
     {
         m_timer = new QTimer(this);
