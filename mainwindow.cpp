@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     aboutDialog = new QDialog(this);
     aboutDialog->setWindowFlags(aboutDialog->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     ui_about->setupUi(aboutDialog);
-    ui->groupBox_OnlineBetaSettings->hide();
+    //ui->groupBox_OnlineBetaSettings->hide();
     if (!QFile::exists(QApplication::applicationDirPath() + "/IsaacConfigurator.ini")) {
         QFile file(QApplication::applicationDirPath() + "/IsaacConfigurator.ini");
         file.open(QIODevice::WriteOnly | QIODevice::Text);
@@ -145,6 +145,9 @@ MainWindow::MainWindow(QWidget *parent)
             QProcess::execute("pkill", QStringList() << GetExeName());
         #endif
     });
+    connect(ui->scrollArea->verticalScrollBar(), &QScrollBar::valueChanged, this, [=](int value){
+        ui->tabBox->setGeometry(ui->tabBox->pos().x(), value, ui->tabBox->width(), ui->tabBox->height());
+    });
 
 }
 
@@ -164,6 +167,15 @@ void MainWindow::DarkMode(bool dark){
 
         //palette.setColor(QPalette::Highlight, QColor(142,45,197).lighter());
         palette.setColor(QPalette::HighlightedText, Qt::black);
+
+        palette.setColor(QPalette::Disabled, QPalette::Window, QColor(90,90,90));
+        palette.setColor(QPalette::Disabled, QPalette::WindowText, QColor(128,128,128));
+        palette.setColor(QPalette::Disabled, QPalette::Text, QColor(128,128,128));
+        palette.setColor(QPalette::Disabled, QPalette::Button, QColor(90,90,90));
+        palette.setColor(QPalette::Disabled, QPalette::ButtonText, QColor(128,128,128));
+        palette.setColor(QPalette::Disabled, QPalette::BrightText, QColor(255,128,128));
+        palette.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor(90,90,90));
+
         qApp->setPalette(palette);
     }else{
         QPalette palette;
@@ -180,6 +192,15 @@ void MainWindow::DarkMode(bool dark){
 
         //palette.setColor(QPalette::Highlight, QColor(0,120,215).lighter());
         palette.setColor(QPalette::HighlightedText, Qt::white);
+
+        palette.setColor(QPalette::Disabled, QPalette::Window, QColor(220,220,220));
+        palette.setColor(QPalette::Disabled, QPalette::WindowText, QColor(128,128,128));
+        palette.setColor(QPalette::Disabled, QPalette::Text, QColor(0,0,0));
+        palette.setColor(QPalette::Disabled, QPalette::Button, QColor(180,180,180));
+        palette.setColor(QPalette::Disabled, QPalette::ButtonText, QColor(128,128,128));
+        palette.setColor(QPalette::Disabled, QPalette::BrightText, QColor(220,220,220));
+        palette.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor(0,0,0));
+
         qApp->setPalette(palette);
     }
 }
@@ -236,7 +257,7 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    ui->tabBox->setGeometry(ui->tabBox->pos().x(), ui->tabBox->pos().y(), event->size().width() - ui->tabBox->pos().x() - 10, event->size().height() - ui->tabBox->pos().y() - 45);
+    /*ui->tabBox->setGeometry(ui->tabBox->pos().x(), ui->tabBox->pos().y(), event->size().width() - ui->tabBox->pos().x() - 10, event->size().height() - ui->tabBox->pos().y() - 45);
     ui->tableMods->setGeometry(ui->tableMods->pos().x(), ui->tableMods->pos().y(),  ui->tabBox->size().width() - ui->tableMods->pos().x() - 10,  ui->tabBox->size().height() - ui->tableMods->pos().y() - 56);
     ui->logBrowser->setGeometry(ui->logBrowser->pos().x(), ui->logBrowser->pos().y(), ui->tabBox->size().width() - ui->tableMods->pos().x() + 1, ui->tabBox->size().height() - ui->tableMods->pos().y() - 20);
     ui->lineEdit->setGeometry(ui->lineEdit->pos().x(), ui->lineEdit->pos().y(), ui->tabBox->size().width() - ui->lineEdit->pos().x() - 10, ui->lineEdit->height());
@@ -246,7 +267,8 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     ui->savePresetButton->move(ui->savePresetButton->pos().x(),  ui->tabBox->size().height() - 54);
     ui->loadPresetButton->move(ui->loadPresetButton->pos().x(),  ui->tabBox->size().height() - 54);
     ui->checkBoxLogUpdate->move(ui->checkBoxLogUpdate->pos().x(),  ui->tabBox->size().height() - 54);
-    ui->pushButtonLogUpdate->move(ui->pushButtonLogUpdate->pos().x(),  ui->tabBox->size().height() - 54);
+    ui->pushButtonLogUpdate->move(ui->pushButtonLogUpdate->pos().x(),  ui->tabBox->size().height() - 54);*/
+    ui->scrollArea->setGeometry(ui->scrollArea->pos().x(), ui->scrollArea->pos().y(), event->size().width() - ui->scrollArea->pos().x(), event->size().height() - ui->scrollArea->pos().y() - 20);
 }
 
 MainWindow::~MainWindow()
