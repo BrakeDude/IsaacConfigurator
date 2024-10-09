@@ -70,7 +70,9 @@ private:
     void SyncMods(QString directory);
     void LoadConfigFile();
     void LoadConfig(QString confDir);
-    void SyncConfigFile(QSettings *settings);
+    void ConnectVanillaOptions(QSettings *settings);
+    void ConnectRepentogonOptions(QSettings *settings);
+    void SyncConfigFile(QSettings *settings, bool extra);
     void ReSyncConfig(QString confDir);
     void LoadApp(QString FullDir, QString gameExe);
     void UpdateApp(QString FullDir, QString gameExe);

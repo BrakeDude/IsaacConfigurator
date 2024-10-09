@@ -15,7 +15,6 @@ MainWindow::MainWindow(QWidget *parent)
     aboutDialog = new QDialog(this);
     aboutDialog->setWindowFlags(aboutDialog->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     ui_about->setupUi(aboutDialog);
-    //ui->groupBox_OnlineBetaSettings->hide();
     if (!QFile::exists(QApplication::applicationDirPath() + "/IsaacConfigurator.ini")) {
         QFile file(QApplication::applicationDirPath() + "/IsaacConfigurator.ini");
         file.open(QIODevice::WriteOnly | QIODevice::Text);
@@ -41,7 +40,13 @@ MainWindow::MainWindow(QWidget *parent)
             checkState = Qt::Checked;
         }
         ui->checkBoxLogUpdate->setCheckState(checkState);
-        ui->actionDisable_Repentogon->setChecked(config->value("DisableRepentogon") == 1);
+        if(config->value("DisableRepentogon") == 1){
+            ui->actionDisable_Repentogon->setChecked(true);
+            ui->scrollArea_REPENTOGON->setEnabled(false);
+        }else{
+            ui->actionDisable_Repentogon->setChecked(false);
+            ui->scrollArea_REPENTOGON->setEnabled(true);
+        }
         ui->actionDark_theme->setChecked(config->value("DarkMode") == 1);
         DarkMode(config->value("DarkMode") == 1);
         config->endGroup();
@@ -85,6 +90,8 @@ MainWindow::MainWindow(QWidget *parent)
         } else {
             config->setValue("DisableRepentogon", 0);
         }
+        ui->scrollArea_REPENTOGON->setEnabled(!ui->actionDisable_Repentogon->isChecked() && ui->scrollArea_VanillaOptions->isEnabled() && ui->tabWidget_Options->isEnabled());
+
         config->endGroup();
         config->sync();
     });
@@ -145,9 +152,7 @@ MainWindow::MainWindow(QWidget *parent)
             QProcess::execute("pkill", QStringList() << GetExeName());
         #endif
     });
-    connect(ui->scrollArea->verticalScrollBar(), &QScrollBar::valueChanged, this, [=](int value){
-        ui->tabBox->setGeometry(ui->tabBox->pos().x(), value, ui->tabBox->width(), ui->tabBox->height());
-    });
+    ui->scrollArea_VanillaOptions->setGeometry(ui->scrollArea_VanillaOptions->pos().x(), ui->scrollArea_VanillaOptions->pos().y(), ui->scrollArea_VanillaOptions->size().width() - 5, ui->scrollArea_VanillaOptions->size().height() + 5);
 
 }
 
@@ -207,12 +212,8 @@ void MainWindow::DarkMode(bool dark){
 
 void MainWindow::LoadApp(QString FullDir, QString gameExe){
     if (QFile::exists(FullDir+"/"+gameExe)){
-        ui->tabBox->widget(0)->setEnabled(true);
-        ui->groupBox_Console->setEnabled(true);
-        ui->groupBox_GFX->setEnabled(true);
-        ui->groupBox_Misc->setEnabled(true);
-        ui->groupBox_Effects->setEnabled(true);
-        ui->groupBox_SFX->setEnabled(true);
+        ui->tabBox_ModsLog->widget(0)->setEnabled(true);
+        ui->tabWidget_Options->setEnabled(true);
         ui->menuGame->setEnabled(true);
         QString str = getModPath();
         if (!str.isNull()){
@@ -245,13 +246,7 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
         ui->loadPresetButton->setEnabled(false);
         ui->lineEdit->setEnabled(false);
         ui->tableMods->setEnabled(false);
-        ui->groupBox_Console->setEnabled(false);
-        ui->groupBox_Effects->setEnabled(false);
-        ui->groupBox_GFX->setEnabled(false);
-        ui->groupBox_Misc->setEnabled(false);
-        ui->groupBox_SFX->setEnabled(false);
-        ui->menuGame->setEnabled(false);
-        ui->groupBox_OnlineBetaSettings->setEnabled(false);
+        ui->tabWidget_Options->setEnabled(false);
     }
 }
 
@@ -268,7 +263,7 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     ui->loadPresetButton->move(ui->loadPresetButton->pos().x(),  ui->tabBox->size().height() - 54);
     ui->checkBoxLogUpdate->move(ui->checkBoxLogUpdate->pos().x(),  ui->tabBox->size().height() - 54);
     ui->pushButtonLogUpdate->move(ui->pushButtonLogUpdate->pos().x(),  ui->tabBox->size().height() - 54);*/
-    ui->scrollArea->setGeometry(ui->scrollArea->pos().x(), ui->scrollArea->pos().y(), event->size().width() - ui->scrollArea->pos().x(), event->size().height() - ui->scrollArea->pos().y() - 20);
+    //ui->scrollArea->setGeometry(ui->scrollArea->pos().x(), ui->scrollArea->pos().y(), event->size().width() - ui->scrollArea->pos().x(), event->size().height() - ui->scrollArea->pos().y() - 20);
 }
 
 MainWindow::~MainWindow()
