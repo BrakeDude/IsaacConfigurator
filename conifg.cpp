@@ -61,11 +61,11 @@ void MainWindow::SyncConfigFile(QSettings *settings, bool repentogon){
             ui->checkBox_Interpolation->setCheckState(Qt::Unchecked);
         }
 
-        /*ui->spinBox_AutofillCMD->setValue(settings->value("ConsoleAutofillLimit").toInt());
+        ui->spinBox_AutofillCMD->setValue(settings->value("ConsoleAutofillLimit").toInt());
         ui->horizontalSlider_AutofillCMD->setValue(settings->value("ConsoleAutofillLimit").toInt());
 
         ui->spinBox_Mars->setValue(settings->value("MarsDoubleTapWindow").toInt());
-        ui->horizontalSlider_Mars->setValue(settings->value("MarsDoubleTapWindow").toInt());*/
+        ui->horizontalSlider_Mars->setValue(settings->value("MarsDoubleTapWindow").toInt());
 
         settings->endGroup();
 
@@ -703,8 +703,7 @@ void MainWindow::ConnectRepentogonOptions(QSettings* settings){
 
     connect(ui->spinBox_AutofillCMD, &QSpinBox::textChanged, this, [=](QString text) {
         settings->beginGroup("VanillaTweaks");
-        settings->setValue("ConsoleAutofillLimit", text.toInt());
-        ui->horizontalSlider_AutofillCMD->setValue(text.toInt());
+        settings->setValue("ConsoleAutofillLimit", QString::number(text.toInt()));
         settings->endGroup();
         settings->sync();
     });
@@ -712,15 +711,13 @@ void MainWindow::ConnectRepentogonOptions(QSettings* settings){
     connect(ui->horizontalSlider_AutofillCMD, &QSlider::valueChanged, this, [=](int val) {
         settings->beginGroup("VanillaTweaks");
         settings->setValue("ConsoleAutofillLimit",val);
-        ui->spinBox_AutofillCMD->setValue(val);
         settings->endGroup();
         settings->sync();
     });
 
     connect(ui->spinBox_Mars, &QSpinBox::textChanged, this, [=](QString text) {
         settings->beginGroup("VanillaTweaks");
-        settings->setValue("MarsDoubleTapWindow", text.toInt());
-        ui->spinBox_Mars->setValue(text.toInt());
+        settings->setValue("MarsDoubleTapWindow", QString::number(text.toInt()));
         settings->endGroup();
         settings->sync();
     });
@@ -728,7 +725,6 @@ void MainWindow::ConnectRepentogonOptions(QSettings* settings){
     connect(ui->horizontalSlider_Mars, &QSlider::valueChanged, this, [=](int val) {
         settings->beginGroup("VanillaTweaks");
         settings->setValue("MarsDoubleTapWindow", val);
-        ui->spinBox_Mars->setValue(val);
         settings->endGroup();
         settings->sync();
     });

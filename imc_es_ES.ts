@@ -482,7 +482,7 @@
     <message>
         <location filename="mainwindow.ui" line="463"/>
         <location filename="mainwindow.ui" line="1258"/>
-        <location filename="conifg.cpp" line="97"/>
+        <location filename="conifg.cpp" line="113"/>
         <source>Small</source>
         <translation>Pequeño</translation>
     </message>

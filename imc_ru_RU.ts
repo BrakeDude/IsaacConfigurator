@@ -244,8 +244,7 @@
     <message>
         <location filename="mainwindow.ui" line="1447"/>
         <source>FindInRadius Debug Render</source>
-        <translation>FindInRadius отрисовка при
-отладке</translation>
+        <translation>Отрисовка FindInRadius</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1539"/>
@@ -500,7 +499,7 @@
     <message>
         <location filename="mainwindow.ui" line="463"/>
         <location filename="mainwindow.ui" line="1258"/>
-        <location filename="conifg.cpp" line="97"/>
+        <location filename="conifg.cpp" line="113"/>
         <source>Small</source>
         <translation>Мелкий</translation>
     </message>

@@ -68,31 +68,31 @@
        </sizepolicy>
       </property>
       <property name="focusPolicy">
-       <enum>Qt::FocusPolicy::StrongFocus</enum>
+       <enum>Qt::StrongFocus</enum>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="frameShadow">
-       <enum>QFrame::Shadow::Sunken</enum>
+       <enum>QFrame::Sunken</enum>
       </property>
       <property name="midLineWidth">
        <number>0</number>
       </property>
       <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
+       <enum>Qt::ScrollBarAsNeeded</enum>
       </property>
       <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+       <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
       <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
       </property>
       <property name="widgetResizable">
        <bool>false</bool>
       </property>
       <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
       </property>
       <widget class="QWidget" name="scrollArea_VanillaOptions_Content">
        <property name="geometry">
@@ -261,7 +261,7 @@
           <number>1</number>
          </property>
          <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
+          <enum>Qt::Horizontal</enum>
          </property>
          <property name="invertedAppearance">
           <bool>false</bool>
@@ -270,7 +270,7 @@
           <bool>false</bool>
          </property>
          <property name="tickPosition">
-          <enum>QSlider::TickPosition::TicksBelow</enum>
+          <enum>QSlider::TicksBelow</enum>
          </property>
          <property name="tickInterval">
           <number>0</number>
@@ -286,7 +286,7 @@
           </rect>
          </property>
          <property name="layoutDirection">
-          <enum>Qt::LayoutDirection::LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <property name="text">
           <string>Music</string>
@@ -305,7 +305,7 @@
           <string>Music Volume</string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignCenter</set>
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
         <widget class="QLabel" name="label_SFXVol">
@@ -321,7 +321,7 @@
           <string>SFX Volume</string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignCenter</set>
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
         <widget class="QSlider" name="horizontalSlider_SFX">
@@ -340,7 +340,7 @@
           <number>1</number>
          </property>
          <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
+          <enum>Qt::Horizontal</enum>
          </property>
          <property name="invertedAppearance">
           <bool>false</bool>
@@ -349,7 +349,7 @@
           <bool>false</bool>
          </property>
          <property name="tickPosition">
-          <enum>QSlider::TickPosition::TicksBelow</enum>
+          <enum>QSlider::TicksBelow</enum>
          </property>
          <property name="tickInterval">
           <number>0</number>
@@ -378,7 +378,7 @@
           </rect>
          </property>
          <property name="layoutDirection">
-          <enum>Qt::LayoutDirection::LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <item>
           <property name="text">
@@ -419,7 +419,7 @@
           </rect>
          </property>
          <property name="layoutDirection">
-          <enum>Qt::LayoutDirection::LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <property name="text">
           <string>Faded Console</string>
@@ -435,7 +435,7 @@
           </rect>
          </property>
          <property name="layoutDirection">
-          <enum>Qt::LayoutDirection::LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <property name="text">
           <string>Save CMD History</string>
@@ -451,7 +451,7 @@
           </rect>
          </property>
          <property name="layoutDirection">
-          <enum>Qt::LayoutDirection::LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <item>
           <property name="text">
@@ -492,7 +492,7 @@
           </rect>
          </property>
          <property name="layoutDirection">
-          <enum>Qt::LayoutDirection::LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <property name="text">
           <string>Console Enabled</string>
@@ -631,7 +631,7 @@
           <number>1</number>
          </property>
          <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
+          <enum>Qt::Horizontal</enum>
          </property>
          <property name="invertedAppearance">
           <bool>false</bool>
@@ -640,7 +640,7 @@
           <bool>false</bool>
          </property>
          <property name="tickPosition">
-          <enum>QSlider::TickPosition::TicksBelow</enum>
+          <enum>QSlider::TicksBelow</enum>
          </property>
          <property name="tickInterval">
           <number>0</number>
@@ -662,7 +662,7 @@
           <number>1</number>
          </property>
          <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
+          <enum>Qt::Horizontal</enum>
          </property>
          <property name="invertedAppearance">
           <bool>false</bool>
@@ -671,7 +671,7 @@
           <bool>false</bool>
          </property>
          <property name="tickPosition">
-          <enum>QSlider::TickPosition::TicksBelow</enum>
+          <enum>QSlider::TicksBelow</enum>
          </property>
          <property name="tickInterval">
           <number>0</number>
@@ -690,7 +690,7 @@
           <string>Player Opacity</string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignCenter</set>
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
         <widget class="QLabel" name="label_PlayersSFXVol">
@@ -706,7 +706,7 @@
           <string>Player Sound</string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignCenter</set>
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </widget>
@@ -738,7 +738,7 @@
           <number>1</number>
          </property>
          <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
+          <enum>Qt::Horizontal</enum>
          </property>
          <property name="invertedAppearance">
           <bool>false</bool>
@@ -747,7 +747,7 @@
           <bool>false</bool>
          </property>
          <property name="tickPosition">
-          <enum>QSlider::TickPosition::TicksBelow</enum>
+          <enum>QSlider::TicksBelow</enum>
          </property>
          <property name="tickInterval">
           <number>0</number>
@@ -763,7 +763,7 @@
           </rect>
          </property>
          <property name="layoutDirection">
-          <enum>Qt::LayoutDirection::LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <property name="text">
           <string>Fullscreen</string>
@@ -779,7 +779,7 @@
           </rect>
          </property>
          <property name="layoutDirection">
-          <enum>Qt::LayoutDirection::LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <property name="text">
           <string>Filter</string>
@@ -795,7 +795,7 @@
           </rect>
          </property>
          <property name="layoutDirection">
-          <enum>Qt::LayoutDirection::LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <property name="text">
           <string>Active Camera</string>
@@ -814,7 +814,7 @@
           <string>HUD Offset</string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignCenter</set>
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
         <widget class="QSpinBox" name="spinBox_Gamma">
@@ -865,7 +865,7 @@
           <number>1</number>
          </property>
          <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
+          <enum>Qt::Horizontal</enum>
          </property>
          <property name="invertedAppearance">
           <bool>false</bool>
@@ -874,7 +874,7 @@
           <bool>false</bool>
          </property>
          <property name="tickPosition">
-          <enum>QSlider::TickPosition::TicksBelow</enum>
+          <enum>QSlider::TicksBelow</enum>
          </property>
          <property name="tickInterval">
           <number>0</number>
@@ -890,13 +890,13 @@
           </rect>
          </property>
          <property name="layoutDirection">
-          <enum>Qt::LayoutDirection::LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <property name="text">
           <string>Map Opacity</string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignCenter</set>
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
         <widget class="QCheckBox" name="checkBox_ChargeBar">
@@ -909,7 +909,7 @@
           </rect>
          </property>
          <property name="layoutDirection">
-          <enum>Qt::LayoutDirection::LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <property name="text">
           <string>Charge Bars</string>
@@ -925,7 +925,7 @@
           </rect>
          </property>
          <property name="layoutDirection">
-          <enum>Qt::LayoutDirection::LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <item>
           <property name="text">
@@ -966,7 +966,7 @@
           </rect>
          </property>
          <property name="layoutDirection">
-          <enum>Qt::LayoutDirection::LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <property name="text">
           <string>Found HUD</string>
@@ -982,7 +982,7 @@
           </rect>
          </property>
          <property name="layoutDirection">
-          <enum>Qt::LayoutDirection::LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <property name="text">
           <string>Boss HP on Bottom</string>
@@ -998,7 +998,7 @@
           </rect>
          </property>
          <property name="layoutDirection">
-          <enum>Qt::LayoutDirection::LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <property name="text">
           <string>VSync</string>
@@ -1017,7 +1017,7 @@
           </rect>
          </property>
          <property name="layoutDirection">
-          <enum>Qt::LayoutDirection::LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <property name="text">
           <string>Borderless</string>
@@ -1033,7 +1033,7 @@
           </rect>
          </property>
          <property name="layoutDirection">
-          <enum>Qt::LayoutDirection::LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <property name="text">
           <string>Bullet Visibility</string>
@@ -1241,7 +1241,7 @@
           </rect>
          </property>
          <property name="layoutDirection">
-          <enum>Qt::LayoutDirection::LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <item>
           <property name="text">
@@ -1290,7 +1290,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="widgetResizable">
        <bool>true</bool>
@@ -1466,7 +1466,7 @@
          <number>5</number>
         </property>
         <property name="orientation">
-         <enum>Qt::Orientation::Horizontal</enum>
+         <enum>Qt::Horizontal</enum>
         </property>
        </widget>
        <widget class="QSlider" name="horizontalSlider_AutofillCMD">
@@ -1491,7 +1491,7 @@
          <number>50</number>
         </property>
         <property name="orientation">
-         <enum>Qt::Orientation::Horizontal</enum>
+         <enum>Qt::Horizontal</enum>
         </property>
        </widget>
        <widget class="QSpinBox" name="spinBox_Mars">
@@ -1666,7 +1666,7 @@
        <string>Find by:</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
      <widget class="QPushButton" name="savePresetButton">
