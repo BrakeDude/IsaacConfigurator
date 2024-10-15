@@ -61,11 +61,27 @@ void MainWindow::SyncConfigFile(QSettings *settings, bool repentogon){
             ui->checkBox_Interpolation->setCheckState(Qt::Unchecked);
         }
 
-        ui->spinBox_AutofillCMD->setValue(settings->value("ConsoleAutofillLimit").toInt());
+        /*ui->spinBox_AutofillCMD->setValue(settings->value("ConsoleAutofillLimit").toInt());
         ui->horizontalSlider_AutofillCMD->setValue(settings->value("ConsoleAutofillLimit").toInt());
 
         ui->spinBox_Mars->setValue(settings->value("MarsDoubleTapWindow").toInt());
-        ui->horizontalSlider_Mars->setValue(settings->value("MarsDoubleTapWindow").toInt());
+        ui->horizontalSlider_Mars->setValue(settings->value("MarsDoubleTapWindow").toInt());*/
+
+        settings->endGroup();
+
+        settings->beginGroup("internal");
+
+        if (settings->value("FileMap") == 1) {
+            ui->checkBox_FileMapGen->setCheckState(Qt::Checked);
+        }else{
+            ui->checkBox_FileMapGen->setCheckState(Qt::Unchecked);
+        }
+
+        if (settings->value("RenderDebugFindInRadius") == 1) {
+            ui->checkBox_FindInRadiusRender->setCheckState(Qt::Checked);
+        }else{
+            ui->checkBox_FindInRadiusRender->setCheckState(Qt::Unchecked);
+        }
 
         settings->endGroup();
     }else{
@@ -717,6 +733,27 @@ void MainWindow::ConnectRepentogonOptions(QSettings* settings){
         settings->sync();
     });
 
+    connect(ui->checkBox_FileMapGen, &QCheckBox::stateChanged, this, [=](int state) {
+        settings->beginGroup("internal");
+        if (state == Qt::Unchecked) {
+            settings->setValue("FileMap",0);
+        } else {
+            settings->setValue("FileMap",1);
+        }
+        settings->endGroup();
+        settings->sync();
+    });
+
+    connect(ui->checkBox_FindInRadiusRender, &QCheckBox::stateChanged, this, [=](int state) {
+        settings->beginGroup("internal");
+        if (state == Qt::Unchecked) {
+            settings->setValue("RenderDebugFindInRadius",0);
+        } else {
+            settings->setValue("RenderDebugFindInRadius",1);
+        }
+        settings->endGroup();
+        settings->sync();
+    });
 
 }
 

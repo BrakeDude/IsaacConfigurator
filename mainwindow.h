@@ -44,6 +44,8 @@ private slots:
 
     void ReSyncConfigSlot(QString configDir);
 
+    void ReSyncConfigIniSlot(QString configDir);
+
 private:
     QString optionMessage1;
     QString optionMessage2;

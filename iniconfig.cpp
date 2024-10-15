@@ -18,6 +18,8 @@ void MainWindow::ConfigIniLoad(){
         settings->endGroup();
         settings->sync();
     }
+    optionMonitor = new FileMonitor(configIniDir, 2, 100);
+    connect(optionMonitor, SIGNAL(optionLoaded(QString)), this, SLOT(ReSyncConfigIniSlot(QString)));
     QSettings *settings = new QSettings(configIniDir + "/config.ini", QSettings::IniFormat);
 
     ReSyncConfigIni(settings);
@@ -121,6 +123,11 @@ void MainWindow::ConfigIniLoad(){
         settings->sync();
     });
 
+}
+
+void MainWindow::ReSyncConfigIniSlot(QString configIniDir){
+    QSettings *settings = new QSettings(configIniDir + "/config.ini", QSettings::IniFormat);
+    ReSyncConfigIni(settings);
 }
 
 void MainWindow::ReSyncConfigIni(QSettings *settings){
