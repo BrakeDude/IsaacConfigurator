@@ -453,6 +453,13 @@ void MainWindow::ConnectVanillaOptions(QSettings* settings){
         settings->sync();
     });
 
+    connect(ui->comboBox_Announcer, &QComboBox::currentTextChanged, this, [=](){
+        settings->beginGroup("Options");
+        settings->setValue("AnnouncerVoiceMode",ui->comboBox_Announcer->currentIndex());
+        settings->endGroup();
+        settings->sync();
+    });
+
     connect(ui->horizontalSlider_Music, &QSlider::valueChanged, this, [=](int val) {
         settings->beginGroup("Options");
         settings->setValue("MusicVolume",QString::number(val/10.0000, 'f', 4));
