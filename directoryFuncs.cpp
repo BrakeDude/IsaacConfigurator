@@ -1,17 +1,28 @@
 #include "mainwindow.h"
+#include <QTextStream>
 
 QString MainWindow::IsaacDLC(QString directory)
 {
-    if (QFile(directory+"/resources/packed/repentance.a").exists() || QFile(directory+"/resources/packed/repentance_ru.a").exists()){
-        return "Repentance";
-    }else if(QFile(directory+"/resources/packed/afterbirthp.a").exists()){
-        return "Afterbirth+";
-    }else if(QFile(directory+"/resources/packed/afterbirth.a").exists()){
-        return "Afterbirth";
-    }else if(QFile(directory+"/resources/packed/anitbirth.a").exists()){
-        return "Antibirth";
+    if (currentDLCName.isEmpty()){
+        currentDLCName = "Rebirth";
+        QFile isaacng(directory+"/isaac-ng.exe");
+        if (!isaacng.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            return "Rebirth"; // File couldn't be opened
+        }
+        QTextStream in(&isaacng);
+        QString line = in.readAll();
+        in.flush();
+        isaacng.close();
+        QString gameNamePrefix("Binding of Isaac: ");
+        QStringList DLCNames = {"Repentance+", "Repentance", "Afterbirth+", "Afterbirth"};
+        foreach (QString var, DLCNames){
+            if (line.contains(gameNamePrefix + var)){
+                currentDLCName = var;
+                break;
+            }
+        }
     }
-    return "Rebirth";
+    return currentDLCName;
 }
 
 QString MainWindow::GetExeName(){
@@ -60,8 +71,17 @@ QString MainWindow::getModPath() {
     QString FullDir = GetFullDir();
 
     GameDLC = IsaacDLC(FullDir);
+    this->setWindowTitle("Isaac Configurator: " + GameDLC);
     if (GameDLC == "Repentance"){
         return FullDir + "/mods";
+    }else if(GameDLC == "Repentance+"){
+        QString directory;
+#ifdef Q_OS_WIN
+        directory = QString(getenv("USERPROFILE"))+"/Documents/My Games/Binding of Isaac Repentance+";
+#elif defined(Q_OS_LINUX)
+        directory = QString(getenv("HOME"))+"/.local/share/binding of isaac repentance+";
+#endif
+        return directory + "/mods";
     }else if(GameDLC == "Afterbirth+"){
         QString directory;
 #ifdef Q_OS_WIN

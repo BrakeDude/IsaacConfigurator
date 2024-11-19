@@ -106,10 +106,10 @@ void MainWindow::SyncConfigFile(QSettings *settings, bool repentogon){
         }
 
         int popup_value = settings->value("PopUps").toInt();
-        if (ui->comboBox_PopUp->count() == 3 && !settings->contains("AcceptedPublicBeta")){
+        if (ui->comboBox_PopUp->count() == 3 && currentDLCName != "Repentance+"){
             ui->comboBox_PopUp->removeItem(2);
             popup_value = std::max(popup_value, 1);
-        }else if(ui->comboBox_PopUp->count() == 2 && settings->contains("AcceptedPublicBeta")){
+        }else if(ui->comboBox_PopUp->count() == 2 && currentDLCName == "Repentance+"){
             ui->comboBox_PopUp->addItem(tr("Small"));
         }
         ui->comboBox_PopUp->setCurrentIndex(popup_value);
@@ -244,6 +244,20 @@ void MainWindow::SyncConfigFile(QSettings *settings, bool repentogon){
         }else{
             ui->checkBox_JEcontrols->setCheckState(Qt::Unchecked);
         }
+
+        if (settings->value("OnlineChatEnabled") == 1) {
+            ui->checkBox_Chat->setCheckState(Qt::Checked);
+        }else{
+            ui->checkBox_Chat->setCheckState(Qt::Unchecked);
+        }
+
+        if (settings->value("OnlineChatFilterEnabled") == 1) {
+            ui->checkBox_Chat_Filter->setCheckState(Qt::Checked);
+        }else{
+            ui->checkBox_Chat_Filter->setCheckState(Qt::Unchecked);
+        }
+
+        ui->comboBox_MultiplayerHUD->setCurrentIndex(settings->value("OnlineHud").toInt());
 
         ui->horizontalSlider_PlayersSFX->setValue(settings->value("OnlinePlayerVolume").toInt());
 
@@ -593,6 +607,27 @@ void MainWindow::ConnectVanillaOptions(QSettings* settings){
         settings->sync();
     });
 
+    connect(ui->checkBox_Chat, &QCheckBox::stateChanged, this, [=](int state) {
+        settings->beginGroup("Options");
+        if (state == Qt::Unchecked) {
+            settings->setValue("OnlineChatEnabled",0);
+        } else {
+            settings->setValue("OnlineChatEnabled",1);
+        }
+        settings->endGroup();
+        settings->sync();
+    });
+    connect(ui->checkBox_Chat_Filter, &QCheckBox::stateChanged, this, [=](int state) {
+        settings->beginGroup("Options");
+        if (state == Qt::Unchecked) {
+            settings->setValue("OnlineChatFilterEnabled",0);
+        } else {
+            settings->setValue("OnlineChatFilterEnabled",1);
+        }
+        settings->endGroup();
+        settings->sync();
+    });
+
     connect(ui->horizontalSlider_PlayerOpacity, &QSlider::valueChanged, this, [=](int val) {
         settings->beginGroup("Options");
         settings->setValue("OnlinePlayerOpacity",QString::number(val));
@@ -603,6 +638,13 @@ void MainWindow::ConnectVanillaOptions(QSettings* settings){
     connect(ui->horizontalSlider_PlayersSFX, &QSlider::valueChanged, this, [=](int val) {
         settings->beginGroup("Options");
         settings->setValue("OnlinePlayerVolume",QString::number(val));
+        settings->endGroup();
+        settings->sync();
+    });
+
+    connect(ui->comboBox_MultiplayerHUD, &QComboBox::currentTextChanged, this, [=](){
+        settings->beginGroup("Options");
+        settings->setValue("OnlineHud",ui->comboBox_MultiplayerHUD->currentIndex());
         settings->endGroup();
         settings->sync();
     });
@@ -830,7 +872,7 @@ void MainWindow::ReSyncConfig(QString confDir){
         ui->scrollArea_VanillaOptions->setEnabled(true);
         QSettings *settings = new QSettings(configDir + "/options.ini", QSettings::IniFormat);
         settings->beginGroup("Options");
-        if (!settings->contains("AcceptedPublicBeta")){
+        if (currentDLCName != "Repentance+"){
             ui->groupBox_OnlineSettings->setEnabled(false);
         }
         settings->endGroup();

@@ -60,6 +60,7 @@ private:
     QString openFileText;
     FileMonitor* logMonitor;
     FileMonitor* optionMonitor;
+    QString currentDLCName;
 
     Ui::MainWindow *ui;
     Ui::about *ui_about;

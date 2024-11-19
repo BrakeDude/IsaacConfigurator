@@ -4,130 +4,133 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.ui" line="723"/>
+        <location filename="mainwindow.ui" line="928"/>
         <source>Graphics and HUD</source>
         <translation>Gráficos y HUD</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1272"/>
+        <location filename="mainwindow.ui" line="1477"/>
         <source>Pop-ups</source>
         <translation>Notificación</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="769"/>
+        <location filename="mainwindow.ui" line="974"/>
         <source>Fullscreen</source>
         <translation>Pantalla completa</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="180"/>
-        <location filename="mainwindow.ui" line="785"/>
+        <location filename="mainwindow.ui" line="990"/>
         <source>Filter</source>
         <translation>Filtro</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="801"/>
+        <location filename="mainwindow.ui" line="1006"/>
         <source>Active Camera</source>
         <translation>Cámara móvil</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="814"/>
+        <location filename="mainwindow.ui" line="1019"/>
         <source>HUD Offset</source>
         <translation>Posición HUD</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="849"/>
+        <location filename="mainwindow.ui" line="1054"/>
         <source>Gamma</source>
         <translation>Gamma</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="896"/>
+        <location filename="mainwindow.ui" line="1101"/>
         <source>Map Opacity</source>
         <translation>Nitidez de mapa</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="915"/>
+        <location filename="mainwindow.ui" line="1120"/>
         <source>Charge Bars</source>
         <translation>Barras de carga</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="390"/>
-        <location filename="mainwindow.ui" line="932"/>
-        <location filename="mainwindow.ui" line="1248"/>
+        <location filename="mainwindow.ui" line="741"/>
+        <location filename="mainwindow.ui" line="1137"/>
+        <location filename="mainwindow.ui" line="1453"/>
         <source>Off</source>
         <translation>Apagado</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="937"/>
+        <location filename="mainwindow.ui" line="726"/>
+        <location filename="mainwindow.ui" line="1142"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="942"/>
+        <location filename="mainwindow.ui" line="731"/>
+        <location filename="mainwindow.ui" line="1147"/>
         <source>Mini</source>
         <translation>Mini</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="956"/>
+        <location filename="mainwindow.ui" line="1161"/>
         <source>Extra HUD</source>
         <translation>HUD extra</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="972"/>
+        <location filename="mainwindow.ui" line="1177"/>
         <source>Found HUD</source>
         <translation>Datos HUD</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="988"/>
+        <location filename="mainwindow.ui" line="1193"/>
         <source>Boss HP on Bottom</source>
         <translation>HP del jefe al fondo</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1004"/>
+        <location filename="mainwindow.ui" line="1209"/>
         <source>VSync</source>
         <translation>VSync</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1023"/>
+        <location filename="mainwindow.ui" line="1228"/>
         <source>Borderless</source>
         <translation>Sin bordes</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1039"/>
+        <location filename="mainwindow.ui" line="1244"/>
         <source>Bullet Visibility</source>
         <translation>Visibilidad de disparo</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1052"/>
+        <location filename="mainwindow.ui" line="1257"/>
         <source>Window Width</source>
         <translation>Ancho de ventana</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1065"/>
+        <location filename="mainwindow.ui" line="1270"/>
         <source>Window Height</source>
         <translation>Altura de ventana</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1116"/>
+        <location filename="mainwindow.ui" line="1321"/>
         <source>Window Pos X</source>
         <translation>Posición X de ventana</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1167"/>
+        <location filename="mainwindow.ui" line="1372"/>
         <source>Window Pos Y</source>
         <translation>Posición Y de ventana</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1180"/>
+        <location filename="mainwindow.ui" line="1385"/>
         <source>Max Render Scale</source>
         <translation>Escala de renderizado máxima</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1193"/>
+        <location filename="mainwindow.ui" line="1398"/>
         <source>Max Scale</source>
         <translation>Escala máxima</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1253"/>
+        <location filename="mainwindow.ui" line="1458"/>
         <source>Big</source>
         <translation>Grande</translation>
     </message>
@@ -177,69 +180,69 @@
         <translation>Habilitar mods</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1573"/>
+        <location filename="mainwindow.ui" line="1778"/>
         <source>Mods</source>
         <translation>Mods</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1585"/>
+        <location filename="mainwindow.ui" line="1790"/>
         <source>Turn off</source>
         <translation>Desactivar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1598"/>
+        <location filename="mainwindow.ui" line="1803"/>
         <source>Turn on</source>
         <translation>Activar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1650"/>
+        <location filename="mainwindow.ui" line="1855"/>
         <source>Mod Folder</source>
         <translation>Carpeta de mods</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1666"/>
+        <location filename="mainwindow.ui" line="1871"/>
         <source>Find by:</source>
         <oldsource>Sort by</oldsource>
         <translation>Encontrar por:</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1682"/>
+        <location filename="mainwindow.ui" line="1887"/>
         <source>Save preset</source>
         <translation>Guardar preajuste</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1695"/>
+        <location filename="mainwindow.ui" line="1900"/>
         <source>Load preset</source>
         <translation>Cargar preajuste</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1714"/>
+        <location filename="mainwindow.ui" line="1919"/>
         <source>Log</source>
         <translation>Log</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1742"/>
+        <location filename="mainwindow.ui" line="1947"/>
         <source>Update Constantly</source>
         <translation>Actualizar constantemente</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1886"/>
+        <location filename="mainwindow.ui" line="2091"/>
         <source>Open config folder</source>
         <translation>Abrir carpeta de Configuración</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1894"/>
+        <location filename="mainwindow.ui" line="2099"/>
         <source>Dark theme</source>
         <translation>Tema oscuro</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1902"/>
+        <location filename="mainwindow.ui" line="2107"/>
         <source>Disable Repentogon</source>
         <translation>Desactivar Repentogon</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1708"/>
-        <location filename="mainwindow.ui" line="1758"/>
+        <location filename="mainwindow.ui" line="1913"/>
+        <location filename="mainwindow.ui" line="1963"/>
         <source>Update</source>
         <translation>Actualizar</translation>
     </message>
@@ -295,172 +298,197 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="590"/>
+        <location filename="mainwindow.ui" line="768"/>
         <source>Co-op online</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="602"/>
+        <location filename="mainwindow.ui" line="780"/>
         <source>Streamer mode</source>
         <translation>Modo streamer</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="615"/>
+        <location filename="mainwindow.ui" line="793"/>
         <source>Better brothers controls</source>
         <translation>Mejor control de los hermanos</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="690"/>
+        <location filename="mainwindow.ui" line="868"/>
         <source>Player Opacity</source>
         <translation>Opacidad de jugador</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="706"/>
+        <location filename="mainwindow.ui" line="884"/>
         <source>Player Sound</source>
         <translation>Sonido de jugador</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1281"/>
+        <location filename="mainwindow.ui" line="736"/>
+        <source>Hearts Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="755"/>
+        <source>Multiplayer HUD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="901"/>
+        <source>Enable chat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="914"/>
+        <source>Enable chat filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1486"/>
         <source>REPENTOGON</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1317"/>
+        <location filename="mainwindow.ui" line="1522"/>
         <source>Better Void Generation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1330"/>
+        <location filename="mainwindow.ui" line="1535"/>
         <source>Hush AI Fixes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1343"/>
+        <location filename="mainwindow.ui" line="1548"/>
         <source>Key Bum Deal Chance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1356"/>
+        <location filename="mainwindow.ui" line="1561"/>
         <source>Planetarium HUD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1369"/>
+        <location filename="mainwindow.ui" line="1574"/>
         <source>Skip Intro Cutscene</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1382"/>
+        <location filename="mainwindow.ui" line="1587"/>
         <source>Quicker Room Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1395"/>
+        <location filename="mainwindow.ui" line="1600"/>
         <source>Prevent Mod Updates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1408"/>
+        <location filename="mainwindow.ui" line="1613"/>
         <source>Fast Lasers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1421"/>
+        <location filename="mainwindow.ui" line="1626"/>
         <source>60 FPS Interpolation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1434"/>
+        <location filename="mainwindow.ui" line="1639"/>
         <source>Modded File Map Generation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1447"/>
+        <location filename="mainwindow.ui" line="1652"/>
         <source>FindInRadius Debug Render</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1539"/>
+        <location filename="mainwindow.ui" line="1744"/>
         <source>Mars Double Tap Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1552"/>
+        <location filename="mainwindow.ui" line="1757"/>
         <source>Command Autofill Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1793"/>
+        <location filename="mainwindow.ui" line="1998"/>
         <source>Options</source>
         <translation>Opciones</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1797"/>
+        <location filename="mainwindow.ui" line="2002"/>
         <source>Language</source>
         <translation>Idioma</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1807"/>
+        <location filename="mainwindow.ui" line="2012"/>
         <source>Help</source>
         <translation>Ayuda</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1821"/>
+        <location filename="mainwindow.ui" line="2026"/>
         <source>Close the app</source>
         <translation>Cerrar el programa</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1843"/>
+        <location filename="mainwindow.ui" line="2048"/>
         <source>Close the game</source>
         <translation>Cerrar el juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1851"/>
-        <location filename="mainwindow.ui" line="1854"/>
+        <location filename="mainwindow.ui" line="2056"/>
+        <location filename="mainwindow.ui" line="2059"/>
         <source>Set game folder</source>
         <translation>Establecer carpeta de juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1868"/>
+        <location filename="mainwindow.ui" line="2073"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1873"/>
+        <location filename="mainwindow.ui" line="2078"/>
         <source>About</source>
         <translation>A cerca de</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1824"/>
+        <location filename="mainwindow.ui" line="2029"/>
         <source>Esc</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1832"/>
+        <location filename="mainwindow.ui" line="2037"/>
         <source>Start the game</source>
         <translation>Iniciar el juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1835"/>
+        <location filename="mainwindow.ui" line="2040"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1846"/>
+        <location filename="mainwindow.ui" line="2051"/>
         <source>Ctrl+Shift+C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1878"/>
+        <location filename="mainwindow.ui" line="2083"/>
         <source>Open game folder</source>
         <translation>Abrir carpeta del juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1881"/>
+        <location filename="mainwindow.ui" line="2086"/>
         <source>Open game install folder</source>
         <translation>Abrir carpeta de instalación del juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1857"/>
+        <location filename="mainwindow.ui" line="2062"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
@@ -481,7 +509,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="463"/>
-        <location filename="mainwindow.ui" line="1258"/>
+        <location filename="mainwindow.ui" line="1463"/>
         <location filename="conifg.cpp" line="113"/>
         <source>Small</source>
         <translation>Pequeño</translation>
@@ -532,27 +560,27 @@
         <translation type="vanished">Beta co-op online</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1775"/>
+        <location filename="mainwindow.ui" line="1980"/>
         <source>Configurator</source>
         <translation>Configuración</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1786"/>
+        <location filename="mainwindow.ui" line="1991"/>
         <source>Game</source>
         <translation>Juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1829"/>
+        <location filename="mainwindow.ui" line="2034"/>
         <source>Start</source>
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1840"/>
+        <location filename="mainwindow.ui" line="2045"/>
         <source>Close</source>
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1818"/>
+        <location filename="mainwindow.ui" line="2023"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>
@@ -602,7 +630,7 @@
         <translation>Activo</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1631"/>
+        <location filename="mainwindow.ui" line="1836"/>
         <location filename="translations.cpp" line="13"/>
         <source>Mod Name</source>
         <translation>Nombre del mod</translation>

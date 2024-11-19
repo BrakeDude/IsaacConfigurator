@@ -229,6 +229,7 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
             ui->deactivateButton->setEnabled(false);
             ui->savePresetButton->setEnabled(false);
             ui->loadPresetButton->setEnabled(false);
+            ui->pushButton_UpdateMods->setEnabled(false);
             ui->lineEdit->setEnabled(false);
             ui->tableMods->setEnabled(false);
             QMessageBox::information(this, modMessage1, modMessage2);
@@ -244,6 +245,7 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
         ui->deactivateButton->setEnabled(false);
         ui->savePresetButton->setEnabled(false);
         ui->loadPresetButton->setEnabled(false);
+        ui->pushButton_UpdateMods->setEnabled(false);
         ui->lineEdit->setEnabled(false);
         ui->tableMods->setEnabled(false);
         ui->tabWidget_Options->setEnabled(false);

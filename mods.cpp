@@ -34,6 +34,7 @@ void MainWindow::SyncMods(QString directory) {
         ui->deactivateButton->setEnabled(false);
         ui->savePresetButton->setEnabled(false);
         ui->loadPresetButton->setEnabled(false);
+        ui->pushButton_UpdateMods->setEnabled(false);
         ui->lineEdit->setEnabled(false);
         ui->tableMods->setEnabled(false);
         ui->tableMods->clear();
@@ -46,6 +47,7 @@ void MainWindow::SyncMods(QString directory) {
         ui->deactivateButton->setEnabled(true);
         ui->savePresetButton->setEnabled(true);
         ui->loadPresetButton->setEnabled(true);
+        ui->pushButton_UpdateMods->setEnabled(true);
         ui->lineEdit->setEnabled(true);
         ui->tableMods->setEnabled(true);
     }
