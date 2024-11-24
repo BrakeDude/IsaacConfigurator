@@ -72,16 +72,8 @@ QString MainWindow::getModPath() {
 
     GameDLC = IsaacDLC(FullDir);
     this->setWindowTitle("Isaac Configurator: " + GameDLC);
-    if (GameDLC == "Repentance"){
+    if (GameDLC == "Repentance" || GameDLC == "Repentance+"){
         return FullDir + "/mods";
-    }else if(GameDLC == "Repentance+"){
-        QString directory;
-#ifdef Q_OS_WIN
-        directory = QString(getenv("USERPROFILE"))+"/Documents/My Games/Binding of Isaac Repentance+";
-#elif defined(Q_OS_LINUX)
-        directory = QString(getenv("HOME"))+"/.local/share/binding of isaac repentance+";
-#endif
-        return directory + "/mods";
     }else if(GameDLC == "Afterbirth+"){
         QString directory;
 #ifdef Q_OS_WIN
