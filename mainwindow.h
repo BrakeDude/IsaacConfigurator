@@ -24,9 +24,6 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-protected:
-    void resizeEvent(QResizeEvent *event);
-
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();

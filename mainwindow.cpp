@@ -121,6 +121,11 @@ MainWindow::MainWindow(QWidget *parent)
                                                       | QFileDialog::DontResolveSymlinks),GetExeName());
     });
 
+    connect(ui->actionReload_configurator, &QAction::triggered, this, [=](){
+        qApp->quit();
+        QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
+    });
+
 
     connect(ui->actionStartGame, &QAction::triggered, this, [=](){
         QStringList options = QStringList();
@@ -250,22 +255,6 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
         ui->tableMods->setEnabled(false);
         ui->tabWidget_Options->setEnabled(false);
     }
-}
-
-void MainWindow::resizeEvent(QResizeEvent *event)
-{
-    /*ui->tabBox->setGeometry(ui->tabBox->pos().x(), ui->tabBox->pos().y(), event->size().width() - ui->tabBox->pos().x() - 10, event->size().height() - ui->tabBox->pos().y() - 45);
-    ui->tableMods->setGeometry(ui->tableMods->pos().x(), ui->tableMods->pos().y(),  ui->tabBox->size().width() - ui->tableMods->pos().x() - 10,  ui->tabBox->size().height() - ui->tableMods->pos().y() - 56);
-    ui->logBrowser->setGeometry(ui->logBrowser->pos().x(), ui->logBrowser->pos().y(), ui->tabBox->size().width() - ui->tableMods->pos().x() + 1, ui->tabBox->size().height() - ui->tableMods->pos().y() - 20);
-    ui->lineEdit->setGeometry(ui->lineEdit->pos().x(), ui->lineEdit->pos().y(), ui->tabBox->size().width() - ui->lineEdit->pos().x() - 10, ui->lineEdit->height());
-    ui->activateButton->move(ui->activateButton->pos().x(),  ui->tabBox->size().height() - 54);
-    ui->deactivateButton->move(ui->deactivateButton->pos().x(),  ui->tabBox->size().height() - 54);
-    ui->pushButton_UpdateMods->move(ui->pushButton_UpdateMods->pos().x(),  ui->tabBox->size().height() - 54);
-    ui->savePresetButton->move(ui->savePresetButton->pos().x(),  ui->tabBox->size().height() - 54);
-    ui->loadPresetButton->move(ui->loadPresetButton->pos().x(),  ui->tabBox->size().height() - 54);
-    ui->checkBoxLogUpdate->move(ui->checkBoxLogUpdate->pos().x(),  ui->tabBox->size().height() - 54);
-    ui->pushButtonLogUpdate->move(ui->pushButtonLogUpdate->pos().x(),  ui->tabBox->size().height() - 54);*/
-    //ui->scrollArea->setGeometry(ui->scrollArea->pos().x(), ui->scrollArea->pos().y(), event->size().width() - ui->scrollArea->pos().x(), event->size().height() - ui->scrollArea->pos().y() - 20);
 }
 
 MainWindow::~MainWindow()

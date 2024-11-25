@@ -1984,6 +1984,8 @@
     <addaction name="actionOpen_game_folder"/>
     <addaction name="actionOpen_config_folder"/>
     <addaction name="separator"/>
+    <addaction name="actionReload_configurator"/>
+    <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuGame">
@@ -2105,6 +2107,11 @@
    </property>
    <property name="text">
     <string>Disable Repentogon</string>
+   </property>
+  </action>
+  <action name="actionReload_configurator">
+   <property name="text">
+    <string>Reload configurator</string>
    </property>
   </action>
  </widget>
