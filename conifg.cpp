@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include <QPushButton>
 
+QMap<int, int> language = {{0,0}, {1,2}, {2,11}, {3,13}, {4,10}, {5,5}, {6,4}, {7,3}};
+
 void MainWindow::SyncConfigFile(QSettings *settings, bool repentogon){
     //GFX and HUD
     if(repentogon){
@@ -166,6 +168,8 @@ void MainWindow::SyncConfigFile(QSettings *settings, bool repentogon){
         ui->spinBox_PosY->setValue((settings->value("WindowPosY").toInt()));
         ui->spinBox_MaxScale->setValue((settings->value("MaxScale").toInt()));
         ui->spinBox_MaxRenderScale->setValue((settings->value("MaxRenderScale").toInt()));
+
+        ui->comboBox_Language->setCurrentIndex(language.key(settings->value("Language").toInt()));
 
         //Music and SFX
         if (settings->value("MusicEnabled") == 1) {
@@ -454,6 +458,12 @@ void MainWindow::ConnectVanillaOptions(QSettings* settings){
         settings->sync();
     });
 
+    connect(ui->comboBox_Language, &QComboBox::currentTextChanged, this, [=](){
+        settings->beginGroup("Options");
+        settings->setValue("Language",language.value(ui->comboBox_Language->currentIndex()));
+        settings->endGroup();
+        settings->sync();
+    });
 
     //Music and SFX
     connect(ui->checkBox_Music, &QCheckBox::stateChanged, this, [=](int state) {
@@ -834,8 +844,8 @@ void MainWindow::LoadConfigFile(){
 #ifdef Q_OS_WINDOWS
     configDir = QString(getenv("USERPROFILE")) + "/Documents/My Games/Binding of Isaac " + DLCName;
 #elif defined(Q_OS_LINUX)
-    if (DLCName == "Repentance") {
-        configDir = QDir::homePath() + "/.steam/steam/steamapps/compatdata/250900/pfx/drive_c/users/steamuser/Documents/My Games/Binding of Isaac Repentance/";
+    if (DLCName == "Repentance" || DLCName == "Repentance+") {
+        configDir = QDir::homePath() + "/.steam/steam/steamapps/compatdata/250900/pfx/drive_c/users/steamuser/Documents/My Games/Binding of Isaac " + DLCName + "/";
     }else{
         configDir = QDir::homePath() + "/.local/share/binding of isaac " + DLCName.toLower();
     }
