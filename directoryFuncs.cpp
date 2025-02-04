@@ -1,46 +1,43 @@
 #include "mainwindow.h"
 #include <QTextStream>
+#include <QDir>
+#include <QFileInfo>
 
-QString MainWindow::IsaacDLC(QString directory)
+void MainWindow::CheckDLCandStore(QFile isaacng)
 {
-    if (currentDLCName.isEmpty()){
-        currentDLCName = "Rebirth";
-        QFile isaacng(directory+"/isaac-ng.exe");
-        if (!isaacng.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            return "Rebirth"; // File couldn't be opened
-        }
+    if (isaacng.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&isaacng);
         QString line = in.readAll();
         in.flush();
         isaacng.close();
         QString gameNamePrefix("Binding of Isaac: ");
         QStringList DLCNames = {"Repentance+", "Repentance", "Afterbirth+", "Afterbirth"};
+        QString dir = QFileInfo(isaacng).dir().path();
+        if (line.contains("(Galaxy)")){
+            gameStore = "GOG";
+            this->setWindowTitle("Isaac Configurator: " + gameDLC);
+        }else if (!GetSteamPath().isEmpty() && QDir(GetSteamPath() + "/steamapps/common/The Binding of Isaac Rebirth").exists()
+            && dir == GetSteamPath() + "/steamapps/common/The Binding of Isaac Rebirth")
+        {
+            gameStore = "Steam";
+        }
+
+        UpdateGameDir(dir);
         foreach (QString var, DLCNames){
             if (line.contains(gameNamePrefix + var)){
-                currentDLCName = var;
-                break;
+                gameDLC = var;
+                this->setWindowTitle("Isaac Configurator: " + gameDLC + " (" + gameStore + ")");
+                return;
             }
         }
     }
-    return currentDLCName;
+    gameDLC = "Rebirth";
+    this->setWindowTitle("Isaac Configurator: " + gameDLC);
 }
 
-QString MainWindow::GetExeName(){
-    QString gameExe = "";
-#ifdef Q_OS_WINDOWS
-    gameExe = "isaac-ng.exe";
-#elif defined(Q_OS_LINUX)
-    if (IsaacDLC(GetFullDir()) == "Repentance"){
-        gameExe = "isaac-ng.exe";
-    }else{
-    #ifdef Q_PROCESSOR_X86_64
-        gameExe = "isaac.x64";
-    #elif defined(Q_PROCESSOR_X86)
-        gameExe = "isaac.i386";
-    #endif
-    }
-#endif
-    return gameExe;
+void MainWindow::UpdateGameDir(QString dir)
+{
+    gameDir = dir;
 }
 
 QString MainWindow::GetSteamPath(){
@@ -62,22 +59,28 @@ QString MainWindow::GetSteamPath(){
     return steamPath;
 }
 
-QString MainWindow::GetFullDir(){
-    return GetSteamPath() + "/steamapps/common/The Binding of Isaac Rebirth";
+void MainWindow::GetSteamExecutable(){
+    QString path = GetSteamPath();
+    if (QDir(path).exists()){
+        if (QDir(path + "/steamapps/common/The Binding of Isaac Rebirth").exists()) {
+            gameDir = path + "/steamapps/common/The Binding of Isaac Rebirth";
+            gameExec = "isaac-ng.exe";
+            CheckDLCandStore(QFile(gameDir + "/" + gameExec));
+        }
+    }
 }
 
 QString MainWindow::getModPath() {
-    QString GameDLC;
-    QString FullDir = GetFullDir();
-
-    GameDLC = IsaacDLC(FullDir);
-    this->setWindowTitle("Isaac Configurator: " + GameDLC);
-    if (GameDLC == "Repentance" || GameDLC == "Repentance+"){
-        return FullDir + "/mods";
-    }else if(GameDLC == "Afterbirth+"){
+    if (gameDLC == "Repentance" || gameDLC == "Repentance+"){
+        return gameDir + "/mods";
+    }else if(gameDir == "Afterbirth+"){
         QString directory;
 #ifdef Q_OS_WIN
-        directory = QString(getenv("USERPROFILE"))+"/Documents/My Games/Binding of Isaac Afterbirth+ Mods";
+        directory = QString(getenv("USERPROFILE"))+"/Documents/My Games/Binding of Isaac Afterbirth+";
+        if(gameStore == "GOG"){
+            directory += " (Galaxy)";
+        }
+        directory += " Mods";
 #elif defined(Q_OS_LINUX)
         directory = QString(getenv("HOME"))+"/.local/share/binding of isaac afterbirth+ mods";
 #endif

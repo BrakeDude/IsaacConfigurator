@@ -96,7 +96,7 @@ MainWindow::MainWindow(QWidget *parent)
         config->sync();
     });
 
-    LoadApp(GetFullDir(), GetExeName());
+    LoadApp();
 
     connect(ui->actionExit, &QAction::triggered, this, [=](){
         QApplication::quit();
@@ -109,16 +109,15 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
     connect(ui->actionOpen_game_folder, &QAction::triggered, this, [=](){
-        if(QDir(configDir).exists()){
-            QDesktopServices::openUrl(QUrl::fromLocalFile(QDir::toNativeSeparators(GetFullDir())));
+        if(QDir(gameDir).exists()){
+            QDesktopServices::openUrl(QUrl::fromLocalFile(QDir::toNativeSeparators(gameDir)));
         }
     });
 
     connect(ui->actionFind_game_folder, &QAction::triggered, this, [=](){
-        LoadApp(QFileDialog::getExistingDirectory(this, openDirName,
-                                                  configDir,
-                                                  QFileDialog::ShowDirsOnly
-                                                      | QFileDialog::DontResolveSymlinks),GetExeName());
+        LoadApp(QFileDialog::getOpenFileName(this, openDirName,
+                                                  gameDir,
+                                                  QString("(*.exe)")));
     });
 
     connect(ui->actionReload_configurator, &QAction::triggered, this, [=](){
@@ -133,17 +132,19 @@ MainWindow::MainWindow(QWidget *parent)
             options << "-repentogonoff";
         }
         #ifdef Q_OS_WINDOWS
-            QProcess::startDetached(GetFullDir()+"/"+GetExeName(),QStringList() << options);
+            QProcess::startDetached(gameDir+"/"+gameExec,QStringList() << options);
         #elif defined(Q_OS_LINUX)
-            if(GetExeName() == "Repentance"){
-                QProcess proton;
-                proton.setProgram(GetSteamPath() + "/compatibilitytools.d/proton/version/proton");
-                QStringList command;
-                command << "run"  << GetFullDir()+"/"+GetExeName() << options;
-                proton.setArguments(command);
-                proton.startDetached();
-            }else{
-                QProcess::startDetached("steam", QStringList() << "steam://rungameid/250900");
+            if (gameStore == "Steam"){
+                if(gameDLC == "Repentance" || gameDLC == "Repentance+"){
+                    QProcess proton;
+                    proton.setProgram(GetSteamPath() + "/compatibilitytools.d/proton/version/proton");
+                    QStringList command;
+                    command << "run"  << gameDir+"/"+gameExec << options;
+                    proton.setArguments(command);
+                    proton.startDetached();
+                }else{
+                    QProcess::startDetached("steam", QStringList() << "steam://rungameid/250900");
+                }
             }
         #endif
 
@@ -151,10 +152,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionCloseGame, &QAction::triggered, this, [=](){
         QProcess process;
         #ifdef Q_OS_WINDOWS
-            process.start("taskkill", QStringList() << "/IM" << GetExeName());
+            process.start("taskkill", QStringList() << "/IM" << gameExec);
             process.waitForFinished();
         #elif defined(Q_OS_LINUX)
-            QProcess::execute("pkill", QStringList() << GetExeName());
+            QProcess::execute("pkill", QStringList() << gameExec);
         #endif
     });
     ui->scrollArea_VanillaOptions->setGeometry(ui->scrollArea_VanillaOptions->pos().x(), ui->scrollArea_VanillaOptions->pos().y(), ui->scrollArea_VanillaOptions->size().width() - 5, ui->scrollArea_VanillaOptions->size().height() + 5);
@@ -215,8 +216,18 @@ void MainWindow::DarkMode(bool dark){
     }
 }
 
-void MainWindow::LoadApp(QString FullDir, QString gameExe){
-    if (QFile::exists(FullDir+"/"+gameExe)){
+void MainWindow::LoadApp(QString FullDir){
+    if (FullDir.isEmpty()){
+        GetSteamExecutable();
+        if(QFile::exists(gameDir + "/" + gameExec))
+        {
+            FullDir = gameDir + "/" + gameExec;
+            goto successFind;
+        }
+        goto failFind;
+    }
+    if (QFile::exists(FullDir)){
+        successFind:
         ui->tabBox_ModsLog->widget(0)->setEnabled(true);
         ui->tabWidget_Options->setEnabled(true);
         ui->menuGame->setEnabled(true);
@@ -239,10 +250,11 @@ void MainWindow::LoadApp(QString FullDir, QString gameExe){
             ui->tableMods->setEnabled(false);
             QMessageBox::information(this, modMessage1, modMessage2);
         }
+        CheckDLCandStore(FullDir);
         LoadConfigFile();
         ConfigIniLoad();
-        //setWindowTitle(IsaacDLC(GetFullDir()) + " Configurator");
     }else {
+        failFind:
         QMessageBox::information(this, gameMessage1, gameMessage2);
         ui->modRadioButton_Folder->setEnabled(false);
         ui->modRadioButton_Name->setEnabled(false);

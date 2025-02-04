@@ -28,6 +28,8 @@ public slots:
 
     void doMonitor();
 
+    void SetToMonitor(const QString& filename, int logOrOption, int updateTime = 15000);
+
 signals:
     void logLoaded(const QString& content, const bool& force);
     void optionLoaded(const QString& configDir);

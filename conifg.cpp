@@ -840,9 +840,12 @@ void MainWindow::ReSyncConfigSlot(QString configDir){
 }
 
 void MainWindow::LoadConfigFile(){
-    QString DLCName = IsaacDLC(GetFullDir());
 #ifdef Q_OS_WINDOWS
-    configDir = QString(getenv("USERPROFILE")) + "/Documents/My Games/Binding of Isaac " + DLCName;
+    configDir = QString(getenv("USERPROFILE")) + "\\Documents\\My Games\\Binding of Isaac " + gameDLC;
+    if (gameStore == "GOG")
+    {
+        configDir+= " (Galaxy)";
+    }
 #elif defined(Q_OS_LINUX)
     if (DLCName == "Repentance" || DLCName == "Repentance+") {
         configDir = QDir::homePath() + "/.steam/steam/steamapps/compatdata/250900/pfx/drive_c/users/steamuser/Documents/My Games/Binding of Isaac " + DLCName + "/";
@@ -852,21 +855,31 @@ void MainWindow::LoadConfigFile(){
 #endif
     LoadConfig(configDir);
     if (QFile::exists(configDir + "/log.txt")){
-        logMonitor = new FileMonitor(configDir + "/log.txt", 1, 2000);
 
-        connect(logMonitor, SIGNAL(logLoaded(QString, bool)), this, SLOT(onFileLoaded(QString,bool)));
+        if (logMonitor != NULL){
+            disconnect(logMonitor, SIGNAL(logLoaded(QString,bool)), this, SLOT(onFileLoaded(QString,bool)));
+        }
+        logMonitor = new FileMonitor(configDir + "/log.txt", 1, 2000);
+        connect(logMonitor, SIGNAL(logLoaded(QString,bool)), this, SLOT(onFileLoaded(QString,bool)));
+
         connect(ui->pushButtonLogUpdate, &QPushButton::clicked, this, [=](){
             logMonitor->monitorLog(true);
         });
         connect(ui->checkBoxLogUpdate, &QCheckBox::stateChanged, this, [=](int state) {
             if (state == Qt::Checked) {
-                logMonitor->monitorLog(true);
+               logMonitor->monitorLog(true);
             }
         });
     }
     if (QFile::exists(configDir + "/options.ini")){
-        optionMonitor = new FileMonitor(configDir, 2, 2000);
-        connect(optionMonitor, SIGNAL(optionLoaded(QString)), this, SLOT(ReSyncConfigSlot(QString)));
+
+        if (configMonitor == nullptr){
+            configMonitor = new FileMonitor(configDir, 2, 2000);
+        }else {
+            configMonitor->SetToMonitor(configDir, 2, 2000);
+        }
+
+        connect(configMonitor, SIGNAL(optionLoaded(QString)), this, SLOT(ReSyncConfigSlot(QString)), Qt::UniqueConnection);
     }
 }
 
@@ -882,7 +895,7 @@ void MainWindow::ReSyncConfig(QString confDir){
         ui->scrollArea_VanillaOptions->setEnabled(true);
         QSettings *settings = new QSettings(configDir + "/options.ini", QSettings::IniFormat);
         settings->beginGroup("Options");
-        if (currentDLCName != "Repentance+"){
+        if (gameDLC != "Repentance+"){
             ui->groupBox_OnlineSettings->setEnabled(false);
         }
         settings->endGroup();

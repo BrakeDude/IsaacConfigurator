@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 
 void MainWindow::ConfigIniLoad(){
-    QString configIniDir = GetFullDir() + "/resources";
+    QString configIniDir = gameDir + "/resources";
     if (!QFile::exists(configIniDir + "/config.ini")) {
         QSettings *settings = new QSettings(configIniDir + "/config.ini", QSettings::IniFormat);
         settings->beginGroup("Options");
@@ -18,11 +18,12 @@ void MainWindow::ConfigIniLoad(){
         settings->endGroup();
         settings->sync();
     }
-    optionMonitor = new FileMonitor(configIniDir, 2, 100);
-    connect(optionMonitor, SIGNAL(optionLoaded(QString)), this, SLOT(ReSyncConfigIniSlot(QString)));
+    if (optionMonitor != nullptr){
+        optionMonitor = new FileMonitor(configIniDir, 2, 100);
+    }
+    connect(optionMonitor, SIGNAL(optionLoaded(QString)), this, SLOT(ReSyncConfigIniSlot(QString)), Qt::UniqueConnection);
     QSettings *settings = new QSettings(configIniDir + "/config.ini", QSettings::IniFormat);
-
-    ReSyncConfigIni(settings);
+    //ReSyncConfigIni(settings);
 
     connect(ui->checkBox_ColorCorrection, &QCheckBox::stateChanged, this, [=](int state) {
         settings->beginGroup("Options");

@@ -2,6 +2,14 @@
 #include <QFile>
 #include <QTextStream>
 
+void FileMonitor::SetToMonitor(const QString& filename, int logOrOption, int updateTime)
+{
+    stopTimer();
+    m_filename = filename;
+    m_logOption = logOrOption;
+    m_timer->start(updateTime);
+}
+
 void FileMonitor::stopTimer()
 {
     m_timer->stop();
@@ -21,7 +29,6 @@ void FileMonitor::monitorLog(bool force = false)
     QFile file(m_filename);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-
         qint64 currentSize = file.size();
         if (currentSize != m_previousSize || force)
         {
@@ -48,3 +55,4 @@ void FileMonitor::monitorOption(QString configDir)
 {
     emit optionLoaded(configDir);
 }
+

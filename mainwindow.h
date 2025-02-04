@@ -57,12 +57,17 @@ private:
     QString openFileText;
     FileMonitor* logMonitor;
     FileMonitor* optionMonitor;
+    FileMonitor* configMonitor;
     QString currentDLCName;
 
     Ui::MainWindow *ui;
     Ui::about *ui_about;
     QDialog *aboutDialog;
     QString configDir;
+    QString gameDir;
+    QString gameExec = "isaac-ng.exe";
+    QString gameStore = "Unknown";
+    QString gameDLC = "Rebirth";
     QString currentTranslator;
     void initLanguages(QString translation);
     void retranslateStrings(QString translator);
@@ -74,17 +79,18 @@ private:
     void ConnectRepentogonOptions(QSettings *settings);
     void SyncConfigFile(QSettings *settings, bool extra);
     void ReSyncConfig(QString confDir);
-    void LoadApp(QString FullDir, QString gameExe);
-    void UpdateApp(QString FullDir, QString gameExe);
+    void LoadApp(QString FullDir = "");
+    void UpdateGameDir(QString dir);
     void SortLineEdit();
     void ReSyncConfigIni(QSettings *settings);
     void ConfigIniLoad();
     void DarkMode(bool dark);
-    QString getModPath();
+    void GetSteamExecutable();
     QString GetSteamPath();
+    QString getModPath();
     QString IsaacDLC(QString directory);
-    QString GetExeName();
     QString GetFullDir();
+    void CheckDLCandStore(QFile file);
 
 };
 
