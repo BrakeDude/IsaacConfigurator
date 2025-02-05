@@ -248,7 +248,7 @@
     <message>
         <location filename="mainwindow.ui" line="1549"/>
         <source>REPENTOGON</source>
-        <translation type="unfinished"></translation>
+        <translation>REPENTOGON</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1585"/>
@@ -363,29 +363,24 @@
         <translation>Постоянно обновлять</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2121"/>
+        <location filename="mainwindow.ui" line="2120"/>
         <source>Set game executable</source>
         <translation>Назначить файл игры</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2156"/>
+        <location filename="mainwindow.ui" line="2155"/>
         <source>Open config folder</source>
         <translation>Открыть папку настроек</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2164"/>
+        <location filename="mainwindow.ui" line="2163"/>
         <source>Dark theme</source>
         <translation>Тёмная тема</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2172"/>
+        <location filename="mainwindow.ui" line="2171"/>
         <source>Disable Repentogon</source>
         <translation>Отключить Repentogon</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="2177"/>
-        <source>Reload configurator</source>
-        <translation>Перезапустить кофигуратор</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1976"/>
@@ -463,96 +458,79 @@
         <translation>Громкость игроков</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2063"/>
+        <location filename="mainwindow.ui" line="2062"/>
         <source>Options</source>
         <translation>Опции</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1540"/>
-        <location filename="mainwindow.ui" line="2067"/>
+        <location filename="mainwindow.ui" line="2066"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2077"/>
+        <location filename="mainwindow.ui" line="2076"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <source>Check mods</source>
-        <oldsource>Sync mods</oldsource>
-        <translation type="vanished">Проверить моды</translation>
-    </message>
-    <message>
-        <source>Resyncs states of mods</source>
-        <translation type="vanished">Синхронизирует состояния модов</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="2091"/>
+        <location filename="mainwindow.ui" line="2090"/>
         <source>Close the app</source>
         <translation>Закрыть программу</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2113"/>
+        <location filename="mainwindow.ui" line="2112"/>
         <source>Close the game</source>
         <translation>Закрыть игру</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1491"/>
-        <location filename="mainwindow.ui" line="2138"/>
+        <location filename="mainwindow.ui" line="2137"/>
         <source>English</source>
         <translation>Английский</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2143"/>
+        <location filename="mainwindow.ui" line="2142"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2094"/>
+        <location filename="mainwindow.ui" line="2093"/>
         <source>Esc</source>
         <translation></translation>
     </message>
     <message>
-        <source>Sync options.ini</source>
-        <translation type="vanished">Синхронизировать options.ini</translation>
-    </message>
-    <message>
-        <source>Sync changes in options.ini</source>
-        <translation type="vanished">Синхронизировать изменения в options.ini</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="2102"/>
+        <location filename="mainwindow.ui" line="2101"/>
         <source>Start the game</source>
         <translation>Начать игру</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2105"/>
+        <location filename="mainwindow.ui" line="2104"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2116"/>
+        <location filename="mainwindow.ui" line="2115"/>
         <source>Ctrl+Shift+C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2124"/>
+        <location filename="mainwindow.ui" line="2123"/>
         <source>Set game folder</source>
         <translation>Назначить папку с игрой</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2148"/>
+        <location filename="mainwindow.ui" line="2147"/>
         <source>Open game folder</source>
         <translation>Открыть папку с игрой</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2151"/>
+        <location filename="mainwindow.ui" line="2150"/>
         <source>Open game install folder</source>
         <translation>Открыть папку установленной игры</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2127"/>
+        <location filename="mainwindow.ui" line="2126"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
@@ -619,32 +597,27 @@
         <translation>Синхронизация Steam</translation>
     </message>
     <message>
-        <source>Beta co-op online</source>
-        <oldsource>Beta online co-op</oldsource>
-        <translation type="vanished">Бета онлайн кооператив</translation>
-    </message>
-    <message>
         <location filename="mainwindow.ui" line="2043"/>
         <source>Configurator</source>
         <translation>Конфигуратор</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2056"/>
+        <location filename="mainwindow.ui" line="2055"/>
         <source>Game</source>
         <translation>Игра</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2099"/>
+        <location filename="mainwindow.ui" line="2098"/>
         <source>Start</source>
         <translation>Запустить</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2110"/>
+        <location filename="mainwindow.ui" line="2109"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2088"/>
+        <location filename="mainwindow.ui" line="2087"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>

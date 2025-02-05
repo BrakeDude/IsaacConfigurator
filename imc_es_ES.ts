@@ -226,22 +226,22 @@
         <translation>Actualizar constantemente</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2121"/>
+        <location filename="mainwindow.ui" line="2120"/>
         <source>Set game executable</source>
-        <translation>Establecer el ejecutable del juego</translation>
+        <translation>Elegir ejecutable del juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2156"/>
+        <location filename="mainwindow.ui" line="2155"/>
         <source>Open config folder</source>
         <translation>Abrir carpeta de Configuración</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2164"/>
+        <location filename="mainwindow.ui" line="2163"/>
         <source>Dark theme</source>
         <translation>Tema oscuro</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2172"/>
+        <location filename="mainwindow.ui" line="2171"/>
         <source>Disable Repentogon</source>
         <translation>Desactivar Repentogon</translation>
     </message>
@@ -254,7 +254,7 @@
     <message>
         <location filename="mainwindow.ui" line="50"/>
         <source>Vanilla</source>
-        <translation type="unfinished"></translation>
+        <translation>Original</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="116"/>
@@ -305,7 +305,7 @@
         <location filename="mainwindow.ui" line="590"/>
         <location filename="mainwindow.ui" line="768"/>
         <source>Co-op online</source>
-        <translation type="unfinished"></translation>
+        <translation>Cooperativo en línea</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="602"/>
@@ -334,207 +334,202 @@
     <message>
         <location filename="mainwindow.ui" line="736"/>
         <source>Hearts Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Sólo corazones</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="755"/>
         <source>Multiplayer HUD</source>
-        <translation type="unfinished"></translation>
+        <translation>HUD Multijugador</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="901"/>
         <source>Enable chat</source>
-        <translation type="unfinished"></translation>
+        <translation>Activar chat</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="914"/>
         <source>Enable chat filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Activar filtro de chat</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1496"/>
         <source>Japanese</source>
-        <translation type="unfinished"></translation>
+        <translation>Japonés</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1501"/>
         <source>Korean</source>
-        <translation type="unfinished"></translation>
+        <translation>Coreano</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1506"/>
         <source>Chinese (Simple)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chino (simplificado)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1511"/>
         <source>Russian</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruso</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1516"/>
         <source>German</source>
-        <translation type="unfinished"></translation>
+        <translation>Alemán</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1521"/>
         <source>Spanish</source>
-        <translation type="unfinished"></translation>
+        <translation>Español</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1526"/>
         <source>French</source>
-        <translation type="unfinished"></translation>
+        <translation>Francés</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1549"/>
         <source>REPENTOGON</source>
-        <translation type="unfinished"></translation>
+        <translation>REPENTOGON</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1585"/>
         <source>Better Void Generation</source>
-        <translation type="unfinished"></translation>
+        <translation>Mejor generación de Void</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1598"/>
         <source>Hush AI Fixes</source>
-        <translation type="unfinished"></translation>
+        <translation>Arreglos a la IA de Hush</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1611"/>
         <source>Key Bum Deal Chance</source>
-        <translation type="unfinished"></translation>
+        <translation>Méndigo de Llaves afecta posibilidad de pacto</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1624"/>
         <source>Planetarium HUD</source>
-        <translation type="unfinished"></translation>
+        <translation>Planetario en HUD</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1637"/>
         <source>Skip Intro Cutscene</source>
-        <translation type="unfinished"></translation>
+        <translation>Saltar cinemática de intrpducción</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1650"/>
         <source>Quicker Room Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpieza rápida de habitaciones</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1663"/>
         <source>Prevent Mod Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Evitar actualización de mods</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1676"/>
         <source>Fast Lasers</source>
-        <translation type="unfinished"></translation>
+        <translation>Láseres optimizados</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1689"/>
         <source>60 FPS Interpolation</source>
-        <translation type="unfinished"></translation>
+        <translation>Interpolación a 60 FPS</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1702"/>
         <source>Modded File Map Generation</source>
-        <translation type="unfinished"></translation>
+        <translation>Generación de File map moddeado</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1715"/>
         <source>FindInRadius Debug Render</source>
-        <translation type="unfinished"></translation>
+        <translation>Renderizado de depuración de FindInRadius</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1807"/>
         <source>Mars Double Tap Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Ventana de tiempo del doble pulso de Mars</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1820"/>
         <source>Command Autofill Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Límite de autocompletado de comandos</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2063"/>
+        <location filename="mainwindow.ui" line="2062"/>
         <source>Options</source>
         <translation>Opciones</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1540"/>
-        <location filename="mainwindow.ui" line="2067"/>
+        <location filename="mainwindow.ui" line="2066"/>
         <source>Language</source>
         <translation>Idioma</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2077"/>
+        <location filename="mainwindow.ui" line="2076"/>
         <source>Help</source>
         <translation>Ayuda</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2091"/>
+        <location filename="mainwindow.ui" line="2090"/>
         <source>Close the app</source>
         <translation>Cerrar el programa</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2113"/>
+        <location filename="mainwindow.ui" line="2112"/>
         <source>Close the game</source>
         <translation>Cerrar el juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2124"/>
+        <location filename="mainwindow.ui" line="2123"/>
         <source>Set game folder</source>
         <translation>Establecer carpeta de juego</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1491"/>
-        <location filename="mainwindow.ui" line="2138"/>
+        <location filename="mainwindow.ui" line="2137"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2143"/>
+        <location filename="mainwindow.ui" line="2142"/>
         <source>About</source>
         <translation>A cerca de</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2177"/>
-        <source>Reload configurator</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="2094"/>
+        <location filename="mainwindow.ui" line="2093"/>
         <source>Esc</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2102"/>
+        <location filename="mainwindow.ui" line="2101"/>
         <source>Start the game</source>
         <translation>Iniciar el juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2105"/>
+        <location filename="mainwindow.ui" line="2104"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2116"/>
+        <location filename="mainwindow.ui" line="2115"/>
         <source>Ctrl+Shift+C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2148"/>
+        <location filename="mainwindow.ui" line="2147"/>
         <source>Open game folder</source>
         <translation>Abrir carpeta del juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2151"/>
+        <location filename="mainwindow.ui" line="2150"/>
         <source>Open game install folder</source>
         <translation>Abrir carpeta de instalación del juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2127"/>
+        <location filename="mainwindow.ui" line="2126"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
@@ -601,32 +596,27 @@
         <translation>Sincroniczar con Steam Cloud</translation>
     </message>
     <message>
-        <source>Beta co-op online</source>
-        <oldsource>Beta online co-op</oldsource>
-        <translation type="vanished">Beta co-op online</translation>
-    </message>
-    <message>
         <location filename="mainwindow.ui" line="2043"/>
         <source>Configurator</source>
         <translation>Configuración</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2056"/>
+        <location filename="mainwindow.ui" line="2055"/>
         <source>Game</source>
         <translation>Juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2099"/>
+        <location filename="mainwindow.ui" line="2098"/>
         <source>Start</source>
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2110"/>
+        <location filename="mainwindow.ui" line="2109"/>
         <source>Close</source>
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2088"/>
+        <location filename="mainwindow.ui" line="2087"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>
