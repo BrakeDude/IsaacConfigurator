@@ -219,7 +219,6 @@ void MainWindow::DarkMode(bool dark){
 }
 
 void MainWindow::LoadApp(QString FullDir){
-    qDebug() << FullDir;
     if (FullDir.isEmpty())
     {
         FullDir = gameDir + "/" + gameExec;

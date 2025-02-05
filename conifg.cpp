@@ -845,6 +845,9 @@ void MainWindow::LoadConfigFile(){
     if (gameStore == "GOG")
     {
         configDir+= " (Galaxy)";
+    }else if (gameStore == "Epic")
+    {
+        configDir+= " (Epic)";
     }
 #elif defined(Q_OS_LINUX)
     if (DLCName == "Repentance" || DLCName == "Repentance+") {

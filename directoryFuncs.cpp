@@ -2,6 +2,7 @@
 #include <QTextStream>
 #include <QDir>
 #include <QFileInfo>
+#include <QMap>
 
 void MainWindow::CheckDLCandStore(QFile isaacng)
 {
@@ -11,18 +12,27 @@ void MainWindow::CheckDLCandStore(QFile isaacng)
         in.flush();
         isaacng.close();
         QString gameNamePrefix("Binding of Isaac: ");
-        QStringList DLCNames = {"Repentance+", "Repentance", "Afterbirth+", "Afterbirth"};
+        QStringList DLCNames = {"Repentance+", "Repentance", "Afterbirth+", "Afterbirth", "Rebirth"};
         QFileInfo isaacInfo = QFileInfo(isaacng);
         QString dir = isaacInfo.dir().path();
         gameExec = isaacInfo.fileName();
-        if (line.contains("(Galaxy)")){
-            gameStore = "GOG";
-            this->setWindowTitle("Isaac Configurator: " + gameDLC);
-        }else if (!GetSteamPath().isEmpty() && QDir(GetSteamPath() + "/steamapps/common/The Binding of Isaac Rebirth").exists()
+        QMap<QString, QString> stores;
+        stores.insert("GOG", "Galaxy");
+        stores.insert("Epic", "Epic");
+        foreach (QString var, DLCNames){
+            for (auto it = stores.keyValueBegin(); it != stores.keyValueEnd(); ++it){
+                if (line.contains(var + " (" + it->first + ")")){
+                    gameStore = it->second;
+                    goto StoreSet;
+                }
+            }
+        }
+        if (!GetSteamPath().isEmpty() && QDir(GetSteamPath() + "/steamapps/common/The Binding of Isaac Rebirth").exists()
             && isaacInfo.dir() == GetSteamPath() + "/steamapps/common/The Binding of Isaac Rebirth")
         {
             gameStore = "Steam";
         }
+        StoreSet:
         UpdateGameDir(dir);
         foreach (QString var, DLCNames){
             if (line.contains(gameNamePrefix + var)){
