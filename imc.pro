@@ -12,7 +12,6 @@ SOURCES += \
     about.cpp \
     conifg.cpp \
     directoryFuncs.cpp \
-    filemonitor.cpp \
     iniconfig.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -22,7 +21,6 @@ SOURCES += \
 HEADERS += \
     about.h \
     customerrorhandler.h \
-    filemonitor.h \
     mainwindow.h \
     qtablewidgetcheckbox.h
 

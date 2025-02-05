@@ -2047,7 +2047,6 @@
     <addaction name="actionOpen_game_folder"/>
     <addaction name="actionOpen_config_folder"/>
     <addaction name="separator"/>
-    <addaction name="actionReload_configurator"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -2118,7 +2117,7 @@
   </action>
   <action name="actionFind_game_folder">
    <property name="text">
-    <string>Set game folder</string>
+    <string>Set game executable</string>
    </property>
    <property name="toolTip">
     <string>Set game folder</string>
@@ -2170,11 +2169,6 @@
    </property>
    <property name="text">
     <string>Disable Repentogon</string>
-   </property>
-  </action>
-  <action name="actionReload_configurator">
-   <property name="text">
-    <string>Reload configurator</string>
    </property>
   </action>
  </widget>

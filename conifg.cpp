@@ -108,10 +108,10 @@ void MainWindow::SyncConfigFile(QSettings *settings, bool repentogon){
         }
 
         int popup_value = settings->value("PopUps").toInt();
-        if (ui->comboBox_PopUp->count() == 3 && currentDLCName != "Repentance+"){
+        if (ui->comboBox_PopUp->count() == 3 && gameDLC != "Repentance+"){
             ui->comboBox_PopUp->removeItem(2);
             popup_value = std::max(popup_value, 1);
-        }else if(ui->comboBox_PopUp->count() == 2 && currentDLCName == "Repentance+"){
+        }else if(ui->comboBox_PopUp->count() == 2 && gameDLC == "Repentance+"){
             ui->comboBox_PopUp->addItem(tr("Small"));
         }
         ui->comboBox_PopUp->setCurrentIndex(popup_value);
@@ -835,8 +835,8 @@ void MainWindow::LoadConfig(QString confDir){
     }
 }
 
-void MainWindow::ReSyncConfigSlot(QString configDir){
-    ReSyncConfig(configDir);
+void MainWindow::ReSyncConfigSlot(){
+    ReSyncConfig();
 }
 
 void MainWindow::LoadConfigFile(){
@@ -856,35 +856,18 @@ void MainWindow::LoadConfigFile(){
     LoadConfig(configDir);
     if (QFile::exists(configDir + "/log.txt")){
 
-        if (logMonitor != NULL){
-            disconnect(logMonitor, SIGNAL(logLoaded(QString,bool)), this, SLOT(onFileLoaded(QString,bool)));
-        }
-        logMonitor = new FileMonitor(configDir + "/log.txt", 1, 2000);
-        connect(logMonitor, SIGNAL(logLoaded(QString,bool)), this, SLOT(onFileLoaded(QString,bool)));
+        connect(timer, SIGNAL(timeout()), this, SLOT(onFileLoaded()), Qt::UniqueConnection);
 
         connect(ui->pushButtonLogUpdate, &QPushButton::clicked, this, [=](){
-            logMonitor->monitorLog(true);
-        });
-        connect(ui->checkBoxLogUpdate, &QCheckBox::stateChanged, this, [=](int state) {
-            if (state == Qt::Checked) {
-               logMonitor->monitorLog(true);
-            }
+            onFileLoaded();
         });
     }
     if (QFile::exists(configDir + "/options.ini")){
-
-        if (configMonitor == nullptr){
-            configMonitor = new FileMonitor(configDir, 2, 2000);
-        }else {
-            configMonitor->SetToMonitor(configDir, 2, 2000);
-        }
-
-        connect(configMonitor, SIGNAL(optionLoaded(QString)), this, SLOT(ReSyncConfigSlot(QString)), Qt::UniqueConnection);
+        connect(timer, SIGNAL(timeout()), this, SLOT(ReSyncConfigSlot()), Qt::UniqueConnection);
     }
 }
 
-void MainWindow::ReSyncConfig(QString confDir){
-    configDir = confDir;
+void MainWindow::ReSyncConfig(){
     if (QDir(configDir).exists())
     {
         ui->actionOpen_config_folder->setEnabled(true);

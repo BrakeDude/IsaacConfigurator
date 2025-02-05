@@ -226,6 +226,11 @@
         <translation>Actualizar constantemente</translation>
     </message>
     <message>
+        <location filename="mainwindow.ui" line="2121"/>
+        <source>Set game executable</source>
+        <translation>Establecer el ejecutable del juego</translation>
+    </message>
+    <message>
         <location filename="mainwindow.ui" line="2156"/>
         <source>Open config folder</source>
         <translation>Abrir carpeta de Configuración</translation>
@@ -478,7 +483,6 @@
         <translation>Cerrar el juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2121"/>
         <location filename="mainwindow.ui" line="2124"/>
         <source>Set game folder</source>
         <translation>Establecer carpeta de juego</translation>
@@ -552,7 +556,7 @@
     <message>
         <location filename="mainwindow.ui" line="463"/>
         <location filename="mainwindow.ui" line="1463"/>
-        <location filename="conifg.cpp" line="113"/>
+        <location filename="conifg.cpp" line="115"/>
         <source>Small</source>
         <translation>Pequeño</translation>
     </message>

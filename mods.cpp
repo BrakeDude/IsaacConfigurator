@@ -27,7 +27,7 @@ void MainWindow::SortLineEdit(){
 
 void MainWindow::SyncMods(QString directory) {
     QDir dir(directory);
-    if(!dir.exists()){
+    if(!dir.exists() || !HasModSupport()){
         ui->modRadioButton_Folder->setEnabled(false);
         ui->modRadioButton_Name->setEnabled(false);
         ui->activateButton->setEnabled(false);
@@ -38,7 +38,10 @@ void MainWindow::SyncMods(QString directory) {
         ui->lineEdit->setEnabled(false);
         ui->tableMods->setEnabled(false);
         ui->tableMods->clear();
-        QMessageBox::information(this, modMessage1, modMessage2);
+        if (HasModSupport())
+        {
+            QMessageBox::information(this, modMessage1, modMessage2);
+        }
         return;
     }else{
         ui->modRadioButton_Folder->setEnabled(true);
@@ -241,4 +244,9 @@ void MainWindow::loadMods(QString directory) {
         }
     });
 
+}
+
+bool MainWindow::HasModSupport()
+{
+    return gameDLC == "Afterbirth+" || gameDLC == "Repentance" || gameDLC == "Repentance+";
 }

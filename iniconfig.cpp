@@ -18,12 +18,9 @@ void MainWindow::ConfigIniLoad(){
         settings->endGroup();
         settings->sync();
     }
-    if (optionMonitor != nullptr){
-        optionMonitor = new FileMonitor(configIniDir, 2, 100);
-    }
-    connect(optionMonitor, SIGNAL(optionLoaded(QString)), this, SLOT(ReSyncConfigIniSlot(QString)), Qt::UniqueConnection);
+    connect(timer, SIGNAL(timeout()), this, SLOT(ReSyncConfigIniSlot()), Qt::UniqueConnection);
     QSettings *settings = new QSettings(configIniDir + "/config.ini", QSettings::IniFormat);
-    //ReSyncConfigIni(settings);
+    ReSyncConfigIni(settings);
 
     connect(ui->checkBox_ColorCorrection, &QCheckBox::stateChanged, this, [=](int state) {
         settings->beginGroup("Options");
@@ -126,9 +123,11 @@ void MainWindow::ConfigIniLoad(){
 
 }
 
-void MainWindow::ReSyncConfigIniSlot(QString configIniDir){
-    QSettings *settings = new QSettings(configIniDir + "/config.ini", QSettings::IniFormat);
-    ReSyncConfigIni(settings);
+void MainWindow::ReSyncConfigIniSlot(){
+    if(QDir(gameDir+"/resources").exists()){
+        QSettings *settings = new QSettings(gameDir + "/resources/config.ini", QSettings::IniFormat);
+        ReSyncConfigIni(settings);
+    }
 }
 
 void MainWindow::ReSyncConfigIni(QSettings *settings){

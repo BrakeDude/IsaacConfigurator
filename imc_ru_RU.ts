@@ -363,6 +363,11 @@
         <translation>Постоянно обновлять</translation>
     </message>
     <message>
+        <location filename="mainwindow.ui" line="2121"/>
+        <source>Set game executable</source>
+        <translation>Назначить файл игры</translation>
+    </message>
+    <message>
         <location filename="mainwindow.ui" line="2156"/>
         <source>Open config folder</source>
         <translation>Открыть папку настроек</translation>
@@ -532,7 +537,6 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2121"/>
         <location filename="mainwindow.ui" line="2124"/>
         <source>Set game folder</source>
         <translation>Назначить папку с игрой</translation>
@@ -570,7 +574,7 @@
     <message>
         <location filename="mainwindow.ui" line="463"/>
         <location filename="mainwindow.ui" line="1463"/>
-        <location filename="conifg.cpp" line="113"/>
+        <location filename="conifg.cpp" line="115"/>
         <source>Small</source>
         <translation>Мелкий</translation>
     </message>

@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     aboutDialog = new QDialog(this);
     aboutDialog->setWindowFlags(aboutDialog->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     ui_about->setupUi(aboutDialog);
+    timer = new QTimer(this);
     if (!QFile::exists(QApplication::applicationDirPath() + "/IsaacConfigurator.ini")) {
         QFile file(QApplication::applicationDirPath() + "/IsaacConfigurator.ini");
         file.open(QIODevice::WriteOnly | QIODevice::Text);
@@ -96,7 +97,13 @@ MainWindow::MainWindow(QWidget *parent)
         config->sync();
     });
 
-    LoadApp();
+    GetSteamExecutable();
+    LoadApp(gameDir+"/"+gameExec);
+
+    connect(ui->tableMods, &QTableWidget::itemDoubleClicked, ui->tableMods, [=](){
+        QString folder = ui->tableMods->item(ui->tableMods->currentRow(), 2)->text();
+        QDesktopServices::openUrl(QUrl::fromLocalFile(QDir::toNativeSeparators(getModPath()+"/"+folder)));
+    });
 
     connect(ui->actionExit, &QAction::triggered, this, [=](){
         QApplication::quit();
@@ -117,12 +124,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionFind_game_folder, &QAction::triggered, this, [=](){
         LoadApp(QFileDialog::getOpenFileName(this, openDirName,
                                                   gameDir,
-                                                  QString("(*.exe)")));
-    });
-
-    connect(ui->actionReload_configurator, &QAction::triggered, this, [=](){
-        qApp->quit();
-        QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
+                                                  QString("(isaac-ng*.exe)")));
     });
 
 
@@ -159,7 +161,7 @@ MainWindow::MainWindow(QWidget *parent)
         #endif
     });
     ui->scrollArea_VanillaOptions->setGeometry(ui->scrollArea_VanillaOptions->pos().x(), ui->scrollArea_VanillaOptions->pos().y(), ui->scrollArea_VanillaOptions->size().width() - 5, ui->scrollArea_VanillaOptions->size().height() + 5);
-
+    timer->start(2000);
 }
 
 void MainWindow::DarkMode(bool dark){
@@ -217,26 +219,18 @@ void MainWindow::DarkMode(bool dark){
 }
 
 void MainWindow::LoadApp(QString FullDir){
-    if (FullDir.isEmpty()){
-        GetSteamExecutable();
-        if(QFile::exists(gameDir + "/" + gameExec))
-        {
-            FullDir = gameDir + "/" + gameExec;
-            goto successFind;
-        }
-        goto failFind;
+    qDebug() << FullDir;
+    if (FullDir.isEmpty())
+    {
+        FullDir = gameDir + "/" + gameExec;
     }
     if (QFile::exists(FullDir)){
-        successFind:
+        CheckDLCandStore(FullDir);
         ui->tabBox_ModsLog->widget(0)->setEnabled(true);
         ui->tabWidget_Options->setEnabled(true);
         ui->menuGame->setEnabled(true);
         QString str = getModPath();
         if (!str.isNull()){
-            connect(ui->tableMods, &QTableWidget::itemDoubleClicked, ui->tableMods, [=](){
-                QString folder = ui->tableMods->item(ui->tableMods->currentRow(), 2)->text();
-                QDesktopServices::openUrl(QUrl::fromLocalFile(QDir::toNativeSeparators(getModPath()+"/"+folder)));
-            });
             loadMods(str);
         }else{
             ui->modRadioButton_Folder->setEnabled(false);
@@ -248,13 +242,14 @@ void MainWindow::LoadApp(QString FullDir){
             ui->pushButton_UpdateMods->setEnabled(false);
             ui->lineEdit->setEnabled(false);
             ui->tableMods->setEnabled(false);
-            QMessageBox::information(this, modMessage1, modMessage2);
+            if (HasModSupport()){
+                QMessageBox::information(this, modMessage1, modMessage2);
+            }
         }
         CheckDLCandStore(FullDir);
         LoadConfigFile();
         ConfigIniLoad();
     }else {
-        failFind:
         QMessageBox::information(this, gameMessage1, gameMessage2);
         ui->modRadioButton_Folder->setEnabled(false);
         ui->modRadioButton_Name->setEnabled(false);
@@ -271,10 +266,7 @@ void MainWindow::LoadApp(QString FullDir){
 
 MainWindow::~MainWindow()
 {
-    logMonitor->stopTimer();
-    delete logMonitor;
-    optionMonitor->stopTimer();
-    delete optionMonitor;
+    timer->stop();
     delete ui;
 }
 
@@ -308,11 +300,28 @@ void MainWindow::on_actionAbout_triggered()
     aboutDialog->exec();
 }
 
-void MainWindow::onFileLoaded(QString text, bool force = false)
+
+void MainWindow::onFileLoaded()
 {
-    if(ui->checkBoxLogUpdate->checkState() == Qt::Checked || force == true){
-        ui->logBrowser->setPlainText(text);
-        ui->logBrowser->verticalScrollBar()->setValue(ui->logBrowser->verticalScrollBar()->maximum());
+    if(ui->checkBoxLogUpdate->checkState() == Qt::Checked){
+        QFile file(configDir + "/log.txt");
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+        {
+
+            QTextStream in(&file);
+            QString content = in.readAll();
+
+            QStringList lines = content.split("\n");
+            lines.removeAll("");
+
+            for (int i = 0; i < lines.size(); ++i) {
+                lines[i] = QString::number(i + 1) + ": " + lines[i];
+            }
+
+            QString numberedContent = lines.join("\n");
+            file.close();
+            ui->logBrowser->setPlainText(numberedContent);
+            ui->logBrowser->verticalScrollBar()->setValue(ui->logBrowser->verticalScrollBar()->maximum());
+        }
     }
 }
-

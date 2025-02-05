@@ -12,9 +12,10 @@
 #include <QTimer>
 #include <QTextStream>
 #include <QFileDialog>
+#include <QTimer>
 #include "ui_about.h"
 #include "qtablewidgetcheckbox.h"
-#include "filemonitor.h"
+#include <QDebug>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -37,11 +38,11 @@ private slots:
 
     void on_actionAbout_triggered();
 
-    void onFileLoaded(QString text, bool force);
+    void onFileLoaded();
 
-    void ReSyncConfigSlot(QString configDir);
+    void ReSyncConfigSlot();
 
-    void ReSyncConfigIniSlot(QString configDir);
+    void ReSyncConfigIniSlot();
 
 private:
     QString optionMessage1;
@@ -55,10 +56,7 @@ private:
     QString jsonFilterText;
     QString saveFileText;
     QString openFileText;
-    FileMonitor* logMonitor;
-    FileMonitor* optionMonitor;
-    FileMonitor* configMonitor;
-    QString currentDLCName;
+    QTimer* timer;
 
     Ui::MainWindow *ui;
     Ui::about *ui_about;
@@ -78,7 +76,7 @@ private:
     void ConnectVanillaOptions(QSettings *settings);
     void ConnectRepentogonOptions(QSettings *settings);
     void SyncConfigFile(QSettings *settings, bool extra);
-    void ReSyncConfig(QString confDir);
+    void ReSyncConfig();
     void LoadApp(QString FullDir = "");
     void UpdateGameDir(QString dir);
     void SortLineEdit();
@@ -86,6 +84,7 @@ private:
     void ConfigIniLoad();
     void DarkMode(bool dark);
     void GetSteamExecutable();
+    bool HasModSupport();
     QString GetSteamPath();
     QString getModPath();
     QString IsaacDLC(QString directory);
