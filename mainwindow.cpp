@@ -161,7 +161,7 @@ MainWindow::MainWindow(QWidget *parent)
         #endif
     });
     ui->scrollArea_VanillaOptions->setGeometry(ui->scrollArea_VanillaOptions->pos().x(), ui->scrollArea_VanillaOptions->pos().y(), ui->scrollArea_VanillaOptions->size().width() - 5, ui->scrollArea_VanillaOptions->size().height() + 5);
-    timer->start(2000);
+    timer->start(1000);
 }
 
 void MainWindow::DarkMode(bool dark){
@@ -306,7 +306,6 @@ void MainWindow::onFileLoaded()
         QFile file(configDir + "/log.txt");
         if (file.open(QIODevice::ReadOnly | QIODevice::Text))
         {
-
             QTextStream in(&file);
             QString content = in.readAll();
 
@@ -319,8 +318,10 @@ void MainWindow::onFileLoaded()
 
             QString numberedContent = lines.join("\n");
             file.close();
-            ui->logBrowser->setPlainText(numberedContent);
-            ui->logBrowser->verticalScrollBar()->setValue(ui->logBrowser->verticalScrollBar()->maximum());
+            if (numberedContent != ui->logBrowser->toPlainText()) {
+                ui->logBrowser->setPlainText(numberedContent);
+                ui->logBrowser->verticalScrollBar()->setValue(ui->logBrowser->verticalScrollBar()->maximum());
+            }
         }
     }
 }

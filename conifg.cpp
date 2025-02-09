@@ -864,6 +864,7 @@ void MainWindow::LoadConfigFile(){
         connect(ui->pushButtonLogUpdate, &QPushButton::clicked, this, [=](){
             onFileLoaded();
         });
+        onFileLoaded();
     }
     if (QFile::exists(configDir + "/options.ini")){
         connect(timer, SIGNAL(timeout()), this, SLOT(ReSyncConfigSlot()), Qt::UniqueConnection);
