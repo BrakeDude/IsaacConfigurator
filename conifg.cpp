@@ -269,12 +269,16 @@ void MainWindow::SyncConfigFile(QSettings *settings, bool repentogon){
 
         ui->horizontalSlider_HUD->setValue((settings->value("HudOffset").toFloat()*10));
 
+        ui->horizontalSlider_OnlineInputDelay->setValue(settings->value("OnlineInputDelay").toInt());
+
         settings->endGroup();
     }
 }
 
-void MainWindow::ConnectVanillaOptions(QSettings* settings){
+void MainWindow::ConnectVanillaOptions(QSettings* settings, bool force){
     //GFX and HUD
+    if (!force && connectedVanillaOption) return;
+    connectedVanillaOption = true;
     connect(ui->checkBox_Fullscreen, &QCheckBox::stateChanged, this, [=](int state) {
         settings->beginGroup("Options");
         if (state == Qt::Unchecked) {
@@ -658,9 +662,18 @@ void MainWindow::ConnectVanillaOptions(QSettings* settings){
         settings->endGroup();
         settings->sync();
     });
+
+    connect(ui->horizontalSlider_OnlineInputDelay, &QSlider::valueChanged, this, [=](int val) {
+        settings->beginGroup("Options");
+        settings->setValue("OnlineInputDelay",QString::number(val));
+        settings->endGroup();
+        settings->sync();
+    });
 }
 
-void MainWindow::ConnectRepentogonOptions(QSettings* settings){
+void MainWindow::ConnectRepentogonOptions(QSettings* settings, bool force){
+    if (!force && connectedRepentogonOption) return;
+    connectedRepentogonOption = true;
     connect(ui->checkBox_BetterVoidGeneration, &QCheckBox::stateChanged, this, [=](int state) {
         settings->beginGroup("VanillaTweaks");
         if (state == Qt::Unchecked) {

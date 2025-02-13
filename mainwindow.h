@@ -57,6 +57,8 @@ private:
     QString saveFileText;
     QString openFileText;
     QTimer* timer;
+    bool connectedVanillaOption = false;
+    bool connectedRepentogonOption = false;
 
     Ui::MainWindow *ui;
     Ui::about *ui_about;
@@ -73,8 +75,8 @@ private:
     void SyncMods(QString directory);
     void LoadConfigFile();
     void LoadConfig(QString confDir);
-    void ConnectVanillaOptions(QSettings *settings);
-    void ConnectRepentogonOptions(QSettings *settings);
+    void ConnectVanillaOptions(QSettings *settings, bool force = false);
+    void ConnectRepentogonOptions(QSettings *settings, bool force = false);
     void SyncConfigFile(QSettings *settings, bool extra);
     void ReSyncConfig();
     void LoadApp(QString FullDir = "");

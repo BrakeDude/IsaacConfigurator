@@ -98,9 +98,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
+         <y>-230</y>
          <width>401</width>
-         <height>771</height>
+         <height>821</height>
         </rect>
        </property>
        <widget class="QGroupBox" name="groupBox_Effects">
@@ -583,7 +583,7 @@
           <x>10</x>
           <y>630</y>
           <width>371</width>
-          <height>141</height>
+          <height>191</height>
          </rect>
         </property>
         <property name="title">
@@ -745,7 +745,7 @@
         <widget class="QLabel" name="label_MultiplayerHUD">
          <property name="geometry">
           <rect>
-           <x>100</x>
+           <x>92</x>
            <y>70</y>
            <width>101</width>
            <height>16</height>
@@ -912,6 +912,56 @@
          </property>
          <property name="text">
           <string>Enable chat filter</string>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_OnlineInputDelay">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>160</y>
+           <width>161</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>5</number>
+         </property>
+         <property name="pageStep">
+          <number>1</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="invertedAppearance">
+          <bool>false</bool>
+         </property>
+         <property name="invertedControls">
+          <bool>false</bool>
+         </property>
+         <property name="tickPosition">
+          <enum>QSlider::TicksBelow</enum>
+         </property>
+         <property name="tickInterval">
+          <number>0</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_OnlineInputDelay">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>140</y>
+           <width>161</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Online Input Delay</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </widget>
