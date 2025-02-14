@@ -45,7 +45,7 @@ RESOURCES += \
 RC_ICONS = wrench.ico
 
 TARGET = IsaacConfigurator
-VERSION = 1.3.0
+VERSION = 1.3.1
 
 contains(QMAKE_HOST.os, "win32"): QMAKE_LFLAGS += -static
 else: QMAKE_LFLAGS += -static-libstdc++ -static-libgcc
