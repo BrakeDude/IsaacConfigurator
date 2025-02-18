@@ -226,22 +226,22 @@
         <translation>Actualizar constantemente</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2170"/>
+        <location filename="mainwindow.ui" line="2273"/>
         <source>Set game executable</source>
         <translation>Elegir ejecutable del juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2205"/>
+        <location filename="mainwindow.ui" line="2308"/>
         <source>Open config folder</source>
         <translation>Abrir carpeta de Configuración</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2213"/>
+        <location filename="mainwindow.ui" line="2316"/>
         <source>Dark theme</source>
         <translation>Tema oscuro</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2221"/>
+        <location filename="mainwindow.ui" line="2324"/>
         <source>Disable Repentogon</source>
         <translation>Desactivar Repentogon</translation>
     </message>
@@ -462,79 +462,109 @@
         <translation>Límite de autocompletado de comandos</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2112"/>
+        <location filename="mainwindow.ui" line="2089"/>
+        <source>Show full log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="2105"/>
+        <source>Show errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="2121"/>
+        <source>Show warnings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="2147"/>
+        <source>Filter by:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="2163"/>
+        <source>Case sensitivity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="2176"/>
+        <source>Show Lua Debug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="2215"/>
         <source>Options</source>
         <translation>Opciones</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1590"/>
-        <location filename="mainwindow.ui" line="2116"/>
+        <location filename="mainwindow.ui" line="2219"/>
         <source>Language</source>
         <translation>Idioma</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2126"/>
+        <location filename="mainwindow.ui" line="2229"/>
         <source>Help</source>
         <translation>Ayuda</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2140"/>
+        <location filename="mainwindow.ui" line="2243"/>
         <source>Close the app</source>
         <translation>Cerrar el programa</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2162"/>
+        <location filename="mainwindow.ui" line="2265"/>
         <source>Close the game</source>
         <translation>Cerrar el juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2173"/>
+        <location filename="mainwindow.ui" line="2276"/>
         <source>Set game folder</source>
         <translation>Establecer carpeta de juego</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1541"/>
-        <location filename="mainwindow.ui" line="2187"/>
+        <location filename="mainwindow.ui" line="2290"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2192"/>
+        <location filename="mainwindow.ui" line="2295"/>
         <source>About</source>
         <translation>A cerca de</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2143"/>
+        <location filename="mainwindow.ui" line="2246"/>
         <source>Esc</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2151"/>
+        <location filename="mainwindow.ui" line="2254"/>
         <source>Start the game</source>
         <translation>Iniciar el juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2154"/>
+        <location filename="mainwindow.ui" line="2257"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2165"/>
+        <location filename="mainwindow.ui" line="2268"/>
         <source>Ctrl+Shift+C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2197"/>
+        <location filename="mainwindow.ui" line="2300"/>
         <source>Open game folder</source>
         <translation>Abrir carpeta del juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2200"/>
+        <location filename="mainwindow.ui" line="2303"/>
         <source>Open game install folder</source>
         <translation>Abrir carpeta de instalación del juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2176"/>
+        <location filename="mainwindow.ui" line="2279"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
@@ -601,27 +631,27 @@
         <translation>Sincroniczar con Steam Cloud</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2093"/>
+        <location filename="mainwindow.ui" line="2196"/>
         <source>Configurator</source>
         <translation>Configuración</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2105"/>
+        <location filename="mainwindow.ui" line="2208"/>
         <source>Game</source>
         <translation>Juego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2148"/>
+        <location filename="mainwindow.ui" line="2251"/>
         <source>Start</source>
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2159"/>
+        <location filename="mainwindow.ui" line="2262"/>
         <source>Close</source>
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2137"/>
+        <location filename="mainwindow.ui" line="2240"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>

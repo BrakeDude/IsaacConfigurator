@@ -38,11 +38,13 @@ private slots:
 
     void on_actionAbout_triggered();
 
-    void onFileLoaded();
+    void onFileLoaded(bool force=false);
 
     void ReSyncConfigSlot();
 
     void ReSyncConfigIniSlot();
+
+    void on_lineEditLog_textChanged(const QString &arg1);
 
 private:
     QString optionMessage1;
@@ -92,6 +94,7 @@ private:
     QString IsaacDLC(QString directory);
     QString GetFullDir();
     void CheckDLCandStore(QFile file);
+    void HighlightTextInLog();
 
 };
 

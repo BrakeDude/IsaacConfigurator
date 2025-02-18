@@ -98,7 +98,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-230</y>
+         <y>0</y>
          <width>401</width>
          <height>821</height>
         </rect>
@@ -2035,9 +2035,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
+        <y>30</y>
         <width>697</width>
-        <height>551</height>
+        <height>501</height>
        </rect>
       </property>
       <property name="undoRedoEnabled">
@@ -2050,8 +2050,8 @@
      <widget class="QCheckBox" name="checkBoxLogUpdate">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>560</y>
+        <x>460</x>
+        <y>540</y>
         <width>121</width>
         <height>22</height>
        </rect>
@@ -2066,14 +2066,117 @@
      <widget class="QPushButton" name="pushButtonLogUpdate">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>560</y>
+        <x>600</x>
+        <y>540</y>
         <width>80</width>
         <height>24</height>
        </rect>
       </property>
       <property name="text">
        <string>Update</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBoxLogFull">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>540</y>
+        <width>91</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Show full log</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBoxLogErrors">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>540</y>
+        <width>91</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Show errors</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBoxLogWarnings">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>560</y>
+        <width>101</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Show warnings</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditLog">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>4</y>
+        <width>221</width>
+        <height>24</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_FilterLog">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>6</y>
+        <width>48</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Filter by:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_CaseSensitivity">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>5</y>
+        <width>111</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Case sensitivity</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBoxLogLuaDebug">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>560</y>
+        <width>111</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Show Lua Debug</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
       </property>
      </widget>
     </widget>

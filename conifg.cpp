@@ -872,12 +872,12 @@ void MainWindow::LoadConfigFile(){
     LoadConfig(configDir);
     if (QFile::exists(configDir + "/log.txt")){
 
-        connect(timer, SIGNAL(timeout()), this, SLOT(onFileLoaded()), Qt::UniqueConnection);
+        connect(timer, SIGNAL(timeout()), this, SLOT(onFileLoaded(false)), Qt::UniqueConnection);
 
         connect(ui->pushButtonLogUpdate, &QPushButton::clicked, this, [=](){
-            onFileLoaded();
+            onFileLoaded(true);
         });
-        onFileLoaded();
+        onFileLoaded(true);
     }
     if (QFile::exists(configDir + "/options.ini")){
         connect(timer, SIGNAL(timeout()), this, SLOT(ReSyncConfigSlot()), Qt::UniqueConnection);

@@ -24,6 +24,13 @@ MainWindow::MainWindow(QWidget *parent)
         config->beginGroup("Options");
         config->setValue("Language","en_EN");
         config->setValue("CheckUpdate", 1);
+        config->setValue("ShowFullLog", 1);
+        config->setValue("ShowErrors", 1);
+        config->setValue("ShowWarnings", 1);
+        config->setValue("ShowLuaDebug", 1);
+        ui->checkBoxLogErrors->setEnabled(false);
+        ui->checkBoxLogWarnings->setEnabled(false);
+        ui->checkBoxLogLuaDebug->setEnabled(false);
         config->setValue("DarkMode", 0);
         config->setValue("DisableRepentogon", 0);
         config->endGroup();
@@ -41,6 +48,41 @@ MainWindow::MainWindow(QWidget *parent)
             checkState = Qt::Checked;
         }
         ui->checkBoxLogUpdate->setCheckState(checkState);
+
+        if (config->value("ShowFullLog") == 0) {
+            checkState = Qt::Unchecked;
+        } else {
+            checkState = Qt::Checked;
+        }
+        ui->checkBoxLogFull->setCheckState(checkState);
+
+        if (checkState == Qt::Checked){
+            ui->checkBoxLogErrors->setEnabled(false);
+            ui->checkBoxLogWarnings->setEnabled(false);
+            ui->checkBoxLogLuaDebug->setEnabled(false);
+        }
+
+        if (config->value("ShowErrors") == 0) {
+            checkState = Qt::Unchecked;
+        } else {
+            checkState = Qt::Checked;
+        }
+        ui->checkBoxLogErrors->setCheckState(checkState);
+
+        if (config->value("ShowWarnings") == 0) {
+            checkState = Qt::Unchecked;
+        } else {
+            checkState = Qt::Checked;
+        }
+        ui->checkBoxLogWarnings->setCheckState(checkState);
+
+        if (config->value("ShowLuaDebug") == 0) {
+            checkState = Qt::Unchecked;
+        } else {
+            checkState = Qt::Checked;
+        }
+        ui->checkBoxLogLuaDebug->setCheckState(checkState);
+
         if(config->value("DisableRepentogon") == 1){
             ui->actionDisable_Repentogon->setChecked(true);
             ui->scrollArea_REPENTOGON->setEnabled(false);
@@ -66,6 +108,74 @@ MainWindow::MainWindow(QWidget *parent)
         }
         config->endGroup();
         config->sync();
+    });
+
+    connect(ui->checkBoxLogFull, &QCheckBox::stateChanged, this, [=](int state) {
+        QSettings *config = new QSettings(QApplication::applicationDirPath() + "/IsaacConfigurator.ini", QSettings::IniFormat);
+        config->beginGroup("Options");
+
+        if (state == 0) {
+            config->setValue("ShowFullLog", 0);
+            ui->checkBoxLogErrors->setEnabled(true);
+            ui->checkBoxLogWarnings->setEnabled(true);
+            ui->checkBoxLogLuaDebug->setEnabled(true);
+        } else {
+            config->setValue("ShowFullLog", 1);
+            ui->checkBoxLogErrors->setEnabled(false);
+            ui->checkBoxLogWarnings->setEnabled(false);
+            ui->checkBoxLogLuaDebug->setEnabled(false);
+        }
+        config->endGroup();
+        config->sync();
+        ui->logBrowser->clear();
+        onFileLoaded(true);
+    });
+
+    connect(ui->checkBoxLogErrors, &QCheckBox::stateChanged, this, [=](int state) {
+        QSettings *config = new QSettings(QApplication::applicationDirPath() + "/IsaacConfigurator.ini", QSettings::IniFormat);
+        config->beginGroup("Options");
+
+        if (state == 0) {
+            config->setValue("ShowErrors", 0);
+        } else {
+            config->setValue("ShowErrors", 1);
+        }
+        config->endGroup();
+        config->sync();
+        ui->logBrowser->clear();
+        onFileLoaded(true);
+    });
+
+    connect(ui->checkBoxLogWarnings, &QCheckBox::stateChanged, this, [=](int state) {
+        QSettings *config = new QSettings(QApplication::applicationDirPath() + "/IsaacConfigurator.ini", QSettings::IniFormat);
+        config->beginGroup("Options");
+
+        if (state == 0) {
+            config->setValue("ShowWarnings", 0);
+        } else {
+            config->setValue("ShowWarnings", 1);
+        }
+        ui->logBrowser->clear();
+        config->endGroup();
+        config->sync();
+        ui->logBrowser->clear();
+        onFileLoaded(true);
+    });
+
+    connect(ui->checkBoxLogLuaDebug, &QCheckBox::stateChanged, this, [=](int state) {
+        QSettings *config = new QSettings(QApplication::applicationDirPath() + "/IsaacConfigurator.ini", QSettings::IniFormat);
+        config->beginGroup("Options");
+
+        if (state == 0) {
+            config->setValue("ShowLuaDebug", 0);
+        } else {
+            config->setValue("ShowLuaDebug", 1);
+        }
+        ui->logBrowser->clear();
+        config->endGroup();
+        config->sync();
+        ui->logBrowser->clear();
+        onFileLoaded(true);
     });
 
     connect(ui->actionDark_theme, &QAction::triggered, this, [=](){
@@ -95,6 +205,12 @@ MainWindow::MainWindow(QWidget *parent)
 
         config->endGroup();
         config->sync();
+    });
+
+    connect(ui->checkBox_CaseSensitivity, &QCheckBox::stateChanged, this, [=](int state) {
+        if (!ui->lineEditLog->text().isEmpty()){
+            onFileLoaded(true);
+        }
     });
 
     GetSteamExecutable();
@@ -300,28 +416,91 @@ void MainWindow::on_actionAbout_triggered()
 }
 
 
-void MainWindow::onFileLoaded()
+void MainWindow::onFileLoaded(bool force)
 {
-    if(ui->checkBoxLogUpdate->checkState() == Qt::Checked){
+    if(ui->checkBoxLogUpdate->checkState() == Qt::Checked || force){
         QFile file(configDir + "/log.txt");
         if (file.open(QIODevice::ReadOnly | QIODevice::Text))
         {
             QTextStream in(&file);
             QString content = in.readAll();
-
+            file.close();
             QStringList lines = content.split("\n");
+
             lines.removeAll("");
 
-            for (int i = 0; i < lines.size(); ++i) {
+            for (int i = 0; i < lines.size(); i++) {
                 lines[i] = QString::number(i + 1) + ": " + lines[i];
             }
 
-            QString numberedContent = lines.join("\n");
-            file.close();
+            if(!ui->lineEditLog->text().isEmpty()){
+                lines = lines.filter(ui->lineEditLog->text(), ui->checkBox_CaseSensitivity->isChecked() ? Qt::CaseSensitive : Qt::CaseInsensitive);
+            }
+
+            QString numberedContent;
+            if(!ui->checkBoxLogFull->isChecked()){
+                QStringList pattern;
+                if(ui->checkBoxLogErrors->isChecked())
+                {
+                    pattern.append("Error in");
+                    pattern.append("[ASSERT]");
+                }
+                if(ui->checkBoxLogWarnings->isChecked())
+                {
+                    pattern.append("[warn]");
+                }
+                if(pattern.empty())
+                {
+                    lines = QStringList();
+                }else{
+                    lines.erase(std::remove_if(lines.begin(), lines.end(),
+                                          [&pattern](const QString &item) {
+                                              return !std::any_of(pattern.begin(), pattern.end(),
+                                                                 [&item](const QString &word) { return item.contains(word); });
+                                          }),
+                                lines.end());
+                }
+            }
+            numberedContent = lines.join("\n");
+
             if (numberedContent != ui->logBrowser->toPlainText()) {
                 ui->logBrowser->setPlainText(numberedContent);
                 ui->logBrowser->verticalScrollBar()->setValue(ui->logBrowser->verticalScrollBar()->maximum());
             }
         }
+        HighlightTextInLog();
     }
 }
+
+void MainWindow::HighlightTextInLog()
+{
+    QTextCursor cursor(ui->logBrowser->document());
+    QTextCharFormat highlightError;
+    QTextCharFormat highlightWarning;
+    highlightError.setForeground(QColor(Qt::red));
+    highlightWarning.setForeground(QColor(Qt::yellow));
+    cursor.movePosition(QTextCursor::Start);
+    while(!cursor.atEnd()){
+        cursor.movePosition(QTextCursor::StartOfBlock);  // Move to start of the line
+        cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::KeepAnchor);  // Select the entire line
+
+        if (cursor.selectedText().contains("Error in", Qt::CaseSensitive)
+            or cursor.selectedText().contains("[ASSERT]")) {
+            cursor.setCharFormat(highlightError);
+        }else if ((cursor.selectedText().contains("[warn]", Qt::CaseSensitive))
+                   || (cursor.selectedText().contains("Lua Debug:", Qt::CaseSensitive))) {
+            cursor.setCharFormat(highlightWarning);
+        } else {
+            cursor.setCharFormat(QTextCharFormat());
+        }
+
+        cursor.movePosition(QTextCursor::NextBlock);
+    }
+
+}
+
+void MainWindow::on_lineEditLog_textChanged(const QString &arg1)
+{
+    onFileLoaded(true);
+}
+
