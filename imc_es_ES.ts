@@ -354,7 +354,7 @@
     <message>
         <location filename="mainwindow.ui" line="961"/>
         <source>Online Input Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>Retardo en inputs del Online</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1546"/>
@@ -464,32 +464,32 @@
     <message>
         <location filename="mainwindow.ui" line="2089"/>
         <source>Show full log</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar Log completo</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2105"/>
         <source>Show errors</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar errores</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2121"/>
         <source>Show warnings</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar advertencias</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2147"/>
         <source>Filter by:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrar por:</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2163"/>
         <source>Case sensitivity</source>
-        <translation type="unfinished"></translation>
+        <translation>Mayúsculas y minúsculas</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2176"/>
         <source>Show Lua Debug</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar Lua Debug</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2215"/>

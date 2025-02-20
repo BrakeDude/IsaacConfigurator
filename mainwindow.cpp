@@ -466,9 +466,9 @@ void MainWindow::onFileLoaded(bool force)
             if (numberedContent != ui->logBrowser->toPlainText()) {
                 ui->logBrowser->setPlainText(numberedContent);
                 ui->logBrowser->verticalScrollBar()->setValue(ui->logBrowser->verticalScrollBar()->maximum());
+                HighlightTextInLog();
             }
         }
-        HighlightTextInLog();
     }
 }
 
@@ -478,7 +478,11 @@ void MainWindow::HighlightTextInLog()
     QTextCharFormat highlightError;
     QTextCharFormat highlightWarning;
     highlightError.setForeground(QColor(Qt::red));
-    highlightWarning.setForeground(QColor(Qt::yellow));
+    if (ui->actionDark_theme->isChecked()){
+        highlightWarning.setForeground(QColor(Qt::yellow));
+    }else{
+        highlightWarning.setForeground(QColor(255,140,0));
+    }
     cursor.movePosition(QTextCursor::Start);
     while(!cursor.atEnd()){
         cursor.movePosition(QTextCursor::StartOfBlock);  // Move to start of the line
