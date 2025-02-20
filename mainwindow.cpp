@@ -190,6 +190,7 @@ MainWindow::MainWindow(QWidget *parent)
         }
         config->endGroup();
         config->sync();
+        HighlightTextInLog();
     });
 
     connect(ui->actionDisable_Repentogon, &QAction::triggered, this, [=](){
