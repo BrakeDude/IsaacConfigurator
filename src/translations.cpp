@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "headers/mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QTranslator>
 #include <QMapIterator>
@@ -8,20 +8,20 @@
 QMap<QString, QString> langs;
 
 void MainWindow::retranslateStrings(QString translator){
-    optionMessage1 = tr("Can't find file");
-    optionMessage2 = tr("File 'options.ini' doesn't exists. Try launching game first");
+    optionMessage1 = tr("File 'options.ini' doesn't exists. Try launching game first");
     modTableHeaders = QStringList() << tr("Active") << tr("Mod Name") <<  tr("Folder");
     ui->tableMods->setHorizontalHeaderLabels(modTableHeaders);
     openDirName = tr("Open Directory");
-    modMessage1 = tr("No mod folder");
-    modMessage2 = tr("Couldn't locate mod folder. Please, make sure you have Afterbirth+ or Repentance installed");
-    gameMessage1 = tr("No game found");
-    gameMessage2 = tr("Install game first before running app");
+    modMessage1 = tr("Couldn't locate mod folder. Please, make sure you have Afterbirth+ or Repentance(+) installed");
+    gameMessage1 = tr("Install game first before running app");
     jsonFilterText = tr("JSON Files (*.json)");
     saveFileText = tr("Save File");
     openFileText = tr("Open File");
-    if(QFile::exists(QApplication::applicationDirPath() + "/IsaacConfigurator.ini")){
-        QSettings *config = new QSettings(QApplication::applicationDirPath() + "/IsaacConfigurator.ini", QSettings::IniFormat);
+    setWineApp = tr("Set Wine app");
+    wineApp1 = tr("No Wine app was set");
+    winePrefix1 = tr("Set existing directory");
+    if(QFile::exists(GetIniFileLocation() + "/IsaacConfigurator.ini")){
+        QSettings *config = new QSettings(GetIniFileLocation() + "/IsaacConfigurator.ini", QSettings::IniFormat);
         config->beginGroup("Options");
         config->setValue("Language",translator);
         config->endGroup();
@@ -34,20 +34,14 @@ void MainWindow::retranslateStrings(QString translator){
     ui->modRadioButton_Folder->resize(ui->modRadioButton_Folder->sizeHint().width(),ui->modRadioButton_Folder->height());
     ui->lineEdit->move(ui->modRadioButton_Folder->pos().rx() + ui->modRadioButton_Folder->width(), ui->lineEdit->pos().ry());
     ui->lineEdit->setGeometry(ui->lineEdit->pos().x(), ui->lineEdit->pos().y(), ui->groupModsBox->size().width() - ui->lineEdit->pos().x() - 10, ui->lineEdit->height());
-    ui->pushButtonLogUpdate->move(ui->tabBox_ModsLog->width() - ui->pushButtonLogUpdate->sizeHint().width() - 10, ui->pushButtonLogUpdate->pos().ry());
-    ui->checkBoxLogUpdate->resize(ui->checkBoxLogUpdate->sizeHint().width(),ui->checkBoxLogUpdate->height());
-    ui->checkBoxLogUpdate->move(ui->pushButtonLogUpdate->pos().rx() - ui->checkBoxLogUpdate->width(), ui->checkBoxLogUpdate->pos().ry());
-    ui->checkBoxLogFull->resize(ui->checkBoxLogFull->sizeHint().width(),ui->checkBoxLogFull->height());
-    ui->checkBoxLogWarnings->resize(ui->checkBoxLogWarnings->sizeHint().width(),ui->checkBoxLogWarnings->height());
-    int offset = std::max(ui->checkBoxLogFull->pos().rx() + ui->checkBoxLogFull->width(),  ui->checkBoxLogWarnings->pos().rx() + ui->checkBoxLogWarnings->width());
-    ui->checkBoxLogErrors->move(offset + 10, ui->checkBoxLogErrors->pos().ry());
-    ui->checkBoxLogErrors->resize(ui->checkBoxLogErrors->sizeHint().width(),ui->checkBoxLogErrors->height());
-    ui->checkBoxLogLuaDebug->move(offset + 10, ui->checkBoxLogLuaDebug->pos().ry());
-    ui->checkBoxLogLuaDebug->resize(ui->checkBoxLogLuaDebug->sizeHint().width(),ui->checkBoxLogLuaDebug->height());
     ui->label_FilterLog->resize(ui->label_FilterLog->sizeHint().width(),ui->label_FilterLog->height());
     ui->lineEditLog->move(ui->label_FilterLog->pos().rx() + ui->label_FilterLog->width() + 10, ui->lineEditLog->pos().ry());
-    ui->checkBox_CaseSensitivity->move(ui->lineEditLog->pos().rx() + ui->lineEditLog->width() + 10, ui->checkBox_CaseSensitivity->pos().ry());
-    ui->checkBox_CaseSensitivity->resize(ui->checkBox_CaseSensitivity->sizeHint().width(),ui->checkBox_CaseSensitivity->height());
+    ui->downButton->move(ui->lineEditLog->pos().rx() + ui->lineEditLog->width() + 10, ui->downButton->pos().ry());
+    ui->foundLabel->setText(QString("%1 %3 %2").arg(currentIndex + 1 < 1 ? 0 : currentIndex + 1).arg(matches.size()).arg(tr("of")));
+    ui->foundLabel->move(ui->downButton->pos().rx() + ui->downButton->width() + 10, ui->foundLabel->pos().ry());
+    ui->foundLabel->resize(ui->foundLabel->sizeHint().width(),ui->foundLabel->height());
+    ui->checkBox_AscentVoiceover->resize(ui->checkBox_AscentVoiceover->sizeHint().width(),ui->checkBox_AscentVoiceover->height());
+    ui->upButton->move(ui->foundLabel->pos().rx() + ui->foundLabel->width() + 10, ui->upButton->pos().ry());
     ui->savePresetButton->resize(ui->savePresetButton->sizeHint().width(),ui->savePresetButton->height());
     ui->loadPresetButton->resize(ui->loadPresetButton->sizeHint().width(),ui->loadPresetButton->height());
     ui->loadPresetButton->move(ui->savePresetButton->pos().rx() + ui->savePresetButton->width() + 5, ui->loadPresetButton->pos().ry());

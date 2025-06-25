@@ -9,28 +9,30 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    about.cpp \
-    conifg.cpp \
-    directoryFuncs.cpp \
-    iniconfig.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    mods.cpp \
-    translations.cpp
+    src/about.cpp \
+    src/conifg.cpp \
+    src/directoryFuncs.cpp \
+    src/iniconfig.cpp \
+    src/isaaclogreader.cpp \
+    src/main.cpp \
+    src/mainwindow.cpp \
+    src/mods.cpp \
+    src/translations.cpp
 
 HEADERS += \
-    about.h \
-    customerrorhandler.h \
-    mainwindow.h \
-    qtablewidgetcheckbox.h
+    headers/about.h \
+    headers/customerrorhandler.h \
+    headers/isaaclogreader.h \
+    headers/mainwindow.h \
+    headers/qtablewidgetcheckbox.h
 
 FORMS += \
-    about.ui \
-    mainwindow.ui
+    ui/about.ui \
+    ui/mainwindow.ui
 
 TRANSLATIONS += \
-    imc_ru_RU.ts \
-    imc_es_ES.ts
+    translations/imc_ru_RU.ts \
+    translations/imc_es_ES.ts
 CONFIG += lrelease
 CONFIG += embed_translations
 
@@ -40,12 +42,12 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-        icons.qrc
+        icons/icons.qrc
 
-RC_ICONS = wrench.ico
+RC_ICONS = icons/wrench.ico
 
 TARGET = IsaacConfigurator
-VERSION = 1.3.1
+VERSION = 1.4.0
 
 contains(QMAKE_HOST.os, "win32"): QMAKE_LFLAGS += -static
 else: QMAKE_LFLAGS += -static-libstdc++ -static-libgcc

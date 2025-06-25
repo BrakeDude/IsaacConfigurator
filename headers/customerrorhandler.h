@@ -5,6 +5,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
+#include <QDir>
 
 class CustomErrorHandler
 {
@@ -14,12 +15,12 @@ public:
         QString logMessage;
 
         switch (type) {
-        case QtInfoMsg:
+        /*case QtInfoMsg:
             logMessage = QString("Info: %1").arg(msg);
             break;
         case QtWarningMsg:
             logMessage = QString("Warning: %1").arg(msg);
-            break;
+            break;*/
         case QtCriticalMsg:
             logMessage = QString("Critical: %1").arg(msg);
             // Show the critical error message in a pop-up dialog
@@ -32,7 +33,11 @@ public:
             break;
         }
         // Log the message to a file
-        QFile file("ICError.log");
+        QString fileName = "ICError.log";
+#ifdef Q_OS_LINUX
+        fileName = QString(QDir::homePath() + "/.local/share/" + fileName);
+#endif
+        QFile file(fileName);
         if (file.open(QIODevice::WriteOnly | QIODevice::Append)) {
             QTextStream out(&file);
             out << logMessage << "\n";

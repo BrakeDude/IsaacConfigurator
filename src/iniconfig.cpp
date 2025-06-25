@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "headers/mainwindow.h"
 #include "ui_mainwindow.h"
 
 void MainWindow::ConfigIniLoad(){
@@ -18,9 +18,8 @@ void MainWindow::ConfigIniLoad(){
         settings->endGroup();
         settings->sync();
     }
-    connect(timer, SIGNAL(timeout()), this, SLOT(ReSyncConfigIniSlot()), Qt::UniqueConnection);
+
     QSettings *settings = new QSettings(configIniDir + "/config.ini", QSettings::IniFormat);
-    ReSyncConfigIni(settings);
 
     connect(ui->checkBox_ColorCorrection, &QCheckBox::stateChanged, this, [=](int state) {
         settings->beginGroup("Options");
@@ -121,11 +120,48 @@ void MainWindow::ConfigIniLoad(){
         settings->sync();
     });
 
+    ConfigIniReader->start();
+}
+
+void MainWindow::ConfigIniUnload(){
+
+    disconnect(ui->checkBox_ColorCorrection, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_Caustics, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_Shockwave, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_Lighting, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_EffectsFilter, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_Pixelation, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_Bloom, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_WaterSurface, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_Interpolation, &QCheckBox::stateChanged, this, nullptr);
+
 }
 
 void MainWindow::ReSyncConfigIniSlot(){
-    if(QDir(gameDir+"/resources").exists()){
-        QSettings *settings = new QSettings(gameDir + "/resources/config.ini", QSettings::IniFormat);
+    if(QDir(gameDir+"/resources").exists() && ui->tabWidget_Options->isEnabled()){
+        QSettings *settings = new QSettings(gameDir+"/resources/config.ini", QSettings::IniFormat);
+        if (!QFile::exists(gameDir+"/resources/config.ini")) {
+            settings->beginGroup("Options");
+            settings->setValue("EnableColorCorrection",1);
+            settings->setValue("EnableCaustics",1);
+            settings->setValue("EnableShockwave",1);
+            settings->setValue("EnableLighting",1);
+            settings->setValue("EnableFilter",1);
+            settings->setValue("EnablePixelation",1);
+            settings->setValue("EnableBloom",1);
+            settings->setValue("EnableWaterSurface",1);
+            settings->setValue("EnableInterpolation",1);
+            settings->endGroup();
+            settings->sync();
+        }
         ReSyncConfigIni(settings);
     }
 }

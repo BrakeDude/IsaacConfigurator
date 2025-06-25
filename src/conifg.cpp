@@ -1,12 +1,14 @@
-#include "mainwindow.h"
+#include "headers/mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QPushButton>
+#include <QProcess>
 
 QMap<int, int> language = {{0,0}, {1,2}, {2,11}, {3,13}, {4,10}, {5,5}, {6,4}, {7,3}};
 
-void MainWindow::SyncConfigFile(QSettings *settings, bool repentogon){
+void MainWindow::SyncConfigFile(bool repentogon){
     //GFX and HUD
     if(repentogon){
+        QSettings *settings = new QSettings(configDir + "/Repentogon/options.ini", QSettings::IniFormat);
         settings->beginGroup("VanillaTweaks");
 
         if (settings->value("BetterVoidGeneration") == 1) {
@@ -58,9 +60,9 @@ void MainWindow::SyncConfigFile(QSettings *settings, bool repentogon){
         }
 
         if (settings->value("InterpolV2") == 1) {
-            ui->checkBox_Interpolation->setCheckState(Qt::Checked);
+            ui->checkBox_60FPS->setCheckState(Qt::Checked);
         }else{
-            ui->checkBox_Interpolation->setCheckState(Qt::Unchecked);
+            ui->checkBox_60FPS->setCheckState(Qt::Unchecked);
         }
 
         ui->spinBox_AutofillCMD->setValue(settings->value("ConsoleAutofillLimit").toInt());
@@ -87,7 +89,7 @@ void MainWindow::SyncConfigFile(QSettings *settings, bool repentogon){
 
         settings->endGroup();
     }else{
-
+        QSettings *settings = new QSettings(configDir + "/options.ini", QSettings::IniFormat);
         settings->beginGroup("Options");
         if (settings->value("Fullscreen") == 1) {
             ui->checkBox_Fullscreen->setCheckState(Qt::Checked);
@@ -148,7 +150,7 @@ void MainWindow::SyncConfigFile(QSettings *settings, bool repentogon){
             ui->checkBox_BossHPBot->setCheckState(Qt::Unchecked);
         }
 
-        if (settings->value("BulletVisibility") == 1) {
+        if (settings->value("BulletVisibility") == 1 && gameDLC.contains("Repentance")) {
             ui->checkBox_BulletVisibility->setCheckState(Qt::Checked);
         }else{
             ui->checkBox_BulletVisibility->setCheckState(Qt::Unchecked);
@@ -160,7 +162,9 @@ void MainWindow::SyncConfigFile(QSettings *settings, bool repentogon){
 
         ui->horizontalSlider_HUD->setValue((settings->value("HudOffset").toFloat()*10));
 
-        ui->spinBox_Gamma->setValue((settings->value("Gamma").toFloat()*100));
+        if(!ui->spinBox_Gamma->hasFocus()){
+            ui->spinBox_Gamma->setValue((settings->value("Gamma").toFloat()*100));
+        }
 
         ui->spinBox_Width->setValue((settings->value("WindowWidth").toInt()));
         ui->spinBox_Height->setValue((settings->value("WindowHeight").toInt()));
@@ -271,14 +275,109 @@ void MainWindow::SyncConfigFile(QSettings *settings, bool repentogon){
 
         ui->horizontalSlider_OnlineInputDelay->setValue(settings->value("OnlineInputDelay").toInt());
 
+        if (settings->value("AscentVoiceOver") == 1) {
+            ui->checkBox_AscentVoiceover->setCheckState(Qt::Checked);
+        }else{
+            ui->checkBox_AscentVoiceover->setCheckState(Qt::Unchecked);
+        }
+
         settings->endGroup();
     }
 }
 
-void MainWindow::ConnectVanillaOptions(QSettings* settings, bool force){
+void MainWindow::DisconnectVanillaOptions(){
+    disconnect(ui->checkBox_Fullscreen, &QCheckBox::stateChanged, this, nullptr);
+    disconnect(ui->checkBox_Borderless, &QCheckBox::stateChanged, this, nullptr);
+    disconnect(ui->checkBox_Filter, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->comboBox_PopUp, &QComboBox::currentTextChanged, this, nullptr);
+
+    disconnect(ui->checkBox_Camera, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_ChargeBar, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_VSync, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_FoundHUD, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->comboBox_ConsoleFont, &QComboBox::currentTextChanged, this, nullptr);
+
+    disconnect(ui->checkBox_BossHPBot, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_BulletVisibility, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->comboBox_ExtraHUD, &QComboBox::currentTextChanged, this, nullptr);
+
+    disconnect(ui->horizontalSlider_HUD, &QSlider::valueChanged, this, nullptr);
+
+    disconnect(ui->horizontalSlider_Map, &QSlider::valueChanged, this, nullptr);
+
+    disconnect(ui->spinBox_Gamma, &QSpinBox::textChanged, this, nullptr);
+
+    disconnect(ui->spinBox_Width, &QSpinBox::textChanged, this, nullptr);
+
+    disconnect(ui->spinBox_Height, &QSpinBox::textChanged, this, nullptr);
+
+    disconnect(ui->spinBox_PosX, &QSpinBox::textChanged, this, nullptr);
+
+    disconnect(ui->spinBox_PosY, &QSpinBox::textChanged, this, nullptr);
+
+    disconnect(ui->spinBox_MaxScale, &QSpinBox::textChanged, this, nullptr);
+
+    disconnect(ui->spinBox_MaxRenderScale, &QSpinBox::textChanged, this, nullptr);
+
+    disconnect(ui->comboBox_Language, &QComboBox::currentTextChanged, this, nullptr);
+
+    //Music and SFX
+    disconnect(ui->checkBox_Music, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->comboBox_Announcer, &QComboBox::currentTextChanged, this, nullptr);
+
+    disconnect(ui->horizontalSlider_Music, &QSlider::valueChanged, this, nullptr);
+
+    disconnect(ui->horizontalSlider_SFX, &QSlider::valueChanged, this, nullptr);
+
+    //Console and Debugging
+    disconnect(ui->checkBox_ConsoleEnabled, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_FadeConsole, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_SaveCMDHistory, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->comboBox_ConsoleFont, &QComboBox::currentTextChanged, this, nullptr);
+
+    //Misc
+    disconnect(ui->checkBox_Rumble, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_Mouse, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_Pause, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_Steam, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_ModsEnabled, &QCheckBox::stateChanged, this, nullptr);
+
+    //Online
+    disconnect(ui->checkBox_JEcontrols, &QCheckBox::stateChanged, this, nullptr);
+    disconnect(ui->checkBox_Steamer, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_Chat, &QCheckBox::stateChanged, this, nullptr);
+    disconnect(ui->checkBox_Chat_Filter, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->horizontalSlider_PlayerOpacity, &QSlider::valueChanged, this, nullptr);
+
+    disconnect(ui->horizontalSlider_PlayersSFX, &QSlider::valueChanged, this, nullptr);
+
+    disconnect(ui->comboBox_MultiplayerHUD, &QComboBox::currentTextChanged, this, nullptr);
+
+    disconnect(ui->horizontalSlider_OnlineInputDelay, &QSlider::valueChanged, this, nullptr);
+
+    disconnect(ui->checkBox_AscentVoiceover, &QCheckBox::stateChanged, this, nullptr);
+}
+
+void MainWindow::ConnectVanillaOptions(){
     //GFX and HUD
-    if (!force && connectedVanillaOption) return;
-    connectedVanillaOption = true;
+    QSettings *settings = new QSettings(configDir + "/options.ini", QSettings::IniFormat);
     connect(ui->checkBox_Fullscreen, &QCheckBox::stateChanged, this, [=](int state) {
         settings->beginGroup("Options");
         if (state == Qt::Unchecked) {
@@ -287,7 +386,6 @@ void MainWindow::ConnectVanillaOptions(QSettings* settings, bool force){
             settings->setValue("Fullscreen",1);
         }
         settings->endGroup();
-        settings->sync();
     });
 
     connect(ui->checkBox_Borderless, &QCheckBox::stateChanged, this, [=](int state) {
@@ -298,7 +396,6 @@ void MainWindow::ConnectVanillaOptions(QSettings* settings, bool force){
             settings->setValue("UseBorderlessFullscreen",1);
         }
         settings->endGroup();
-        settings->sync();
     });
 
     connect(ui->checkBox_Filter, &QCheckBox::stateChanged, this, [=](int state) {
@@ -309,7 +406,6 @@ void MainWindow::ConnectVanillaOptions(QSettings* settings, bool force){
             settings->setValue("Filter",1);
         }
         settings->endGroup();
-        settings->sync();
     });
 
     connect(ui->comboBox_PopUp, &QComboBox::currentTextChanged, this, [=](){
@@ -669,11 +765,21 @@ void MainWindow::ConnectVanillaOptions(QSettings* settings, bool force){
         settings->endGroup();
         settings->sync();
     });
+
+    connect(ui->checkBox_AscentVoiceover, &QCheckBox::stateChanged, this, [=](int state) {
+        settings->beginGroup("Options");
+        if (state == Qt::Unchecked) {
+            settings->setValue("AscentVoiceOver",0);
+        } else {
+            settings->setValue("AscentVoiceOver",1);
+        }
+        settings->endGroup();
+        settings->sync();
+    });
 }
 
-void MainWindow::ConnectRepentogonOptions(QSettings* settings, bool force){
-    if (!force && connectedRepentogonOption) return;
-    connectedRepentogonOption = true;
+void MainWindow::ConnectRepentogonOptions(){
+    QSettings *settings = new QSettings(configDir + "/Repentogon/options.ini", QSettings::IniFormat);
     connect(ui->checkBox_BetterVoidGeneration, &QCheckBox::stateChanged, this, [=](int state) {
         settings->beginGroup("VanillaTweaks");
         if (state == Qt::Unchecked) {
@@ -762,7 +868,7 @@ void MainWindow::ConnectRepentogonOptions(QSettings* settings, bool force){
         settings->sync();
     });
 
-    connect(ui->checkBox_Interpolation, &QCheckBox::stateChanged, this, [=](int state) {
+    connect(ui->checkBox_60FPS, &QCheckBox::stateChanged, this, [=](int state) {
         settings->beginGroup("VanillaTweaks");
         if (state == Qt::Unchecked) {
             settings->setValue("InterpolV2",0);
@@ -825,34 +931,87 @@ void MainWindow::ConnectRepentogonOptions(QSettings* settings, bool force){
 
 }
 
-void MainWindow::LoadConfig(QString confDir){
-    if (QFile::exists(confDir + "/options.ini")){
-        ui->tabWidget_Options->setEnabled(true);
-        ui->scrollArea_VanillaOptions->setEnabled(true);
-        QSettings *settings = new QSettings(configDir + "/options.ini", QSettings::IniFormat);
+void MainWindow::DisconnectRepentogonOptions(){
+    disconnect(ui->checkBox_BetterVoidGeneration, &QCheckBox::stateChanged, this, nullptr);
 
-        SyncConfigFile(settings, false);
-        ConnectVanillaOptions(settings);
-        if (QFile::exists(confDir + "/Repentogon/options.ini")){
-            QSettings *settings = new QSettings(configDir + "/Repentogon/options.ini", QSettings::IniFormat);
+    disconnect(ui->checkBox_HushAI, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_KeyBum, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_QuickRoom, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_ModUpdates, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_Planetarium, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_Intro, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_FastLasers, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_60FPS, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->spinBox_AutofillCMD, &QSpinBox::textChanged, this, nullptr);
+
+    disconnect(ui->horizontalSlider_AutofillCMD, &QSlider::valueChanged, this, nullptr);
+
+    disconnect(ui->spinBox_Mars, &QSpinBox::textChanged, this, nullptr);
+
+    disconnect(ui->horizontalSlider_Mars, &QSlider::valueChanged, this, nullptr);
+
+    disconnect(ui->checkBox_FileMapGen, &QCheckBox::stateChanged, this, nullptr);
+
+    disconnect(ui->checkBox_FindInRadiusRender, &QCheckBox::stateChanged, this, nullptr);
+
+}
+
+void MainWindow::LoadConfig(bool disable){
+    QDir dir(configDir);
+    if(disable){
+        DisconnectVanillaOptions();
+        DisconnectRepentogonOptions();
+    }
+    if (dir.exists()){
+        if (!ui->tabWidget_Options->isEnabled()){
+            ui->tabWidget_Options->setEnabled(true);
+            ui->actionOpen_config_folder->setEnabled(true);
+        }
+        if (QFile::exists(configDir + "/options.ini")){
+            ui->scrollArea_VanillaOptions->setEnabled(true);
+
+            if (gameDLC != "Repentance+"){
+                ui->groupBox_OnlineSettings->setEnabled(false);
+                ui->checkBox_AscentVoiceover->setEnabled(false);
+            }else
+            {
+                ui->groupBox_OnlineSettings->setEnabled(true);
+                ui->checkBox_AscentVoiceover->setEnabled(true);
+            }
+            if(disable){
+                ConnectVanillaOptions();
+            }
+            SyncConfigFile(false);
+        }else if(ui->scrollArea_VanillaOptions->isEnabled()){
+            ui->scrollArea_VanillaOptions->setEnabled(false);
+        }
+        if (QFile::exists(configDir + "/Repentogon/options.ini")){
             ui->scrollArea_REPENTOGON_Content->setEnabled(true);
-            SyncConfigFile(settings, true);
-            ConnectRepentogonOptions(settings);
+            if(disable){
+                ConnectRepentogonOptions();
+            }
+            SyncConfigFile(true);
         }else{
             ui->scrollArea_REPENTOGON_Content->setEnabled(false);
         }
-
-    }else{
+    }else if (ui->tabWidget_Options->isEnabled()){
         ui->tabWidget_Options->setEnabled(false);
-        QMessageBox::information(this, optionMessage1, optionMessage2);
+        ui->actionOpen_config_folder->setEnabled(false);
+        QMessageBox::information(this, this->windowTitle(), optionMessage1);
     }
+
 }
 
-void MainWindow::ReSyncConfigSlot(){
-    ReSyncConfig();
-}
-
-void MainWindow::LoadConfigFile(){
+void MainWindow::FindConfigFile(){
+    LogReader->pause();
 #ifdef Q_OS_WINDOWS
     configDir = QString(getenv("USERPROFILE")) + "\\Documents\\My Games\\Binding of Isaac " + gameDLC;
     if (gameStore == "GOG")
@@ -863,52 +1022,38 @@ void MainWindow::LoadConfigFile(){
         configDir+= " (Epic)";
     }
 #elif defined(Q_OS_LINUX)
-    if (DLCName == "Repentance" || DLCName == "Repentance+") {
-        configDir = QDir::homePath() + "/.steam/steam/steamapps/compatdata/250900/pfx/drive_c/users/steamuser/Documents/My Games/Binding of Isaac " + DLCName + "/";
+    if (gameStore == "Steam"){
+        if (gameDLC.contains("Repentance")) {
+            configDir = QDir::homePath() + "/.steam/steam/steamapps/compatdata/250900/pfx/drive_c/users/steamuser/Documents/My Games/Binding of Isaac " + gameDLC + "/";
+        }else{
+            configDir = QDir::homePath() + "/.local/share/binding of isaac " + gameDLC.toLower();
+        }
     }else{
-        configDir = QDir::homePath() + "/.local/share/binding of isaac " + DLCName.toLower();
+        QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+        if (linuxWinePrefix.isEmpty()){
+            GetWinePrefix();
+        }
+        env.insert("WINEPREFIX", linuxWinePrefix);
+        QProcess process;
+        process.setProcessEnvironment(env);
+        process.start(linuxWineApp, QStringList() << "cmd" << "/C" << "echo %HOMEPATH%");
+        process.waitForFinished();
+
+        QString output = process.readAllStandardOutput().trimmed();
+        output.replace("\\","/");
+        configDir = linuxWinePrefix + "/drive_c" + output + "/Documents/My Games/Binding of Isaac " + gameDLC;
+        if (gameStore == "GOG")
+        {
+            configDir+= " (Galaxy)";
+        }else if (gameStore == "Epic")
+        {
+            configDir+= " (Epic)";
+        }
     }
 #endif
-    LoadConfig(configDir);
-    if (QFile::exists(configDir + "/log.txt")){
-
-        connect(timer, SIGNAL(timeout()), this, SLOT(onFileLoaded()), Qt::UniqueConnection);
-
-        connect(ui->pushButtonLogUpdate, &QPushButton::clicked, this, [=](){
-            onFileLoaded(true);
-        });
-        onFileLoaded(true);
-    }
-    if (QFile::exists(configDir + "/options.ini")){
-        connect(timer, SIGNAL(timeout()), this, SLOT(ReSyncConfigSlot()), Qt::UniqueConnection);
-    }
+    LogReader->changeLogFile(configDir + "/log.txt");
 }
 
 void MainWindow::ReSyncConfig(){
-    if (QDir(configDir).exists())
-    {
-        ui->actionOpen_config_folder->setEnabled(true);
-    }else{
-        ui->actionOpen_config_folder->setEnabled(false);
-    }
-    if (QFile::exists(configDir + "/options.ini")){
-        ui->scrollArea_VanillaOptions->setEnabled(true);
-        QSettings *settings = new QSettings(configDir + "/options.ini", QSettings::IniFormat);
-        settings->beginGroup("Options");
-        if (gameDLC != "Repentance+"){
-            ui->groupBox_OnlineSettings->setEnabled(false);
-        }
-        settings->endGroup();
-        SyncConfigFile(settings, false);
-        if (QFile::exists(configDir + "/Repentogon/options.ini")){
-            QSettings *settings = new QSettings(configDir + "/Repentogon/options.ini", QSettings::IniFormat);
-            ui->scrollArea_REPENTOGON_Content->setEnabled(true);
-            SyncConfigFile(settings, true);
-        }else{
-            ui->scrollArea_REPENTOGON_Content->setEnabled(false);
-        }
-    }else{
-        ui->tabWidget_Options->setEnabled(false);
-        //QMessageBox::information(this, optionMessage1, optionMessage2);
-    }
+    LoadConfig();
 }

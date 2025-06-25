@@ -1,5 +1,5 @@
-#include "mainwindow.h"
-#include "customerrorhandler.h"
+#include "headers/mainwindow.h"
+#include "headers/customerrorhandler.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
