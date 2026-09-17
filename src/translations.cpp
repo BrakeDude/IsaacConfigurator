@@ -14,11 +14,11 @@ void MainWindow::retranslateStrings(QString translator){
     openDirName = tr("Open Directory");
     modMessage1 = tr("Couldn't locate mod folder. Please, make sure you have Afterbirth+ or Repentance(+) installed");
     gameMessage1 = tr("Install game first before running app");
-    jsonFilterText = tr("JSON Files (*.json)");
     saveFileText = tr("Save File");
     openFileText = tr("Open File");
     setWineApp = tr("Set Wine app");
     wineApp1 = tr("No Wine app was set");
+    wineApp2 = tr("Wine was not found");
     winePrefix1 = tr("Set existing directory");
     if(QFile::exists(GetIniFileLocation() + "/IsaacConfigurator.ini")){
         QSettings *config = new QSettings(GetIniFileLocation() + "/IsaacConfigurator.ini", QSettings::IniFormat);
@@ -34,20 +34,14 @@ void MainWindow::retranslateStrings(QString translator){
     ui->modRadioButton_Folder->resize(ui->modRadioButton_Folder->sizeHint().width(),ui->modRadioButton_Folder->height());
     ui->lineEdit->move(ui->modRadioButton_Folder->pos().rx() + ui->modRadioButton_Folder->width(), ui->lineEdit->pos().ry());
     ui->lineEdit->setGeometry(ui->lineEdit->pos().x(), ui->lineEdit->pos().y(), ui->groupModsBox->size().width() - ui->lineEdit->pos().x() - 10, ui->lineEdit->height());
-    ui->label_FilterLog->resize(ui->label_FilterLog->sizeHint().width(),ui->label_FilterLog->height());
-    ui->lineEditLog->move(ui->label_FilterLog->pos().rx() + ui->label_FilterLog->width() + 10, ui->lineEditLog->pos().ry());
-    ui->downButton->move(ui->lineEditLog->pos().rx() + ui->lineEditLog->width() + 10, ui->downButton->pos().ry());
-    ui->foundLabel->setText(QString("%1 %3 %2").arg(currentIndex + 1 < 1 ? 0 : currentIndex + 1).arg(matches.size()).arg(tr("of")));
-    ui->foundLabel->move(ui->downButton->pos().rx() + ui->downButton->width() + 10, ui->foundLabel->pos().ry());
-    ui->foundLabel->resize(ui->foundLabel->sizeHint().width(),ui->foundLabel->height());
     ui->checkBox_AscentVoiceover->resize(ui->checkBox_AscentVoiceover->sizeHint().width(),ui->checkBox_AscentVoiceover->height());
-    ui->upButton->move(ui->foundLabel->pos().rx() + ui->foundLabel->width() + 10, ui->upButton->pos().ry());
     ui->savePresetButton->resize(ui->savePresetButton->sizeHint().width(),ui->savePresetButton->height());
     ui->loadPresetButton->resize(ui->loadPresetButton->sizeHint().width(),ui->loadPresetButton->height());
     ui->loadPresetButton->move(ui->savePresetButton->pos().rx() + ui->savePresetButton->width() + 5, ui->loadPresetButton->pos().ry());
     ui->checkBox_JEcontrols->resize(ui->checkBox_JEcontrols->sizeHint().width(),ui->checkBox_JEcontrols->height());
     ui->label_PopUp->resize(ui->label_PopUp->sizeHint().width(),ui->label_PopUp->height());
     ui->checkBox_WaterSurface->resize(ui->checkBox_WaterSurface->sizeHint().width(),ui->checkBox_WaterSurface->height());
+    recentFiles->setTitle(tr("Recent"));
 }
 
 void MainWindow::initLanguages(QString translation){
@@ -55,7 +49,7 @@ void MainWindow::initLanguages(QString translation){
     langs.insert("ru_RU","Русский");
     langs.insert("es_ES","Español");
     QMapIterator<QString, QString> i(langs);
-
+    retranslateStrings("en_US");
     while (i.hasNext()) {
         i.next();
         QString baseName = i.key();
@@ -121,5 +115,4 @@ void MainWindow::initLanguages(QString translation){
     }else{
         ui->actionEnglish->setChecked(false);
     }
-    retranslateStrings(translation);
 }

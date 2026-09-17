@@ -4,6 +4,14 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
 
+QMAKE_CFLAGS -= -O2
+QMAKE_CFLAGS -= -O1
+QMAKE_CXXFLAGS -= -O2
+QMAKE_CXXFLAGS -= -O1
+QMAKE_CFLAGS = -O3
+QMAKE_LFLAGS = -O3
+QMAKE_CXXFLAGS = -O3
+
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
@@ -13,7 +21,6 @@ SOURCES += \
     src/conifg.cpp \
     src/directoryFuncs.cpp \
     src/iniconfig.cpp \
-    src/isaaclogreader.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
     src/mods.cpp \
@@ -22,7 +29,6 @@ SOURCES += \
 HEADERS += \
     headers/about.h \
     headers/customerrorhandler.h \
-    headers/isaaclogreader.h \
     headers/mainwindow.h \
     headers/qtablewidgetcheckbox.h
 
@@ -47,7 +53,7 @@ RESOURCES += \
 RC_ICONS = icons/wrench.ico
 
 TARGET = IsaacConfigurator
-VERSION = 1.4.0
+VERSION = 1.5.0
 
 contains(QMAKE_HOST.os, "win32"): QMAKE_LFLAGS += -static
 else: QMAKE_LFLAGS += -static-libstdc++ -static-libgcc

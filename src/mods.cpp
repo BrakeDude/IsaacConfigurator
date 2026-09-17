@@ -174,114 +174,155 @@ void MainWindow::SyncMods(QString directory, bool force, bool message) {
     }
 }
 
+bool loaded = false;
+
 void MainWindow::loadMods(QString directory) {
 
     SyncMods(directory, true, true);
-
-    connect(ui->activateButton, &QPushButton::clicked, this, [=](){
-        //SyncMods(getModPath());
-        for(int i=0; i < ui->tableMods->rowCount(); ++i){
-            QWidget *widget = ui->tableMods->cellWidget(i, 0);
-            QCheckBox *checkBox = qobject_cast<QCheckBox *>(widget);
-            QString folder = ui->tableMods->item(i,2)->text();
-            if(checkBox->checkState() == Qt::Unchecked){
-                if (QFile::exists(directory + "/" + folder + "/disable.it")) {
-                    QFile::remove(directory + "/" + folder + "/disable.it");
-                    checkBox->setCheckState(Qt::Checked);
-                }
-            }
-        }
-    });
-
-    connect(ui->deactivateButton, &QPushButton::clicked, this, [=](){
-        //SyncMods(getModPath());
-        for(int i=0; i < ui->tableMods->rowCount(); ++i){
-            QWidget *widget = ui->tableMods->cellWidget(i, 0);
-            QCheckBox *checkBox = qobject_cast<QCheckBox *>(widget);
-            QString folder = ui->tableMods->item(i,2)->text();
-            if(checkBox->checkState() == Qt::Checked && !QFile::exists(directory + "/" + folder + "/disable.it")){
-                QFile file(directory + "/" + folder + "/disable.it");
-                file.open(QIODevice::WriteOnly | QIODevice::Text);
-                file.close();
-                checkBox->setCheckState(Qt::Unchecked);
-            }
-        }
-    });
-
-    connect(ui->pushButton_UpdateMods, &QPushButton::clicked, this, [=](){
-        SyncMods(getModPath(), true);
-        SortLineEdit();
-    });
-
-    connect(ui->savePresetButton, &QPushButton::clicked, this, [=](){
-        if (ui->tableMods->rowCount() > 0){
-            QJsonObject jsonObject;
-            QJsonArray jsonArray;
-
-            for (int i = 0; i < ui->tableMods->rowCount(); ++i) {
+    if (!loaded){
+        connect(ui->activateButton, &QPushButton::clicked, this, [=](){
+            //SyncMods(getModPath());
+            for(int i=0; i < ui->tableMods->rowCount(); ++i){
                 QWidget *widget = ui->tableMods->cellWidget(i, 0);
                 QCheckBox *checkBox = qobject_cast<QCheckBox *>(widget);
-                if (checkBox->checkState() == Qt::Checked){
-                    QJsonObject item;
-                    item["folder"] = ui->tableMods->item(i,2)->text();
-                    item["name"] = ui->tableMods->item(i,1)->text();
-                    jsonArray.append(item);
+                QString folder = ui->tableMods->item(i,2)->text();
+                if(checkBox->checkState() == Qt::Unchecked){
+                    if (QFile::exists(directory + "/" + folder + "/disable.it")) {
+                        QFile::remove(directory + "/" + folder + "/disable.it");
+                        checkBox->setCheckState(Qt::Checked);
+                    }
                 }
             }
+        });
 
-            jsonObject["mods"] = jsonArray;
-
-            QJsonDocument jsonDoc(jsonObject);
-            QByteArray jsonData = jsonDoc.toJson();
-
-            QString filePath = QFileDialog::getSaveFileName(this, saveFileText, "", jsonFilterText);
-
-            if (!filePath.isEmpty()) {
-                QFile file(filePath);
-                if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-                    file.write(jsonData);
+        connect(ui->deactivateButton, &QPushButton::clicked, this, [=](){
+            //SyncMods(getModPath());
+            for(int i=0; i < ui->tableMods->rowCount(); ++i){
+                QWidget *widget = ui->tableMods->cellWidget(i, 0);
+                QCheckBox *checkBox = qobject_cast<QCheckBox *>(widget);
+                QString folder = ui->tableMods->item(i,2)->text();
+                if(checkBox->checkState() == Qt::Checked && !QFile::exists(directory + "/" + folder + "/disable.it")){
+                    QFile file(directory + "/" + folder + "/disable.it");
+                    file.open(QIODevice::WriteOnly | QIODevice::Text);
                     file.close();
+                    checkBox->setCheckState(Qt::Unchecked);
                 }
             }
-        }
-    });
+        });
 
-    connect(ui->loadPresetButton, &QPushButton::clicked, this, [=](){
-        if (ui->tableMods->rowCount() > 0){
-            QString fileName = QFileDialog::getOpenFileName(nullptr, openFileText, "",  jsonFilterText);
-            QFile file(fileName);
-            if (!file.open(QIODevice::ReadOnly)) {
-                qWarning("Couldn't open file.");
-                return;
-            }
+        connect(ui->pushButton_UpdateMods, &QPushButton::clicked, this, [=](){
+            SyncMods(getModPath(), true);
+            SortLineEdit();
+        });
 
-            QByteArray data = file.readAll();
-            QJsonDocument doc(QJsonDocument::fromJson(data));
-            QJsonObject json = doc.object();
+        connect(ui->savePresetButton, &QPushButton::clicked, this, [=](){
+            if (ui->tableMods->rowCount() > 0){
+                QString param = "(*.json *.txt)";
+                QString filePath = QFileDialog::getSaveFileName(this, saveFileText, "", fileFiterText, &param);
 
-            QJsonArray items = json["mods"].toArray();
-            QMap<QString, int> mods = QMap<QString, int>{};
-            for (int row = 0; row < ui->tableMods->rowCount(); ++row) {
-                QTableWidgetItem *item = ui->tableMods->item(row, 2);
-                if (item)
-                {
-                    mods.insert(item->text(), row);
+                if (!filePath.isEmpty()) {
+                    QFile file(filePath);
+                    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+                        QFileInfo fileInto(file);
+                        if(fileInto.suffix() == "json"){
+                            QJsonObject jsonObject;
+                            QJsonArray jsonArray;
+
+                            for (int i = 0; i < ui->tableMods->rowCount(); ++i) {
+                                QWidget *widget = ui->tableMods->cellWidget(i, 0);
+                                QCheckBox *checkBox = qobject_cast<QCheckBox *>(widget);
+                                if (checkBox->checkState() == Qt::Checked){
+                                    QJsonObject item;
+                                    item["folder"] = ui->tableMods->item(i,2)->text();
+                                    item["name"] = ui->tableMods->item(i,1)->text();
+                                    jsonArray.append(item);
+                                }
+                            }
+
+                            jsonObject["mods"] = jsonArray;
+
+                            QJsonDocument jsonDoc(jsonObject);
+                            QByteArray jsonData = jsonDoc.toJson();
+                            file.write(jsonData);
+                            file.close();
+                        }else if(QFileInfo(filePath).suffix() == "txt"){
+                            QStringList list;
+                            QTextStream stream(&file);
+                            for (int i = 0; i < ui->tableMods->rowCount(); ++i) {
+                                QWidget *widget = ui->tableMods->cellWidget(i, 0);
+                                QCheckBox *checkBox = qobject_cast<QCheckBox *>(widget);
+                                if (checkBox->checkState() == Qt::Checked){
+                                    list.append(ui->tableMods->item(i,2)->text());
+                                }
+                            }
+                            list.sort(Qt::CaseInsensitive);
+                            stream << list.join("\n");
+                            file.close();
+                        }else{
+                            file.close();
+                            QMessageBox::information(this, this->windowTitle(), "Can't save to unsopported format");
+                        }
+                    }
                 }
             }
-            ui->deactivateButton->click();
-            for (const QJsonValueRef item : items) {
-                QJsonObject obj = item.toObject();
-                QString folder = obj["folder"].toString();
+        });
 
-                if (mods.contains(folder) && ((obj["active"].isBool() && obj["active"].toBool()) || obj["active"].isNull()) ) {
-                    QWidget *widget = ui->tableMods->cellWidget(mods.value(folder), 0);
-                    QCheckBox *checkBox = qobject_cast<QCheckBox *>(widget);
-                    checkBox->setCheckState(Qt::Checked);
+        connect(ui->loadPresetButton, &QPushButton::clicked, this, [=](){
+            if (ui->tableMods->rowCount() > 0){
+                QString param = "(*.json *.txt)";
+                QString fileName = QFileDialog::getOpenFileName(nullptr, openFileText, "",  fileFiterText, &param);
+                QFile file(fileName);
+                if (!file.open(QIODevice::ReadOnly)) {
+                    qWarning("Couldn't open file.");
+                    return;
                 }
-            }
-        }
-    });
 
+                QFileInfo fileInfo(file);
+
+                QByteArray data = file.readAll();
+                QMap<QString, int> mods = QMap<QString, int>{};
+                for (int row = 0; row < ui->tableMods->rowCount(); ++row) {
+                    QTableWidgetItem *item = ui->tableMods->item(row, 2);
+                    if (item)
+                    {
+                        mods.insert(item->text(), row);
+                    }
+                }
+                if(fileInfo.suffix() == "json"){
+                    QJsonDocument doc(QJsonDocument::fromJson(data));
+                    QJsonObject json = doc.object();
+
+                    QJsonArray items = json["mods"].toArray();
+
+                    ui->deactivateButton->click();
+                    for (const QJsonValueRef item : items) {
+                        QJsonObject obj = item.toObject();
+                        QString folder = obj["folder"].toString();
+
+                        if (mods.contains(folder) && ((obj["active"].isBool() && obj["active"].toBool()) || obj["active"].isNull()) ) {
+                            QWidget *widget = ui->tableMods->cellWidget(mods.value(folder), 0);
+                            QCheckBox *checkBox = qobject_cast<QCheckBox *>(widget);
+                            checkBox->setCheckState(Qt::Checked);
+                        }
+                    }
+                }else if(fileInfo.suffix() == "txt"){
+                    ui->deactivateButton->click();
+                    QStringList modList = QString(data).split("\r\n");
+                    for(QString modFolder : modList){
+                        if (mods.contains(modFolder)){
+                            QWidget *widget = ui->tableMods->cellWidget(mods.value(modFolder), 0);
+                            QCheckBox *checkBox = qobject_cast<QCheckBox *>(widget);
+                            checkBox->setCheckState(Qt::Checked);
+                        }
+                    }
+                }else {
+                    QMessageBox::information(this, this->windowTitle(), "Can't load from unsopported format");
+                }
+                file.close();
+            }
+        });
+        loaded = true;
+    };
 }
 
 bool MainWindow::HasModSupport()

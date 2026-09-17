@@ -1011,7 +1011,6 @@ void MainWindow::LoadConfig(bool disable){
 }
 
 void MainWindow::FindConfigFile(){
-    LogReader->pause();
 #ifdef Q_OS_WINDOWS
     configDir = QString(getenv("USERPROFILE")) + "\\Documents\\My Games\\Binding of Isaac " + gameDLC;
     if (gameStore == "GOG")
@@ -1051,7 +1050,6 @@ void MainWindow::FindConfigFile(){
         }
     }
 #endif
-    LogReader->changeLogFile(configDir + "/log.txt");
 }
 
 void MainWindow::ReSyncConfig(){

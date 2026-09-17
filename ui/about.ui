@@ -54,7 +54,7 @@
     </size>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Isaac Configurator is a tool to manage game settings of &lt;a href=&quot;https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;The Binding of Isaac: Rebirth&lt;/span&gt;&lt;/a&gt; and its DLCs and mods for Afterbirth+/Repentance. Source code can be found on &lt;a href=&quot;https://github.com/BrakeDude/imc&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Isaac Configurator is a tool to manage game settings of &lt;a href=&quot;https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;The Binding of Isaac: Rebirth&lt;/span&gt;&lt;/a&gt; and its DLCs and mods for Afterbirth+/Repentance(+). Source code can be found on &lt;a href=&quot;https://github.com/BrakeDude/imc&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="textFormat">
     <enum>Qt::RichText</enum>

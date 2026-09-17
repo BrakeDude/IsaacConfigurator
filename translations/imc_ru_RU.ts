@@ -327,78 +327,73 @@
         <translation>Предел автозаполнения комманд</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="1907"/>
+        <location filename="../ui/mainwindow.ui" line="1910"/>
         <source>Mods</source>
         <translation>Моды</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="1919"/>
+        <location filename="../ui/mainwindow.ui" line="1922"/>
         <source>Turn off</source>
         <translation>Выключить</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="1932"/>
+        <location filename="../ui/mainwindow.ui" line="1935"/>
         <source>Turn on</source>
         <translation>Включить</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="1984"/>
+        <location filename="../ui/mainwindow.ui" line="1987"/>
         <source>Mod Folder</source>
         <translation>Папка мода</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2000"/>
+        <location filename="../ui/mainwindow.ui" line="2003"/>
         <source>Find by:</source>
         <oldsource>Sort by</oldsource>
         <translation>Найти по:</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2016"/>
+        <location filename="../ui/mainwindow.ui" line="2019"/>
         <source>Save preset</source>
         <translation>Сохранить пресет</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2029"/>
+        <location filename="../ui/mainwindow.ui" line="2032"/>
         <source>Load preset</source>
         <translation>Загрузить пресет</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2048"/>
-        <source>Log</source>
-        <translation>Лог</translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="2229"/>
+        <location filename="../ui/mainwindow.ui" line="2141"/>
         <source>Set game executable</source>
         <translation>Назначить файл игры</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2264"/>
+        <location filename="../ui/mainwindow.ui" line="2176"/>
         <source>Open config folder</source>
         <translation>Открыть папку настроек</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2272"/>
+        <location filename="../ui/mainwindow.ui" line="2184"/>
         <source>Dark theme</source>
         <translation>Тёмная тема</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2280"/>
+        <location filename="../ui/mainwindow.ui" line="2192"/>
         <source>Disable Repentogon</source>
         <translation>Отключить Repentogon</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2285"/>
+        <location filename="../ui/mainwindow.ui" line="2197"/>
         <source>Set Wine executable</source>
         <translation>Задать программу Wine</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2290"/>
+        <location filename="../ui/mainwindow.ui" line="2202"/>
         <source>Set Wine Prefix (folder)</source>
         <translation>Задать префикс Wine (папку)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2042"/>
+        <location filename="../ui/mainwindow.ui" line="2045"/>
         <source>Update</source>
         <translation>Обновить</translation>
     </message>
@@ -472,79 +467,79 @@
         <translation>Громкость игроков</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2171"/>
+        <location filename="../ui/mainwindow.ui" line="2083"/>
         <source>Options</source>
         <translation>Опции</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="1590"/>
-        <location filename="../ui/mainwindow.ui" line="2175"/>
+        <location filename="../ui/mainwindow.ui" line="2087"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2185"/>
+        <location filename="../ui/mainwindow.ui" line="2097"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2199"/>
+        <location filename="../ui/mainwindow.ui" line="2111"/>
         <source>Close the app</source>
         <translation>Закрыть программу</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2221"/>
+        <location filename="../ui/mainwindow.ui" line="2133"/>
         <source>Close the game</source>
         <translation>Закрыть игру</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="1541"/>
-        <location filename="../ui/mainwindow.ui" line="2246"/>
+        <location filename="../ui/mainwindow.ui" line="2158"/>
         <source>English</source>
         <translation>Английский</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2251"/>
+        <location filename="../ui/mainwindow.ui" line="2163"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2202"/>
+        <location filename="../ui/mainwindow.ui" line="2114"/>
         <source>Esc</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2210"/>
+        <location filename="../ui/mainwindow.ui" line="2122"/>
         <source>Start the game</source>
         <translation>Начать игру</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2213"/>
+        <location filename="../ui/mainwindow.ui" line="2125"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2224"/>
+        <location filename="../ui/mainwindow.ui" line="2136"/>
         <source>Ctrl+Shift+C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2232"/>
+        <location filename="../ui/mainwindow.ui" line="2144"/>
         <source>Set game folder</source>
         <translation>Назначить папку с игрой</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2256"/>
+        <location filename="../ui/mainwindow.ui" line="2168"/>
         <source>Open game folder</source>
         <translation>Открыть папку с игрой</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2259"/>
+        <location filename="../ui/mainwindow.ui" line="2171"/>
         <source>Open game install folder</source>
         <translation>Открыть папку установленной игры</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2235"/>
+        <location filename="../ui/mainwindow.ui" line="2147"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
@@ -611,32 +606,27 @@
         <translation>Синхронизация Steam</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2092"/>
-        <source>Find:</source>
-        <translation>Найти:</translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="2151"/>
+        <location filename="../ui/mainwindow.ui" line="2062"/>
         <source>Configurator</source>
         <translation>Конфигуратор</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2164"/>
+        <location filename="../ui/mainwindow.ui" line="2076"/>
         <source>Game</source>
         <translation>Игра</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2207"/>
+        <location filename="../ui/mainwindow.ui" line="2119"/>
         <source>Start</source>
         <translation>Запустить</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2218"/>
+        <location filename="../ui/mainwindow.ui" line="2130"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2196"/>
+        <location filename="../ui/mainwindow.ui" line="2108"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
@@ -656,19 +646,24 @@
         <translation>Сначала установите игру перед ее запуском</translation>
     </message>
     <message>
-        <location filename="../src/translations.cpp" line="19"/>
+        <location filename="../src/translations.cpp" line="18"/>
         <source>Open File</source>
         <translation>Открыть файл</translation>
     </message>
     <message>
-        <location filename="../src/translations.cpp" line="20"/>
+        <location filename="../src/translations.cpp" line="19"/>
         <source>Set Wine app</source>
         <translation>Задать Wine</translation>
     </message>
     <message>
-        <location filename="../src/translations.cpp" line="21"/>
+        <location filename="../src/translations.cpp" line="20"/>
         <source>No Wine app was set</source>
         <translation>Wine не был установлен</translation>
+    </message>
+    <message>
+        <location filename="../src/translations.cpp" line="21"/>
+        <source>Wine was not found</source>
+        <translation>Wine не был найден</translation>
     </message>
     <message>
         <location filename="../src/translations.cpp" line="22"/>
@@ -681,7 +676,7 @@
         <translation>Активный</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="1965"/>
+        <location filename="../ui/mainwindow.ui" line="1968"/>
         <location filename="../src/translations.cpp" line="12"/>
         <source>Mod Name</source>
         <translation>Название мода</translation>
@@ -697,19 +692,15 @@
         <translation>Не возможно найти папку с модами. Убедитесь, что у вас установлен Afterbirth+ или Repentance(+)</translation>
     </message>
     <message>
-        <location filename="../src/translations.cpp" line="18"/>
+        <location filename="../src/translations.cpp" line="17"/>
         <source>Save File</source>
         <translation>Сохранить файл</translation>
     </message>
     <message>
-        <location filename="../src/translations.cpp" line="17"/>
-        <source>JSON Files (*.json)</source>
-        <translation>Файлы JSON (*.json)</translation>
-    </message>
-    <message>
-        <location filename="../src/translations.cpp" line="40"/>
-        <source>of</source>
-        <translation>из</translation>
+        <location filename="../headers/mainwindow.h" line="80"/>
+        <location filename="../src/translations.cpp" line="44"/>
+        <source>Recent</source>
+        <translation>Недавние</translation>
     </message>
 </context>
 <context>
@@ -721,7 +712,7 @@
     </message>
     <message>
         <location filename="../ui/about.ui" line="57"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Isaac Configurator is a tool to manage game settings of &lt;a href=&quot;https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;The Binding of Isaac: Rebirth&lt;/span&gt;&lt;/a&gt; and its DLCs and mods for Afterbirth+/Repentance. Source code can be found on &lt;a href=&quot;https://github.com/BrakeDude/imc&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Isaac Configurator is a tool to manage game settings of &lt;a href=&quot;https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;The Binding of Isaac: Rebirth&lt;/span&gt;&lt;/a&gt; and its DLCs and mods for Afterbirth+/Repentance(+). Source code can be found on &lt;a href=&quot;https://github.com/BrakeDude/imc&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Isaac Configurator - инструмент для управления настройками &lt;a href=&quot;https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;The Binding of Isaac: Rebirth&lt;/span&gt;&lt;/a&gt; с DLC и модами Afterbirth+/Repentance(+). Исходный код может быть найден на &lt;a href=&quot;https://github.com/BrakeDude/imc&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>

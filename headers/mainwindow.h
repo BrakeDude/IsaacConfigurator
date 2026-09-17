@@ -16,7 +16,7 @@
 #include <QDebug>
 #include <QFileSystemWatcher>
 #include <QTextCursor>
-#include "headers/isaaclogreader.h"
+#include <QMenu>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -45,26 +45,20 @@ private slots:
 
     void ReSyncMods();
 
-    void on_lineEditLog_editingFinished();
-
-    void on_downButton_clicked();
-
-    void on_upButton_clicked();
-
 private:
     QString optionMessage1;
     QStringList modTableHeaders;
     QString openDirName;
     QString modMessage1;
     QString gameMessage1;
-    QString jsonFilterText;
+    QString fileFiterText = "(*.json *.txt);;(*.json);;(*.txt)";
     QString saveFileText;
     QString openFileText;
     QString setWineApp;
     QString wineApp1;
+    QString wineApp2;
     QString winePrefix1;
 
-    IsaacLogReader *LogReader = new IsaacLogReader();
     QThread *ConfigReader = new QThread();
     QThread *ConfigIniReader = new QThread();
     QThread *ModSyncer = new QThread();
@@ -83,6 +77,7 @@ private:
     QString linuxWinePrefix = "";
     int currentIndex = -1;
     QList<int> matches;
+    QMenu *recentFiles = new QMenu(tr("Recent"));
 
     void initLanguages(QString translation);
     void retranslateStrings(QString translator);
@@ -114,9 +109,8 @@ private:
     void GetWinePrefix();
     void InitThreads();
     bool IsExecutable(QFile file);
-    void highlightMatch();
-    void updateCounter();
-    void clearHighlighting();
+    void addToRecent(QString location);
+    QAction* MakeRecentPathAction(QString path);
 };
 
 #endif // MAINWINDOW_H

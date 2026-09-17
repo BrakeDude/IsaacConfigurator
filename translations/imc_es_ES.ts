@@ -180,68 +180,63 @@
         <translation>Habilitar mods</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="1907"/>
+        <location filename="../ui/mainwindow.ui" line="1910"/>
         <source>Mods</source>
         <translation>Mods</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="1919"/>
+        <location filename="../ui/mainwindow.ui" line="1922"/>
         <source>Turn off</source>
         <translation>Desactivar</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="1932"/>
+        <location filename="../ui/mainwindow.ui" line="1935"/>
         <source>Turn on</source>
         <translation>Activar</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="1984"/>
+        <location filename="../ui/mainwindow.ui" line="1987"/>
         <source>Mod Folder</source>
         <translation>Carpeta de mods</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2000"/>
+        <location filename="../ui/mainwindow.ui" line="2003"/>
         <source>Find by:</source>
         <oldsource>Sort by</oldsource>
         <translation>Encontrar por:</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2016"/>
+        <location filename="../ui/mainwindow.ui" line="2019"/>
         <source>Save preset</source>
         <translation>Guardar preajuste</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2029"/>
+        <location filename="../ui/mainwindow.ui" line="2032"/>
         <source>Load preset</source>
         <translation>Cargar preajuste</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2048"/>
-        <source>Log</source>
-        <translation>Log</translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="2229"/>
+        <location filename="../ui/mainwindow.ui" line="2141"/>
         <source>Set game executable</source>
         <translation>Elegir ejecutable del juego</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2264"/>
+        <location filename="../ui/mainwindow.ui" line="2176"/>
         <source>Open config folder</source>
         <translation>Abrir carpeta de Configuración</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2272"/>
+        <location filename="../ui/mainwindow.ui" line="2184"/>
         <source>Dark theme</source>
         <translation>Tema oscuro</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2280"/>
+        <location filename="../ui/mainwindow.ui" line="2192"/>
         <source>Disable Repentogon</source>
         <translation>Desactivar Repentogon</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2042"/>
+        <location filename="../ui/mainwindow.ui" line="2045"/>
         <source>Update</source>
         <translation>Actualizar</translation>
     </message>
@@ -461,89 +456,89 @@
         <translation>Límite de autocompletado de comandos</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2171"/>
+        <location filename="../ui/mainwindow.ui" line="2083"/>
         <source>Options</source>
         <translation>Opciones</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2285"/>
+        <location filename="../ui/mainwindow.ui" line="2197"/>
         <source>Set Wine executable</source>
         <translation>Establecer ejecutable de Wine</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2290"/>
+        <location filename="../ui/mainwindow.ui" line="2202"/>
         <source>Set Wine Prefix (folder)</source>
         <translation>Establecer prefijo de Wine (carpeta)</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="1590"/>
-        <location filename="../ui/mainwindow.ui" line="2175"/>
+        <location filename="../ui/mainwindow.ui" line="2087"/>
         <source>Language</source>
         <translation>Idioma</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2185"/>
+        <location filename="../ui/mainwindow.ui" line="2097"/>
         <source>Help</source>
         <translation>Ayuda</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2199"/>
+        <location filename="../ui/mainwindow.ui" line="2111"/>
         <source>Close the app</source>
         <translation>Cerrar el programa</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2221"/>
+        <location filename="../ui/mainwindow.ui" line="2133"/>
         <source>Close the game</source>
         <translation>Cerrar el juego</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2232"/>
+        <location filename="../ui/mainwindow.ui" line="2144"/>
         <source>Set game folder</source>
         <translation>Establecer carpeta de juego</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="1541"/>
-        <location filename="../ui/mainwindow.ui" line="2246"/>
+        <location filename="../ui/mainwindow.ui" line="2158"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2251"/>
+        <location filename="../ui/mainwindow.ui" line="2163"/>
         <source>About</source>
         <translation>A cerca de</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2202"/>
+        <location filename="../ui/mainwindow.ui" line="2114"/>
         <source>Esc</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2210"/>
+        <location filename="../ui/mainwindow.ui" line="2122"/>
         <source>Start the game</source>
         <translation>Iniciar el juego</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2213"/>
+        <location filename="../ui/mainwindow.ui" line="2125"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2224"/>
+        <location filename="../ui/mainwindow.ui" line="2136"/>
         <source>Ctrl+Shift+C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2256"/>
+        <location filename="../ui/mainwindow.ui" line="2168"/>
         <source>Open game folder</source>
         <translation>Abrir carpeta del juego</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2259"/>
+        <location filename="../ui/mainwindow.ui" line="2171"/>
         <source>Open game install folder</source>
         <translation>Abrir carpeta de instalación del juego</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2235"/>
+        <location filename="../ui/mainwindow.ui" line="2147"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
@@ -610,32 +605,27 @@
         <translation>Sincroniczar con Steam Cloud</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2092"/>
-        <source>Find:</source>
-        <translation>Encontrar:</translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="2151"/>
+        <location filename="../ui/mainwindow.ui" line="2062"/>
         <source>Configurator</source>
         <translation>Configuración</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2164"/>
+        <location filename="../ui/mainwindow.ui" line="2076"/>
         <source>Game</source>
         <translation>Juego</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2207"/>
+        <location filename="../ui/mainwindow.ui" line="2119"/>
         <source>Start</source>
         <translation>Iniciar</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2218"/>
+        <location filename="../ui/mainwindow.ui" line="2130"/>
         <source>Close</source>
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="2196"/>
+        <location filename="../ui/mainwindow.ui" line="2108"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>
@@ -655,19 +645,24 @@
         <translation>Instala el juego antes de iniciar el programa</translation>
     </message>
     <message>
-        <location filename="../src/translations.cpp" line="19"/>
+        <location filename="../src/translations.cpp" line="18"/>
         <source>Open File</source>
         <translation>Abrir archivo</translation>
     </message>
     <message>
-        <location filename="../src/translations.cpp" line="20"/>
+        <location filename="../src/translations.cpp" line="19"/>
         <source>Set Wine app</source>
         <translation>Establecer aplicación de Wine</translation>
     </message>
     <message>
-        <location filename="../src/translations.cpp" line="21"/>
+        <location filename="../src/translations.cpp" line="20"/>
         <source>No Wine app was set</source>
         <translation>No sé estableció alguna aplicación de Wine</translation>
+    </message>
+    <message>
+        <location filename="../src/translations.cpp" line="21"/>
+        <source>Wine was not found</source>
+        <translation>Wine no fue encontrado</translation>
     </message>
     <message>
         <location filename="../src/translations.cpp" line="22"/>
@@ -680,7 +675,7 @@
         <translation>Activo</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="1965"/>
+        <location filename="../ui/mainwindow.ui" line="1968"/>
         <location filename="../src/translations.cpp" line="12"/>
         <source>Mod Name</source>
         <translation>Nombre del mod</translation>
@@ -696,19 +691,15 @@
         <translation>No se encontró la carpeta de mods. Por favor, asegúrate de tener instalado Afterbirth+ o Repentance(+)</translation>
     </message>
     <message>
-        <location filename="../src/translations.cpp" line="18"/>
+        <location filename="../src/translations.cpp" line="17"/>
         <source>Save File</source>
         <translation>Archivo de guardado</translation>
     </message>
     <message>
-        <location filename="../src/translations.cpp" line="17"/>
-        <source>JSON Files (*.json)</source>
-        <translation>Archivos JSON (*.json)</translation>
-    </message>
-    <message>
-        <location filename="../src/translations.cpp" line="40"/>
-        <source>of</source>
-        <translation>de</translation>
+        <location filename="../headers/mainwindow.h" line="80"/>
+        <location filename="../src/translations.cpp" line="44"/>
+        <source>Recent</source>
+        <translation>Reciente</translation>
     </message>
 </context>
 <context>
@@ -720,7 +711,7 @@
     </message>
     <message>
         <location filename="../ui/about.ui" line="57"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Isaac Configurator is a tool to manage game settings of &lt;a href=&quot;https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;The Binding of Isaac: Rebirth&lt;/span&gt;&lt;/a&gt; and its DLCs and mods for Afterbirth+/Repentance. Source code can be found on &lt;a href=&quot;https://github.com/BrakeDude/imc&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Isaac Configurator is a tool to manage game settings of &lt;a href=&quot;https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;The Binding of Isaac: Rebirth&lt;/span&gt;&lt;/a&gt; and its DLCs and mods for Afterbirth+/Repentance(+). Source code can be found on &lt;a href=&quot;https://github.com/BrakeDude/imc&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Isaac Configurator es una herramienta para manejar configuraciones de of &lt;a href=&quot;https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;The Binding of Isaac: Rebirth&lt;/span&gt;&lt;/a&gt; sus DLCs y mods para Afterbirth+ y Repentance(+). El código fuente se encuentra en: &lt;a href=&quot;https://github.com/BrakeDude/imc&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>

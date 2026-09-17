@@ -20,9 +20,11 @@ bool MainWindow::CheckDLCandStore(QFile isaacng)
             this->setWindowTitle("Isaac Configurator: " + gameDLC);
             return false;
         }
+        gameStore = "Unknown";
         QString gameNamePrefix("Binding of Isaac: ");
         QStringList DLCNames = {"Repentance+", "Repentance", "Afterbirth+", "Afterbirth", "Rebirth"};
         QMap<QString, QString> stores;
+        QString steamPath = GetSteamPath().replace("\\", "/");
         stores.insert("GOG", "Galaxy");
         stores.insert("Epic", "Epic");
         foreach (QString var, DLCNames){
@@ -33,11 +35,17 @@ bool MainWindow::CheckDLCandStore(QFile isaacng)
                 }
             }
         }
-        if (!GetSteamPath().isEmpty() && QDir(GetSteamPath() + "/steamapps/common/The Binding of Isaac Rebirth").exists()
-            && isaacInfo.dir() == GetSteamPath() + "/steamapps/common/The Binding of Isaac Rebirth")
+#ifdef Q_OS_WINDOWS
+        if (QFile(gameDir + "/steam_api.dll").exists())
         {
             gameStore = "Steam";
         }
+#elif defined(Q_OS_LINUX)
+        if (QFile(gameDir + "/steam_api.dll").exists())
+        {
+            gameStore = "Steam";
+        }
+#endif
         StoreSet:
         foreach (QString var, DLCNames){
             if (line.contains(gameNamePrefix + var)){
@@ -154,7 +162,7 @@ void MainWindow::GetWineApp(){
             linuxWineApp = output;
             config->endGroup();
         }else{
-            QMessageBox::information(this, this->windowTitle(), "Wine app was not found.");
+            QMessageBox::information(this, this->windowTitle(), wineApp2);
             return;
         }
     }

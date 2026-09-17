@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     aboutDialog = new QDialog(this);
     aboutDialog->setWindowFlags(aboutDialog->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     ui_about->setupUi(aboutDialog);
+    recentFiles->setToolTipsVisible(true);
     InitThreads();
     if (!QFile::exists(GetIniFileLocation() + "/IsaacConfigurator.ini")) {
         QFile file(GetIniFileLocation() + "/IsaacConfigurator.ini");
@@ -29,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
         config->endGroup();
         config->beginGroup("Path");
         config->setValue("Executable", "");
+        config->setValue("RecentFiles", "");
 #ifdef Q_OS_LINUX
         config->setValue("WinePath", "");
         config->setValue("WinePrefix", "");
@@ -55,6 +57,13 @@ MainWindow::MainWindow(QWidget *parent)
 
         config->beginGroup("Path");
         QString dirPath = config->value("Executable").toString();
+
+        for (QString path : config->value("RecentFiles").toString().split(";", Qt::SkipEmptyParts)){
+            if(IsExecutable(QFile(path))){
+                QAction* act = MakeRecentPathAction(path);
+                recentFiles->addAction(act);
+            }
+        }
 #ifdef Q_OS_LINUX
         linuxWineApp = config->value("WinePath").toString();
 #endif
@@ -69,6 +78,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     }
     initLanguages(currentTranslator);
+
+    ui->menuFile->insertMenu(ui->actionOpen_game_folder, recentFiles);
 
     connect(ui->actionDark_theme, &QAction::triggered, this, [=](){
         DarkMode(ui->actionDark_theme->isChecked());
@@ -138,7 +149,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->actionStartGame, &QAction::triggered, this, [=](){
         QStringList options = QStringList();
-        if (ui->actionDisable_Repentogon->isChecked()){
+        if (ui->actionDisable_Repentogon->isChecked() && gameDLC != "Repentance+"){
             options << "-repentogonoff";
         }
         #ifdef Q_OS_WINDOWS
@@ -149,19 +160,9 @@ MainWindow::MainWindow(QWidget *parent)
             if (gameStore == "Steam"){
                 QProcess::startDetached("steam", options);
             }
-            else if(gameExec.contains(".exe")){
-                QProcess wineProgram;
-                GetWineApp();
-                GetWinePrefix();
-                QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-                env.insert("WINEPREFIX", linuxWinePrefix);
-                wineProgram.setProcessEnvironment(env);
-                wineProgram.setProgram(linuxWineApp);
-                QStringList command;
-                command << gameDir+"/"+gameExec;
-                wineProgram.setWorkingDirectory(gameDir);
-                wineProgram.setArguments(command);
-                wineProgram.startDetached();
+            else {
+                //Temporary put this for linux
+                QMessageBox::information(this, this->windowTitle(), "Please use launcher like Lutris or Heroic.");
             }
         #endif
 
@@ -187,10 +188,6 @@ MainWindow::MainWindow(QWidget *parent)
 
         #endif
     });
-    ui->downButton->setHidden(true);
-    ui->foundLabel->setHidden(true);
-    ui->upButton->setHidden(true);
-    clearHighlighting();
 #ifdef Q_OS_WINDOWS
     ui->actionWineExec->setEnabled(false);
     ui->actionWineExec->setVisible(false);
@@ -223,6 +220,56 @@ MainWindow::MainWindow(QWidget *parent)
     GetWinePrefix();
 #endif
 }
+
+QAction* MainWindow::MakeRecentPathAction(QString path){
+    QAction* act = new QAction();
+    if(path.length() > 100){
+        act->setText(path.left(97)+"...");
+        act->setToolTip(path);
+    }else{
+        act->setText(path);
+    }
+    connect(act, &QAction::triggered, this, [=](){
+        if (QFile(path).exists()) {
+            LoadApp(path);
+        }
+    });
+    return act;
+}
+
+void MainWindow::addToRecent(QString location){
+    bool doAdd = true;
+    for(QAction *act: recentFiles->actions()){
+        QString text = act->text();
+        if (text.length() == 100 && text.right(3) == "..."){
+            text = act->toolTip();
+        }
+        if(text == location && doAdd){
+            doAdd = false;
+            break;
+        }
+    }
+    if(doAdd){
+        while (recentFiles->actions().count() > 20){
+            delete recentFiles->actions().first();
+            recentFiles->actions().removeFirst();
+        }
+        QAction* act = MakeRecentPathAction(location);
+        recentFiles->addAction(act);
+        QStringList files;
+        for(QAction *act: recentFiles->actions()){
+            if(act->text().length() == 100 && act->text().right(3) == "..."){
+                files.append(act->toolTip());
+            }else{
+                files.append(act->text());
+            }
+        }
+        QSettings *config = new QSettings(GetIniFileLocation() + "/IsaacConfigurator.ini", QSettings::IniFormat);
+        config->beginGroup("Path");
+        config->setValue("RecentFiles", files.join(";"));
+        config->endGroup();
+    }
+};
 
 void MainWindow::DarkMode(bool dark){
     if(dark){
@@ -287,7 +334,12 @@ void MainWindow::LoadApp(QString FullDir, bool force, bool disable){
         ui->actionOpen_game_folder->setEnabled(true);
         ui->tabBox_ModsLog->setEnabled(true);
         ui->tabWidget_Options->setEnabled(true);
-        ui->menuGame->setEnabled(true);
+        #ifdef Q_OS_WINDOWS
+            ui->menuGame->setEnabled(true);
+        #elif defined(Q_OS_LINUX)
+            ui->menuGame->setEnabled(false);
+            ui->menuGame->setVisible(false);
+        #endif
         QString str = getModPath();
         if (!str.isNull()){
             loadMods(str);
@@ -316,17 +368,12 @@ void MainWindow::LoadApp(QString FullDir, bool force, bool disable){
         ConfigIniLoad();
         LoadConfig(true);
         ConfigReader->start();
-        LogReader->start();
         QSettings *config = new QSettings(GetIniFileLocation() + "/IsaacConfigurator.ini", QSettings::IniFormat);
         config->beginGroup("Path");
         config->setValue("Executable", FullDir);
         config->endGroup();
-        if(QFile(gameDir+"/REPENTOGONUpdater_Base.exe").exists() && gameExec.contains(".exe")
-            && QFile(configDir + "/Repentogon/options.ini").exists()){
-            QString windowName = this->windowTitle();
-            windowName.replace("Repentance", "REPENTOGON");
-            this->setWindowTitle(windowName);
-        }
+        ui->actionDisable_Repentogon->setVisible(gameDLC != "Repentance+");
+        addToRecent(FullDir);
     }else if(ui->menuGame->isEnabled() || force) {
         QMessageBox::information(this, this->windowTitle(), gameMessage1);
         ui->menuGame->setEnabled(false);
@@ -342,13 +389,13 @@ void MainWindow::LoadApp(QString FullDir, bool force, bool disable){
         ui->tabWidget_Options->setEnabled(false);
         ui->actionOpen_game_folder->setEnabled(false);
         ui->actionOpen_config_folder->setEnabled(false);
-        ui->logBrowser->clear();
     }
+    ui->tabBox_ModsLog->tabBar()->setTabEnabled(1, false);
+    ui->tabBox_ModsLog->tabBar()->setTabVisible(1, false);
 }
 
 MainWindow::~MainWindow()
 {
-    LogReader->exit();
     ConfigReader->exit();
     ConfigIniReader->exit();
     ModSyncer->exit();
@@ -386,15 +433,6 @@ void MainWindow::on_actionAbout_triggered()
 }
 
 void MainWindow::InitThreads(){
-    connect(LogReader, &IsaacLogReader::clearLog, this, [=](){
-        logLines.clear();
-        ui->logBrowser->clear();
-    });
-    connect(LogReader, &IsaacLogReader::logRead, this, [=](const QString &message){
-        QCursor cursor(ui->logBrowser->verticalScrollBar()->cursor());
-        ui->logBrowser->appendPlainText(message);
-        ui->logBrowser->verticalScrollBar()->setCursor(cursor);
-    });
     QTimer *configTimer = new QTimer();
     configTimer->moveToThread(ConfigReader);
     connect(configTimer, &QTimer::timeout, ConfigReader, [=](){
@@ -429,77 +467,3 @@ bool MainWindow::IsExecutable(QFile file){
     QFileInfo isaacInfo = QFileInfo(file);
     return isaacInfo.isExecutable();
 }
-
-void MainWindow::updateCounter() {
-    QString text = ui->foundLabel->text();
-    static QRegularExpression rx("\\D+\\S+\\D+");
-    QRegularExpressionMatch it = rx.match(text);
-    ui->foundLabel->setText(QString("%1" + it.captured() + "%2").arg(currentIndex + 1 < 1 ? 0 : currentIndex + 1).arg(matches.size()));
-    ui->foundLabel->resize(ui->foundLabel->sizeHint().width(),ui->foundLabel->height());
-    ui->upButton->move(ui->foundLabel->pos().rx() + ui->foundLabel->width() + 10, ui->upButton->pos().ry());
-}
-
-void MainWindow::on_lineEditLog_editingFinished()
-{
-    clearHighlighting();
-    bool setHidden = ui->lineEditLog->text().isEmpty();
-    ui->downButton->setHidden(setHidden);
-    ui->foundLabel->setHidden(setHidden);
-    ui->upButton->setHidden(setHidden);
-    if(!setHidden){
-        matches.clear();
-        currentIndex = -1;
-
-        QString text = ui->logBrowser->toPlainText();
-        QRegularExpression re(ui->lineEditLog->text(), QRegularExpression::CaseInsensitiveOption); // Case-insensitive search
-        QRegularExpressionMatch match;
-        int pos = 0;
-
-        while ((match = re.match(text, pos)).hasMatch()) {
-            matches.append(match.capturedStart());
-            pos = match.capturedEnd(); // Start the next search after the current match
-        }
-
-        updateCounter();
-        on_upButton_clicked();
-    }
-}
-
-void MainWindow::highlightMatch() {
-    if (currentIndex >= 0 && currentIndex < matches.size()) {
-        int startPos = matches[currentIndex];
-        QTextCursor cursor = ui->logBrowser->textCursor();
-        cursor.setPosition(startPos);
-        cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, ui->lineEditLog->text().length());
-        ui->logBrowser->setTextCursor(cursor);
-    }
-    updateCounter();
-}
-
-void MainWindow::clearHighlighting() {
-    QTextCursor cursor = ui->logBrowser->textCursor();
-    cursor.select(QTextCursor::Document);
-    cursor.setCharFormat(QTextCharFormat());
-    matches.clear();
-    currentIndex = -1;
-}
-
-void MainWindow::on_downButton_clicked()
-{
-    if (matches.isEmpty()) {
-        return;
-    }
-    currentIndex = (currentIndex - 1 + matches.size()) % matches.size(); // Handle negative indices correctly
-    highlightMatch();
-}
-
-
-void MainWindow::on_upButton_clicked()
-{
-    if (matches.isEmpty()) {
-        return;
-    }
-    currentIndex = (currentIndex + 1) % matches.size();
-    highlightMatch();
-}
-
